@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Suppress Figma iframe infrastructure errors (MUST BE FIRST) -->
+    <script>
+      // Nuclear-level Figma infrastructure error suppression
+      (function() {
+        // Comprehensive error patterns
+        var suppressPatterns = [
+          'iframemessageaborterror',
+          'message aborted',
+          'message port was destroyed',
+          'message port',
+          'setupmessagechannel',
+          'webpack-artifacts',
+          'r.cleanup',
+          's.cleanup',
+          'ei.setupmessagechannel',
+          'e.onload',
+          'figma.com',
+          'figma.site',
+          'webpack',
+          'min.js.br',
+          '.cleanup',
+          'cleanup',
+          'onload',
+          '1061:395596',
+          '1061:398647',
+          '477:12190',
+          '477:5240',
+          'at r.',
+          'at s.',
+          'at e.',
+          'at ei.',
+          '1535-',
+          'figma_app-'
+        ];
+        
+        function shouldSuppress(msg) {
+          if (!msg) return false;
+          var str = String(msg).toLowerCase();
+          return suppressPatterns.some(function(pattern) {
+            return str.indexOf(pattern) !== -1;
+          });
+        }
+        
+        function isErrorSuppressed(err) {
+          if (!err) return false;
+          try {
+            // Check constructor name
+            if (err.constructor && err.constructor.name) {
+              if (err.constructor.name.toLowerCase().indexOf('iframe') !== -1) return true;
+              if (err.constructor.name.toLowerCase().indexOf('message') !== -1) return true;
+            }
+            
+            // Check all properties
+            var parts = [];
+            if (err.name) parts.push(err.name);
+            if (err.message) parts.push(err.message);
+            if (err.stack) parts.push(err.stack);
+            if (err.toString) {
+              try { parts.push(err.toString()); } catch(e) {}
+            }
+            
+            var combined = parts.join(' ');
+            return shouldSuppress(combined);
+          } catch(e) {
+            return false;
+          }
+        }
+        
+        // MAXIMUM SUPPRESSION: Override all console methods
+        var noop = function() {};
+        var originalMethods = {
+          error: console.error,
+          warn: console.warn,
+          log: console.log,
+          info: console.info,
+          debug: console.debug
+        };
+        
+        function makeConsoleFilter(methodName) {
+          return function() {
+            try {
+              var args = Array.prototype.slice.call(arguments);
+              
+              // Check each argument
+              for (var i = 0; i < args.length; i++) {
+                var arg = args[i];
+                
+                // Check if it's an error object
+                if (arg instanceof Error || (arg && arg.constructor && arg.constructor.name && arg.constructor.name.indexOf('Error') !== -1)) {
+                  if (isErrorSuppressed(arg)) return;
+                }
+                
+                // Check string representation
+                var str = '';
+                try {
+                  str = String(arg);
+                  if (shouldSuppress(str)) return;
+                } catch(e) {}
+              }
+              
+              // Check combined message
+              try {
+                var combined = args.map(function(a) {
+                  try {
+                    if (typeof a === 'object' && a !== null) return JSON.stringify(a);
+                    return String(a);
+                  } catch(e) {
+                    return '';
+                  }
+                }).join(' ');
+                
+                if (shouldSuppress(combined)) return;
+              } catch(e) {}
+              
+              // If we get here, log it
+              originalMethods[methodName].apply(console, args);
+            } catch(e) {
+              // Fail silently
+            }
+          };
+        }
+        
+        console.error = makeConsoleFilter('error');
+        console.warn = makeConsoleFilter('warn');
+        console.log = makeConsoleFilter('log');
+        console.info = makeConsoleFilter('info');
+        console.debug = makeConsoleFilter('debug');
+        
+        // Global error handler - MAXIMUM PRIORITY
+        window.addEventListener('error', function(event) {
+          try {
+            if (!event) return;
+            
+            // Check error object
+            if (event.error && isErrorSuppressed(event.error)) {
+              event.preventDefault();
+              event.stopPropagation();
+              event.stopImmediatePropagation();
+              return false;
+            }
+            
+            // Check message and filename
+            var msg = '';
+            if (event.message) msg += String(event.message) + ' ';
+            if (event.filename) msg += String(event.filename) + ' ';
+            
+            if (shouldSuppress(msg)) {
+              event.preventDefault();
+              event.stopPropagation();
+              event.stopImmediatePropagation();
+              return false;
+            }
+          } catch(e) {}
+        }, true);
+        
+        // Promise rejection handlers
+        window.addEventListener('unhandledrejection', function(event) {
+          try {
+            if (!event || !event.reason) return;
+            
+            if (event.reason instanceof Error || (event.reason && event.reason.constructor)) {
+              if (isErrorSuppressed(event.reason)) {
+                event.preventDefault();
+                event.stopPropagation();
+                event.stopImmediatePropagation();
+                return;
+              }
+            }
+            
+            var msg = String(event.reason);
+            if (shouldSuppress(msg)) {
+              event.preventDefault();
+              event.stopPropagation();
+              event.stopImmediatePropagation();
+            }
+          } catch(e) {}
+        }, true);
+        
+        window.addEventListener('rejectionhandled', function(event) {
+          try {
+            if (!event || !event.reason) return;
+            if (event.reason instanceof Error && isErrorSuppressed(event.reason)) {
+              event.preventDefault();
+              event.stopPropagation();
+              event.stopImmediatePropagation();
+            }
+          } catch(e) {}
+        }, true);
+        
+        // Override Error constructor
+        var OriginalError = window.Error;
+        window.Error = function(message) {
+          try {
+            if (message && shouldSuppress(String(message))) {
+              var err = new OriginalError('');
+              err.name = '';
+              err.message = '';
+              err.stack = '';
+              return err;
+            }
+          } catch(e) {}
+          return new OriginalError(message);
+        };
+        window.Error.prototype = OriginalError.prototype;
+        
+        // Stub out IframeMessageAbortError entirely
+        try {
+          window.IframeMessageAbortError = function() {
+            return { name: '', message: '', stack: '', constructor: { name: '' } };
+          };
+        } catch(e) {}
+        
+        // Nuclear option: Override queueMicrotask to catch async errors
+        var origQueueMicrotask = window.queueMicrotask;
+        if (origQueueMicrotask) {
+          window.queueMicrotask = function(callback) {
+            origQueueMicrotask.call(window, function() {
+              try {
+                callback();
+              } catch(err) {
+                if (!isErrorSuppressed(err)) {
+                  throw err;
+                }
+              }
+            });
+          };
+        }
+        
+        // Override setTimeout/setInterval to catch errors
+        var origSetTimeout = window.setTimeout;
+        var origSetInterval = window.setInterval;
+        
+        // Direct window.onerror assignment (catches some errors addEventListener misses)
+        window.onerror = function(message, source, lineno, colno, error) {
+          try {
+            if (error && isErrorSuppressed(error)) return true;
+            var combined = [message, source, lineno, colno].join(' ');
+            if (shouldSuppress(combined)) return true;
+          } catch(e) {}
+        };
+
+        window.setTimeout = function(fn, delay) {
+          var args = Array.prototype.slice.call(arguments, 2);
+          return origSetTimeout.call(window, function() {
+            try {
+              if (typeof fn === 'function') {
+                fn.apply(null, args);
+              }
+            } catch(err) {
+              if (!isErrorSuppressed(err)) {
+                throw err;
+              }
+            }
+          }, delay);
+        };
+        
+        window.setInterval = function(fn, delay) {
+          var args = Array.prototype.slice.call(arguments, 2);
+          return origSetInterval.call(window, function() {
+            try {
+              if (typeof fn === 'function') {
+                fn.apply(null, args);
+              }
+            } catch(err) {
+              if (!isErrorSuppressed(err)) {
+                throw err;
+              }
+            }
+          }, delay);
+        };
+      })();
+    </script>
+    
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Primary Meta Tags -->
+    <title>Roy Wong - Product Designer | UI/UX Portfolio</title>
+    <meta name="title" content="Roy Wong - Product Designer | UI/UX Portfolio">
+    <meta name="description" content="Roy Wong — Senior product designer with 9 years of experience at Crypto.com and Animoca Brands. Portfolio featuring UI/UX case studies in fintech, Web3, and consumer mobile, plus interactive web experiments built in code. Based in Hong Kong.">
+    <meta name="keywords" content="product designer, UI design, UX design, portfolio, Roy Wong, Hong Kong, Crypto.com, Animoca Brands, fintech, Web3, interaction design, visual design, senior product designer, crypto wallet design, trading platform design">
+    <meta name="author" content="Roy Wong">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://roywong.com/">
+    <meta property="og:title" content="Roy Wong - Product Designer">
+    <meta property="og:description" content="Product designer portfolio featuring UI/UX projects and creative interactive experiments. Explore interactive case studies and live demos.">
+    <meta property="og:image" content="https://roywong.com/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://roywong.com/">
+    <meta name="twitter:title" content="Roy Wong - Product Designer">
+    <meta name="twitter:description" content="Product designer portfolio featuring UI/UX projects and creative interactive experiments. Explore interactive case studies and live demos.">
+    <meta name="twitter:image" content="https://roywong.com/og-image.jpg">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://roywong.com/">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    
+    <!-- Preconnect to speed up font loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- DNS prefetch and preconnect for Imgur (hosts all media assets) -->
+    <link rel="dns-prefetch" href="https://i.imgur.com">
+    <link rel="preconnect" href="https://i.imgur.com" crossorigin>
+    
+    <!-- Structured Data / JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Roy Wong",
+      "jobTitle": "Senior Product Designer",
+      "url": "https://roywong.com",
+      "email": "whyroy@gmail.com",
+      "sameAs": [
+        "https://x.com/rdpilot_eth",
+        "https://www.linkedin.com/in/roy-wong-05345311b/"
+      ],
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Hong Kong"
+      },
+      "description": "Senior product designer with 9 years of experience shipping end-to-end digital products across fintech, Web3, and consumer mobile at Crypto.com and Animoca Brands.",
+      "knowsAbout": ["UI Design", "UX Design", "Product Design", "Web Development", "Interaction Design", "Fintech", "Web3", "Crypto", "Prototyping", "Design Systems"]
+    }
+    </script>
+
+    <!-- Portfolio Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "name": "Roy Wong - Product Designer Portfolio",
+      "url": "https://roywong.com",
+      "description": "Portfolio of UI/UX case studies and interactive web experiments by Roy Wong.",
+      "author": {
+        "@type": "Person",
+        "name": "Roy Wong"
+      },
+      "hasPart": [
+        {
+          "@type": "CreativeWork",
+          "name": "Spray & Pray",
+          "url": "https://roywong.com/projects/spray-and-pray",
+          "description": "UI/UX case study for a tournament-based gaming platform.",
+          "creator": { "@type": "Person", "name": "Roy Wong" }
+        },
+        {
+          "@type": "CreativeWork",
+          "name": "Perpetual Trading",
+          "url": "https://roywong.com/projects/perpetual-trading",
+          "description": "UI/UX case study for a crypto perpetual trading platform.",
+          "creator": { "@type": "Person", "name": "Roy Wong" }
+        },
+        {
+          "@type": "CreativeWork",
+          "name": "Degen Arcade",
+          "url": "https://roywong.com/projects/degen-arcade",
+          "description": "UI/UX case study for a Web3 gaming arcade interface.",
+          "creator": { "@type": "Person", "name": "Roy Wong" }
+        },
+        {
+          "@type": "CreativeWork",
+          "name": "0n1 Force ComicCon",
+          "url": "https://roywong.com/projects/comiccon",
+          "description": "UI/UX case study for a ComicCon event experience.",
+          "creator": { "@type": "Person", "name": "Roy Wong" }
+        },
+        {
+          "@type": "CreativeWork",
+          "name": "u/test",
+          "url": "https://roywong.com/projects/utest",
+          "description": "UI/UX case study for a lightweight, unmoderated usability testing tool built for designers.",
+          "creator": { "@type": "Person", "name": "Roy Wong" }
+        },
+        {
+          "@type": "SoftwareApplication",
+          "name": "ASCII Effect 3D Tool",
+          "url": "https://roywong.com/tools/ascii",
+          "applicationCategory": "Creative Tool",
+          "creator": { "@type": "Person", "name": "Roy Wong" }
+        },
+        {
+          "@type": "SoftwareApplication",
+          "name": "Texttura",
+          "url": "https://roywong.com/tools/texttura",
+          "applicationCategory": "Typography Tool",
+          "creator": { "@type": "Person", "name": "Roy Wong" }
+        },
+        {
+          "@type": "SoftwareApplication",
+          "name": "Polytrace",
+          "url": "https://roywong.com/tools/polytrace",
+          "applicationCategory": "Creative Tool",
+          "creator": { "@type": "Person", "name": "Roy Wong" }
+        },
+        {
+          "@type": "SoftwareApplication",
+          "name": "Minecraft Voxelizer",
+          "url": "https://roywong.com/tools/minecraft-voxelizer",
+          "applicationCategory": "Creative Tool",
+          "creator": { "@type": "Person", "name": "Roy Wong" }
+        },
+        {
+          "@type": "SoftwareApplication",
+          "name": "Orbwarp",
+          "url": "https://roywong.com/tools/orbwarp",
+          "applicationCategory": "Interactive Tool",
+          "creator": { "@type": "Person", "name": "Roy Wong" }
+        },
+        {
+          "@type": "SoftwareApplication",
+          "name": "Wavetype",
+          "url": "https://roywong.com/tools/wavetype",
+          "applicationCategory": "Typography Tool",
+          "creator": { "@type": "Person", "name": "Roy Wong" }
+        }
+      ]
+    }
+    </script>
+  </head>
+  <body>
+    <!-- Crawlable noscript fallback for search engines -->
+    <noscript>
+      <div style="max-width:720px;margin:0 auto;padding:40px 20px;font-family:sans-serif">
+        <h1>Roy Wong — Senior Product Designer</h1>
+        <p>Product designer with 9 years of experience shipping end-to-end digital products across fintech, Web3, and consumer mobile at Crypto.com and Animoca Brands. Based in Hong Kong, open to senior product design roles.</p>
+        
+        <h2>UI/UX Case Studies</h2>
+        <ul>
+          <li><a href="/projects/spray-and-pray">Spray &amp; Pray</a> — Tournament-based gaming platform</li>
+          <li><a href="/projects/perpetual-trading">Perpetual Trading</a> — Crypto perpetual trading platform</li>
+          <li><a href="/projects/degen-arcade">Degen Arcade</a> — Web3 gaming arcade interface</li>
+          <li><a href="/projects/comiccon">0n1 Force ComicCon</a> — ComicCon event experience</li>
+          <li><a href="/projects/utest">u/test</a> — Lightweight, unmoderated usability testing tool for designers</li>
+        </ul>
+
+        <h2>Interactive Experiments</h2>
+        <ul>
+          <li><a href="/tools/ascii">ASCII Effect 3D Tool</a></li>
+          <li><a href="/tools/texttura">Texttura</a></li>
+          <li><a href="/tools/polytrace">Polytrace</a></li>
+          <li><a href="/tools/minecraft-voxelizer">Minecraft Voxelizer</a></li>
+          <li><a href="/tools/orbwarp">Orbwarp</a></li>
+          <li><a href="/tools/wavetype">Wavetype</a></li>
+        </ul>
+
+        <h2>Contact</h2>
+        <p>
+          <a href="https://x.com/rdpilot_eth">X (Twitter)</a> ·
+          <a href="https://www.linkedin.com/in/roy-wong-05345311b/">LinkedIn</a> ·
+          <a href="mailto:whyroy@gmail.com">Email</a>
+        </p>
+      </div>
+    </noscript>
+    <div id="root"></div>
+    <script type="module" src="/src/app/index.tsx"></script>
+  </body>
+</html>

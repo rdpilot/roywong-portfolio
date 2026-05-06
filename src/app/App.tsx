@@ -1,0 +1,513 @@
+import {
+  useState,
+  useEffect,
+  useRef,
+  useCallback,
+  lazy,
+  Suspense,
+  startTransition,
+} from "react";
+import type { ReactNode } from "react";
+import { InteractiveDotGrid } from "./components/InteractiveDotGrid";
+import { MobileWindow } from "./components/MobileWindow";
+import { useIsMobile } from "./hooks/useIsMobile";
+import { ThemeProvider, useTheme } from "./hooks/useTheme";
+import { QuickLookProvider } from "./components/QuickLookOverlay";
+import { LoadingScreen } from "./components/LoadingScreen";
+import {
+  routeToWindow,
+  windowToRoute,
+  getPageTitle,
+  getPageDescription,
+  type WindowId,
+} from "./routes";
+import ogImageSrc from "../og-image";
+import { DesktopIcon } from "./components/DesktopIcon";
+import { DraggableWindow } from "./components/DraggableWindow";
+import { MenuBar } from "./components/MenuBar";
+import { ErrorBoundary } from "./components/ErrorBoundary";
+import { UnicornBackground } from "./components/UnicornBackground";
+import { SunnyBackground } from "./components/SunnyBackground";
+import { GestureController } from "./components/GestureController";
+
+// ─── Lazy window imports ──────────────────────────────────────────────────────
+const AboutWindow            = lazy(() => import("./components/windows/AboutWindow").then(m => ({ default: m.AboutWindow })).catch(() => ({ default: () => <div>Failed to load</div> })));
+const WorkGalleryWindow      = lazy(() => import("./components/windows/WorkGalleryWindow").then(m => ({ default: m.WorkGalleryWindow })).catch(() => ({ default: () => <div>Failed to load</div> })));
+const SprayAndPrayWindow     = lazy(() => import("./components/windows/SprayAndPrayWindow").then(m => ({ default: m.SprayAndPrayWindow })).catch(() => ({ default: () => <div>Failed to load</div> })));
+const DegenArcadeWindow      = lazy(() => import("./components/windows/DegenArcadeWindow").then(m => ({ default: m.DegenArcadeWindow })).catch(() => ({ default: () => <div>Failed to load</div> })));
+const ComicConWindow         = lazy(() => import("./components/windows/ComicConWindow").then(m => ({ default: m.ComicConWindow })).catch(() => ({ default: () => <div>Failed to load</div> })));
+const PerpetualTradingWindow = lazy(() => import("./components/windows/PerpetualTradingWindow").then(m => ({ default: m.PerpetualTradingWindow })).catch(() => ({ default: () => <div>Failed to load</div> })));
+const AsciiToolWindow        = lazy(() => import("./components/windows/AsciiToolWindow").then(m => ({ default: m.AsciiToolWindow })).catch(() => ({ default: () => <div>Failed to load</div> })));
+const TextturaWindow         = lazy(() => import("./components/windows/TextturaWindow").then(m => ({ default: m.TextturaWindow })).catch(() => ({ default: () => <div>Failed to load</div> })));
+const PolytraceWindow        = lazy(() => import("./components/windows/PolytraceWindow").then(m => ({ default: m.PolytraceWindow })).catch(() => ({ default: () => <div>Failed to load</div> })));
+const MinecraftVoxelizerWindow = lazy(() => import("./components/windows/MinecraftVoxelizerWindow").then(m => ({ default: m.MinecraftVoxelizerWindow })).catch(() => ({ default: () => <div>Failed to load</div> })));
+const OrbwarpWindow          = lazy(() => import("./components/windows/OrbwarpWindow").then(m => ({ default: m.OrbwarpWindow })).catch(() => ({ default: () => <div>Failed to load</div> })));
+const WavetypeWindow         = lazy(() => import("./components/windows/WavetypeWindow").then(m => ({ default: m.WavetypeWindow })).catch(() => ({ default: () => <div>Failed to load</div> })));
+
+// ─── WindowWrapper ────────────────────────────────────────────────────────────
+// Lives at MODULE SCOPE so React never sees a new component type between renders.
+// Per-window ErrorBoundary (inline) means one broken window never kills the app.
+function WindowWrapper({ children }: { children: ReactNode }) {
+  return (
+    <ErrorBoundary inline>
+      <Suspense
+        fallback={
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              height: "100%",
+              minHeight: "80px",
+              fontFamily: "'IBM Plex Mono', monospace",
+              fontSize: "11px",
+              color: "#888",
+              opacity: 0.6,
+            }}
+          >
+            Loading…
+          </div>
+        }
+      >
+        {children}
+      </Suspense>
+    </ErrorBoundary>
+  );
+}
+
+// ─── Window content map ───────────────────────────────────────────────────────
+// Also at module scope so element identities are stable across renders.
+// IMPORTANT: these elements are intentionally NOT rendered until a window is
+// added to `mountedWindows` inside a startTransition — see AppContent below.
+// This ensures lazy components NEVER suspend during a synchronous render pass.
+const WINDOW_CONTENT: Record<WindowId, ReactNode> = {
+  about:              <WindowWrapper><AboutWindow /></WindowWrapper>,
+  workGallery:        <WindowWrapper><WorkGalleryWindow /></WindowWrapper>,
+  sprayAndPray:       <WindowWrapper><SprayAndPrayWindow /></WindowWrapper>,
+  degenArcade:        <WindowWrapper><DegenArcadeWindow /></WindowWrapper>,
+  comicCon:           <WindowWrapper><ComicConWindow /></WindowWrapper>,
+  perpetualTrading:   <WindowWrapper><PerpetualTradingWindow /></WindowWrapper>,
+  asciiTool:          <WindowWrapper><AsciiToolWindow /></WindowWrapper>,
+  texttura:           <WindowWrapper><TextturaWindow /></WindowWrapper>,
+  polytrace:          <WindowWrapper><PolytraceWindow /></WindowWrapper>,
+  minecraftVoxelizer: <WindowWrapper><MinecraftVoxelizerWindow /></WindowWrapper>,
+  orbwarp:            <WindowWrapper><OrbwarpWindow /></WindowWrapper>,
+  wavetype:           <WindowWrapper><WavetypeWindow /></WindowWrapper>,
+};
+
+// ─── Static config ────────────────────────────────────────────────────────────
+type WindowConfig = {
+  id: WindowId;
+  title: string;
+  icon: string;
+  label: string;
+  defaultPosition: { x: number; y: number };
+  width: number | string;
+  docked?: "bottom" | null;
+  maxHeight?: number;
+};
+
+const windowConfigs: WindowConfig[] = [
+  { id: "about",              title: "About me",             icon: "about",              label: "About me",             defaultPosition: { x: 580, y: 40 },  width: 440 },
+  { id: "workGallery",        title: "Gallery",              icon: "workGallery",        label: "Gallery",              defaultPosition: { x: 360, y: 60 },  width: 520, maxHeight: 480 },
+  { id: "sprayAndPray",       title: "Spray & Pray",         icon: "sprayAndPray",       label: "Spray & Pray",         defaultPosition: { x: 400, y: 60 },  width: 560, maxHeight: 640 },
+  { id: "perpetualTrading",   title: "Perpetual Trading",    icon: "perpetualTrading",   label: "Perpetual Trading",    defaultPosition: { x: 440, y: 100 }, width: 750, maxHeight: 560 },
+  { id: "degenArcade",        title: "Degen Arcade",         icon: "degenArcade",        label: "Degen Arcade",         defaultPosition: { x: 480, y: 140 }, width: 560, maxHeight: 560 },
+  { id: "comicCon",           title: "0n1 Force ComicCon",   icon: "comicCon",           label: "0n1 Force ComicCon",   defaultPosition: { x: 520, y: 180 }, width: 560, maxHeight: 560 },
+  { id: "asciiTool",          title: "ASCII effect 3D tool", icon: "asciiTool",          label: "ASCII effect 3D tool", defaultPosition: { x: 160, y: 60 },  width: 400 },
+  { id: "texttura",           title: "Texttura",             icon: "texttura",           label: "Texttura",             defaultPosition: { x: 200, y: 120 }, width: 400 },
+  { id: "polytrace",          title: "Polytrace",            icon: "polytrace",          label: "Polytrace",            defaultPosition: { x: 240, y: 160 }, width: 400 },
+  { id: "minecraftVoxelizer", title: "Minecraft Voxelizer",  icon: "minecraftVoxelizer", label: "Minecraft Voxelizer",  defaultPosition: { x: 280, y: 200 }, width: 400 },
+  { id: "orbwarp",            title: "Orbwarp",              icon: "orbwarp",            label: "Orbwarp",              defaultPosition: { x: 320, y: 240 }, width: 400 },
+  { id: "wavetype",           title: "Wavetype",             icon: "wavetype",           label: "Wavetype",             defaultPosition: { x: 360, y: 280 }, width: 400 },
+];
+
+const ALL_WINDOW_IDS = new Set(windowConfigs.map((c) => c.id));
+
+const configMap = Object.fromEntries(
+  windowConfigs.map((c) => [c.id, c])
+) as Record<WindowId, WindowConfig>;
+
+const desktopSections: { label: string; ids: WindowId[] }[] = [
+  { label: "",                        ids: ["about"] },
+  { label: "UI/UX Projects",          ids: ["sprayAndPray", "perpetualTrading", "degenArcade", "comicCon"] },
+  { label: "Interactive Experiments", ids: ["asciiTool", "texttura", "polytrace", "minecraftVoxelizer", "orbwarp", "wavetype", "workGallery"] },
+];
+
+const mobileOrder: { id: WindowId; defaultOpen: boolean; category?: string }[] = [
+  { id: "about",              defaultOpen: true },
+  { id: "sprayAndPray",       defaultOpen: true,  category: "UI/UX Projects" },
+  { id: "perpetualTrading",   defaultOpen: true },
+  { id: "degenArcade",        defaultOpen: true },
+  { id: "comicCon",           defaultOpen: false },
+  { id: "asciiTool",          defaultOpen: true,  category: "Interactive Experiments" },
+  { id: "texttura",           defaultOpen: false },
+  { id: "polytrace",          defaultOpen: false },
+  { id: "minecraftVoxelizer", defaultOpen: false },
+  { id: "orbwarp",            defaultOpen: false },
+  { id: "wavetype",           defaultOpen: false },
+  { id: "workGallery",        defaultOpen: false },
+];
+
+/** Visually-hidden crawlable nav for SEO */
+function CrawlableNav() {
+  return (
+    <nav
+      aria-label="Site navigation"
+      style={{
+        position: "absolute",
+        width: "1px",
+        height: "1px",
+        padding: 0,
+        margin: "-1px",
+        overflow: "hidden",
+        clip: "rect(0,0,0,0)",
+        whiteSpace: "nowrap",
+        borderWidth: 0,
+      }}
+    >
+      <h1>Roy Wong — Senior Product Designer</h1>
+      <ul>
+        <li><a href="/about">About Me</a></li>
+        <li><a href="/gallery">Gallery</a></li>
+      </ul>
+      <h2>UI/UX Case Studies</h2>
+      <ul>
+        <li><a href="/projects/spray-and-pray">Spray &amp; Pray</a></li>
+        <li><a href="/projects/perpetual-trading">Perpetual Trading</a></li>
+        <li><a href="/projects/degen-arcade">Degen Arcade</a></li>
+        <li><a href="/projects/comiccon">0n1 Force ComicCon</a></li>
+      </ul>
+      <h2>Interactive Experiments</h2>
+      <ul>
+        <li><a href="/tools/ascii">ASCII Effect 3D Tool</a></li>
+        <li><a href="/tools/texttura">Texttura</a></li>
+        <li><a href="/tools/polytrace">Polytrace</a></li>
+        <li><a href="/tools/minecraft-voxelizer">Minecraft Voxelizer</a></li>
+        <li><a href="/tools/orbwarp">Orbwarp</a></li>
+        <li><a href="/tools/wavetype">Wavetype</a></li>
+      </ul>
+    </nav>
+  );
+}
+
+// ─── AppContent ───────────────────────────────────────────────────────────────
+function AppContent() {
+  const isMobile = useIsMobile();
+  const { theme, toggleTheme } = useTheme();
+  const [siteLoading, setSiteLoading] = useState(true);
+  const [gestureMode, setGestureMode] = useState(false);
+
+  const handleLoadingFinished = useCallback(() => setSiteLoading(false), []);
+
+  // Set OG image on mount
+  useEffect(() => {
+    document.querySelector('meta[property="og:image"]')?.setAttribute("content", ogImageSrc);
+    document.querySelector('meta[name="twitter:image"]')?.setAttribute("content", ogImageSrc);
+  }, []);
+
+  // ── Window visibility state ──────────────────────────────────────────────
+  const getInitialWindows = useCallback((): Set<WindowId> => {
+    const path = window.location.pathname;
+    const windowId = routeToWindow[path];
+    if (windowId && windowId !== "about") {
+      return new Set<WindowId>([windowId, "about", "sprayAndPray"]);
+    }
+    return new Set<WindowId>(["about", "sprayAndPray"]);
+  }, []);
+
+  const [openWindows,  setOpenWindows]  = useState<Set<WindowId>>(getInitialWindows);
+  const [windowOrder,  setWindowOrder]  = useState<WindowId[]>(["sprayAndPray", "about"]);
+
+  // ── mountedWindows gate ──────────────────────────────────────────────────
+  // Starts EMPTY. Lazy content is NEVER rendered during the initial
+  // synchronous commit. Everything goes through startTransition so React
+  // can handle Suspense in concurrent mode without throwing the
+  // "suspended while responding to synchronous input" error.
+  const [mountedWindows, setMountedWindows] = useState<Set<WindowId>>(() => new Set());
+
+  // Capture the initial open-set so we can mount it after first paint.
+  const initialOpenRef = useRef<Set<WindowId> | null>(null);
+  if (initialOpenRef.current === null) {
+    initialOpenRef.current = getInitialWindows();
+  }
+
+  useEffect(() => {
+    startTransition(() => {
+      if (isMobile) {
+        // Mobile: mount every window immediately — all panels are present in DOM
+        setMountedWindows(new Set(ALL_WINDOW_IDS));
+      } else {
+        // Desktop: start with only the initially-open windows; others mount on
+        // first open (inside toggleWindow's startTransition below).
+        setMountedWindows(new Set(initialOpenRef.current!));
+      }
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); // intentionally runs once
+
+  // ── Window actions ───────────────────────────────────────────────────────
+  const toggleWindow = useCallback((id: WindowId) => {
+    startTransition(() => {
+      setOpenWindows((prev) => {
+        const next = new Set(prev);
+        if (next.has(id)) { next.delete(id); } else { next.add(id); }
+        return next;
+      });
+      // Mount lazy content for this window the first time it's opened.
+      setMountedWindows((prev) => {
+        if (prev.has(id)) return prev;
+        const next = new Set(prev);
+        next.add(id);
+        return next;
+      });
+      setWindowOrder((order) => [...order.filter((w) => w !== id), id]);
+    });
+  }, []);
+
+  const closeWindow = useCallback((id: WindowId) => {
+    setOpenWindows((prev) => {
+      const next = new Set(prev);
+      next.delete(id);
+      return next;
+    });
+  }, []);
+
+  const focusWindow = useCallback((id: WindowId) => {
+    setWindowOrder((order) => {
+      if (order[order.length - 1] === id) return order;
+      return [...order.filter((w) => w !== id), id];
+    });
+  }, []);
+
+  const getZIndex = useCallback(
+    (id: WindowId) => {
+      const index = windowOrder.indexOf(id);
+      return index === -1 ? 10 : 10 + index;
+    },
+    [windowOrder]
+  );
+
+  // ── Gesture action handler ────────────────────────────────────────────────
+  const handleGestureAction = useCallback((action: string) => {
+    const windowMap: Record<string, WindowId> = {
+      open_about:    "about",
+      open_gallery:  "workGallery",
+      open_spray:    "sprayAndPray",
+      open_trading:  "perpetualTrading",
+      open_arcade:   "degenArcade",
+      open_comiccon: "comicCon",
+    };
+
+    if (action === "cycle_theme") {
+      toggleTheme();
+    } else if (action === "close_window") {
+      const focused = windowOrder[windowOrder.length - 1];
+      if (focused) closeWindow(focused);
+    } else if (windowMap[action]) {
+      toggleWindow(windowMap[action]);
+    }
+    // "click" is handled internally in useGestureRecognition
+  }, [toggleTheme, windowOrder, closeWindow, toggleWindow]);
+
+  // ── Sync URL ─────────────────────────────────────────────────────────────
+  useEffect(() => {
+    const focusedWindowId = windowOrder[windowOrder.length - 1];
+
+    if (focusedWindowId && windowToRoute[focusedWindowId]) {
+      const newPath = windowToRoute[focusedWindowId];
+      if (window.location.pathname !== newPath) {
+        window.history.pushState({}, "", newPath);
+      }
+    }
+
+    const title       = getPageTitle(focusedWindowId || null);
+    const description = getPageDescription(focusedWindowId || null);
+
+    document.title = title;
+    document.querySelector('meta[name="description"]')?.setAttribute("content", description);
+    document.querySelector('meta[property="og:title"]')?.setAttribute("content", title);
+    document.querySelector('meta[property="og:description"]')?.setAttribute("content", description);
+    document.querySelector('meta[name="twitter:title"]')?.setAttribute("content", title);
+    document.querySelector('meta[name="twitter:description"]')?.setAttribute("content", description);
+
+    if (focusedWindowId && windowToRoute[focusedWindowId]) {
+      document.querySelector('link[rel="canonical"]')?.setAttribute(
+        "href",
+        `https://roywong.com${windowToRoute[focusedWindowId]}`
+      );
+    }
+  }, [windowOrder]);
+
+  // ── Browser back/forward ─────────────────────────────────────────────────
+  useEffect(() => {
+    const handlePopState = () => {
+      const path     = window.location.pathname;
+      const windowId = routeToWindow[path];
+      if (!windowId) return;
+
+      startTransition(() => {
+        setOpenWindows((prev) => {
+          if (prev.has(windowId)) return prev;
+          const next = new Set(prev);
+          next.add(windowId);
+          return next;
+        });
+        setMountedWindows((prev) => {
+          if (prev.has(windowId)) return prev;
+          const next = new Set(prev);
+          next.add(windowId);
+          return next;
+        });
+        setWindowOrder((order) =>
+          order.includes(windowId) ? order : [...order, windowId]
+        );
+      });
+    };
+
+    window.addEventListener("popstate", handlePopState);
+    return () => window.removeEventListener("popstate", handlePopState);
+  }, []);
+
+  // ── Helpers ──────────────────────────────────────────────────────────────
+  // Returns the lazy content for a window only after it has been mounted via
+  // a startTransition — guarantees no synchronous Suspense during user input.
+  const getContent = (id: WindowId): ReactNode =>
+    mountedWindows.has(id) ? WINDOW_CONTENT[id] : null;
+
+  // ─── Mobile Layout ────────────────────────────────────────────────────────
+  if (isMobile) {
+    return (
+      <main
+        className="w-full min-h-screen"
+        style={{ background: theme.desktop }}
+      >
+        {theme.mode === "hailmary" && <UnicornBackground />}
+        {theme.mode === "sunny" && <SunnyBackground />}
+        {siteLoading && <LoadingScreen onFinished={handleLoadingFinished} />}
+        <CrawlableNav />
+        <MenuBar />
+        <div className="pt-12 pb-6 px-3 flex flex-col gap-2" style={{ position: "relative" }}>
+          {mobileOrder.map(({ id, defaultOpen, category }) => (
+            <div key={id}>
+              {category && (
+                <div
+                  style={{
+                    fontFamily: "'IBM Plex Mono', monospace",
+                    fontSize: "10px",
+                    color: theme.textMuted,
+                    textTransform: "uppercase",
+                    letterSpacing: "0.08em",
+                    padding: "8px 4px 0",
+                  }}
+                >
+                  {category}
+                </div>
+              )}
+              <MobileWindow title={configMap[id].title} defaultOpen={defaultOpen}>
+                {getContent(id)}
+              </MobileWindow>
+            </div>
+          ))}
+        </div>
+      </main>
+    );
+  }
+
+  // ─── Desktop Layout ───────────────────────────────────────────────────────
+  return (
+    <main
+      className="w-full h-screen overflow-hidden relative"
+      style={{ background: theme.desktop }}
+    >
+      {theme.mode === "hailmary" && <UnicornBackground />}
+      {theme.mode === "sunny" && <SunnyBackground />}
+      {siteLoading && <LoadingScreen onFinished={handleLoadingFinished} />}
+      <CrawlableNav />
+
+      <MenuBar
+        onToggleWindow={toggleWindow}
+        openWindows={openWindows}
+        gestureMode={gestureMode}
+        onToggleGesture={() => setGestureMode((v) => !v)}
+      />
+
+      {gestureMode && <GestureController onAction={handleGestureAction} />}
+
+      {/* Dotted background */}
+      <div className="absolute inset-0 mt-10" style={{ zIndex: 1 }}>
+        <InteractiveDotGrid />
+      </div>
+
+      {/* Desktop icons */}
+      <div className="absolute top-14 left-4 z-[5]">
+        <div className="flex flex-col gap-0.5">
+          {desktopSections.map((category, catIdx) => (
+            <div key={catIdx}>
+              {category.label && (
+                <div
+                  style={{
+                    fontFamily: "'IBM Plex Mono', monospace",
+                    fontSize: "9px",
+                    color: theme.textMuted,
+                    textTransform: "uppercase",
+                    letterSpacing: "0.08em",
+                    padding: "8px 4px 4px",
+                    marginTop: catIdx > 0 ? "4px" : "0",
+                  }}
+                >
+                  {category.label}
+                </div>
+              )}
+              {category.ids.map((id) => {
+                const config = configMap[id];
+                return (
+                  <DesktopIcon
+                    key={config.id}
+                    label={config.label}
+                    icon={config.icon}
+                    onClick={() => toggleWindow(config.id)}
+                    isOpen={openWindows.has(config.id)}
+                  />
+                );
+              })}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Windows */}
+      <div className="absolute inset-0 mt-10">
+        {windowConfigs.map((config) => (
+          <DraggableWindow
+            key={config.id}
+            id={config.id}
+            title={config.title}
+            isOpen={openWindows.has(config.id)}
+            onClose={() => closeWindow(config.id)}
+            onFocus={() => focusWindow(config.id)}
+            zIndex={config.docked ? 50 : getZIndex(config.id)}
+            defaultPosition={config.defaultPosition}
+            width={config.width}
+            docked={config.docked || null}
+            maxHeight={config.maxHeight || undefined}
+          >
+            {getContent(config.id)}
+          </DraggableWindow>
+        ))}
+      </div>
+    </main>
+  );
+}
+
+export default function App() {
+  return (
+    <ErrorBoundary>
+      <ThemeProvider>
+        <QuickLookProvider>
+          <AppContent />
+        </QuickLookProvider>
+      </ThemeProvider>
+    </ErrorBoundary>
+  );
+}
