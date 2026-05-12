@@ -233,7 +233,7 @@ export function ProtoCommentsWindow() {
         <SectionRule label="Approach" theme={theme} />
 
         <InfoPanel theme={theme}>
-          Put comments where they're easy to act on. That meant my own GitHub repo — I already use it; the AI already reads it — and a slash command that turns "what did people say?" into one keystroke.
+          Put comments where they're easy to act on. That meant my own GitHub repo (I already use it, the AI already reads it) and a slash command that turns "what did people say?" into one keystroke.
         </InfoPanel>
 
         <div
@@ -346,7 +346,7 @@ export function ProtoCommentsWindow() {
         <SectionRule label="Reflection" theme={theme} />
 
         <InfoPanel theme={theme}>
-          The goal was something a designer reaches for without thinking — like picking up a pen, not "an interesting tool people try once." Every cut above was about closing that gap. No database means nothing to trust. No accounts means nothing to create. No required fields means nothing to answer before you've seen the value. The AI slash command isn't a nice to have — it's the reason this exists. Without a fast path from "here's the feedback" to "Claude, apply fixes 1, 2, and 4," proto-comments is just another commenting widget. With it, feedback becomes code.
+          The goal was something a designer reaches for without thinking, like picking up a pen, not "an interesting tool people try once." Every cut above was about closing that gap. No database means nothing to trust. No accounts means nothing to create. No required fields means nothing to answer before you've seen the value. The AI slash command isn't a nice to have. It's the reason this exists. Without a fast path from "here's the feedback" to "Claude, apply fixes 1, 2, and 4," proto-comments is just another commenting widget. With it, feedback becomes code.
         </InfoPanel>
 
       </div>

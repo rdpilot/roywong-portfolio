@@ -100,7 +100,7 @@ export function DegenArcadeWindow() {
           </ImageWell>
           <div className="flex flex-col gap-2">
             <InfoPanel title="1 · Discover" theme={theme}>
-              Browse the curated "Arcade Floor" — a live feed of tokens that have
+              Browse the curated "Arcade Floor", a live feed of tokens that have
               already passed automated security checks, so users never have to
               verify contracts manually.
             </InfoPanel>
@@ -110,7 +110,7 @@ export function DegenArcadeWindow() {
               fast and satisfying.
             </InfoPanel>
             <InfoPanel title="3 · Review & Confirm" theme={theme}>
-              Transparent token data — Market Cap, Liquidity, and Volume — is
+              Transparent token data (Market Cap, Liquidity, and Volume) is
               surfaced at the point of decision, giving users full confidence
               before committing.
             </InfoPanel>
@@ -121,7 +121,7 @@ export function DegenArcadeWindow() {
 
         <div style={{ display: isMobile ? "flex" : "grid", gridTemplateColumns: "1fr 1fr 1fr", flexDirection: "column", gap: "8px" }}>
           <InfoPanel title="Bulk Buy" theme={theme}>
-            Early prototypes included a batch-purchase flow for buying multiple tokens at once. Testing revealed it added too much cognitive load — users second-guessed selections and abandoned carts. A single-token flow proved far more decisive.
+            Early prototypes included a batch-purchase flow for buying multiple tokens at once. Testing revealed it added too much cognitive load. Users second-guessed selections and abandoned carts. A single-token flow proved far more decisive.
           </InfoPanel>
           <InfoPanel title="Loading Time" theme={theme}>
             On-chain data fetches introduced noticeable wait times between screens. We trimmed redundant calls and added optimistic UI updates, but some flows still felt sluggish and were simplified to reduce round-trips.

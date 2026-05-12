@@ -11,7 +11,7 @@ export function WavetypeWindow() {
         className="mb-4"
         style={{ fontSize: "13px", lineHeight: "1.7", color: theme.textPrimary }}
       >
-        A kinetic typography texture tool with 10 pattern modes, a skeuomorphic hardware UI, stencil masking, and multi-format export — including ready-to-use HTML and embeddable code snippets.
+        A kinetic typography texture tool with 10 pattern modes, a skeuomorphic hardware UI, stencil masking, and multi-format export including ready-to-use HTML and embeddable code snippets.
       </p>
 
       <div

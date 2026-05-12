@@ -34,7 +34,7 @@ export function PerpetualTradingWindow() {
       <ProjectHeader
         title="Perpetual Trading"
         company="Crypto.com"
-        description="Simplifies complex perpetual futures trading into a clean, intuitive mobile experience — letting users set leverage, manage risk with TP/SL, and execute trades confidently without the clutter of traditional trading platforms."
+        description="Simplifies complex perpetual futures trading into a clean, intuitive mobile experience. Lets users set leverage, manage risk with TP/SL, and execute trades confidently without the clutter of traditional trading platforms."
         tags={["Trading", "WEB3 Application", "Mobile Application", "Interactive Prototype"]}
         theme={theme}
       />
@@ -228,7 +228,7 @@ export function PerpetualTradingWindow() {
             </div>
           </InfoPanel>
           <InfoPanel title="Leverage UX" theme={theme}>
-            Leverage is the most powerful (and dangerous) control in perp trading. We needed to make it easy to adjust while communicating the amplified risk clearly — a slider felt intuitive but made it too easy to max out, so we paired it with explicit liquidation price feedback.
+            Leverage is the most powerful (and dangerous) control in perp trading. We needed to make it easy to adjust while communicating the amplified risk clearly. A slider felt intuitive but made it too easy to max out, so we paired it with explicit liquidation price feedback.
             <div style={{ marginTop: "12px", borderRadius: "8px", overflow: "hidden" }}>
               <ImageWithFallback
                 src="https://i.imgur.com/pD8iYzO.png"

@@ -11,7 +11,7 @@ export function TextturaWindow() {
         className="mb-4"
         style={{ fontSize: "13px", lineHeight: "1.7", color: theme.textPrimary }}
       >
-        Fill any shape with repeating text — typographic masking made visual.
+        Fill any shape with repeating text. Typographic masking made visual.
       </p>
 
       <div

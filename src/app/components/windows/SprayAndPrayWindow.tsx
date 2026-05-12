@@ -41,7 +41,7 @@ export function SprayAndPrayWindow() {
       />
 
       <div className="flex flex-col gap-4" style={{ padding: "16px 16px 24px" }}>
-        <ImageWell theme={theme} aspectRatio="16/10" onClick={ql("https://i.imgur.com/rO78uX9.mp4", "Spray & Pray — Hero", "video")}>
+        <ImageWell theme={theme} aspectRatio="16/10" onClick={ql("https://i.imgur.com/rO78uX9.mp4", "Spray & Pray Hero", "video")}>
           <AutoPlayVideo
             src="https://i.imgur.com/rO78uX9.mp4"
             style={{ width: "100%", height: "100%", objectFit: "contain", display: "block" }}
@@ -67,14 +67,14 @@ export function SprayAndPrayWindow() {
         <SectionRule label="Mobile Experience" theme={theme} />
 
         <div style={{ display: isMobile ? "flex" : "grid", gridTemplateColumns: "1fr 1fr", flexDirection: "column", height: isMobile ? undefined : "280px", gap: "8px" }}>
-          <ImageWell theme={theme} style={isMobile ? { minHeight: "280px" } : undefined} onClick={ql("https://i.imgur.com/uf9h04I.mp4", "Mobile Experience — Video", "video")}>
+          <ImageWell theme={theme} style={isMobile ? { minHeight: "280px" } : undefined} onClick={ql("https://i.imgur.com/uf9h04I.mp4", "Mobile Experience Video", "video")}>
             <AutoPlayVideo
               className="rounded-[16px]"
               src="https://i.imgur.com/uf9h04I.mp4"
               style={{ maxWidth: "100%", maxHeight: "100%", width: "auto", height: "auto", objectFit: "contain", display: "block", margin: "0 auto" }}
             />
           </ImageWell>
-          <ImageWell theme={theme} style={isMobile ? { minHeight: "280px" } : undefined} onClick={ql("https://i.imgur.com/O74Q0Ds.png", "Mobile Experience — Screenshot")}>
+          <ImageWell theme={theme} style={isMobile ? { minHeight: "280px" } : undefined} onClick={ql("https://i.imgur.com/O74Q0Ds.png", "Mobile Experience Screenshot")}>
             <img src="https://i.imgur.com/O74Q0Ds.png" alt="Spray & Pray mobile trading interface showing live chart and chip balance" loading="lazy" style={{ height: isMobile ? "auto" : "100%", maxHeight: isMobile ? "260px" : undefined, width: "auto", objectFit: "contain", margin: "0 auto", display: "block" }} />
           </ImageWell>
         </div>
@@ -108,7 +108,7 @@ export function SprayAndPrayWindow() {
         </div>
 
         <InfoPanel title="Challenge" theme={theme}>
-          The trading screen needed to pack a lot of functionality — live charts, order entry, position tracking, sentiment indicators — all into a single view with very limited screen real estate. After several rounds of internal testing and iteration, we landed on this final layout that balances information density with clarity.
+          The trading screen needed to pack a lot of functionality (live charts, order entry, position tracking, sentiment indicators) all into a single view with very limited screen real estate. After several rounds of internal testing and iteration, we landed on this final layout that balances information density with clarity.
         </InfoPanel>
 
         <SectionRule label="Leaderboard & Ranking" theme={theme} />
