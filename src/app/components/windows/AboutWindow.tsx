@@ -9,7 +9,7 @@ export function AboutWindow() {
   return (
     <div className="p-5" style={{ fontFamily: "'IBM Plex Sans', sans-serif" }}>
       <p className="mb-3" style={{ fontSize: "13px", lineHeight: "1.7", color: theme.textPrimary }}>
-        I'm Roy, a senior product designer with 9 years shipping end to end digital products in fintech and Web3. Trading platforms, crypto wallets, onboarding flows. I've led design across the full stack at Crypto.com and Animoca Brands, working directly with engineering to get things built right.
+        I'm Roy, a senior product designer shipping end to end digital products in fintech and Web3. Trading platforms, crypto wallets, onboarding flows. I've led design across the full stack at Crypto.com and Animoca Brands, working directly with engineering to get things built right.
       </p>
       <p className="mb-3" style={{ fontSize: "13px", lineHeight: "1.7", color: theme.textPrimary }}>
         I also build. The interactive experiments in this portfolio (type renderers, 3D voxelizers, shader tools) aren't side projects. They're how I think. Writing code makes me a faster prototyper, a better collaborator with engineers, and someone who cares about what actually ships.
