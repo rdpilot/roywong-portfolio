@@ -2,6 +2,7 @@ import React from "react";
 import { useIsMobile } from "../../hooks/useIsMobile";
 import { useTheme } from "../../hooks/useTheme";
 import type { ThemeTokens } from "../../hooks/useTheme";
+import { AutoPlayVideo } from "../AutoPlayVideo";
 import {
   ProjectHeader,
   ImageWell,
@@ -185,32 +186,29 @@ export function ProtoCommentsWindow() {
         description="Pinned comments on any prototype URL. Reviewers click without an account; AI agents act on the feedback."
         tags={["Design Tools", "AI Tooling", "Design Ops", "Open Source", "Developer Tools"]}
         theme={theme}
-        demoLink="https://proto-comments.vercel.app"
       />
 
       <div className="flex flex-col gap-4" style={{ padding: "16px 16px 24px" }}>
 
-        {/* Hero */}
-        <ImageWell theme={theme} aspectRatio="16/8">
-          <img
-            src="https://proto-comments.vercel.app/og-image.png"
-            alt="proto-comments — comment dialog and panel in action on a live prototype"
-            loading="lazy"
-            style={{ maxWidth: "100%", maxHeight: "100%", objectFit: "contain" }}
+        {/* Hero video */}
+        <ImageWell theme={theme} aspectRatio="16/9" padding="0">
+          <AutoPlayVideo
+            src="/proto-comments-demo.mp4"
+            style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
           />
         </ImageWell>
 
         {/* Meta */}
         <div style={{ display: "flex", flexDirection: "column" }}>
-          <PropRow label="Role"     value="Solo — design + engineering" theme={theme} />
-          <PropRow label="Timeline" value="5 days end-to-end (idea → public demo → first launch)" theme={theme} />
-          <PropRow label="Status"   value="Shipped v0.1.0 · Open source (MIT)" theme={theme} />
+          <PropRow label="Role"     value="Solo, design and engineering" theme={theme} />
+          <PropRow label="Timeline" value="5 days end to end (idea to public launch)" theme={theme} />
+          <PropRow label="Status"   value="Shipped v0.1.0, open source (MIT)" theme={theme} />
           <PropRow label="Links"    value={
             <span style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
-              <a href="https://proto-comments.vercel.app" target="_blank" rel="noopener noreferrer" style={linkStyle}>Live demo ↗</a>
+              <a href="https://proto-comments.vercel.app" target="_blank" rel="noopener noreferrer" style={linkStyle}>proto-comments.vercel.app ↗</a>
               <a href="https://github.com/rdpilot/proto-comments" target="_blank" rel="noopener noreferrer" style={linkStyle}>GitHub ↗</a>
-              <a href="https://www.notion.so/35cd6ef02c3781a793bbef482e621c47" target="_blank" rel="noopener noreferrer" style={linkStyle}>Long-form ↗</a>
-              <a href="https://github.com/rdpilot/proto-comments/releases/tag/v0.1.0" target="_blank" rel="noopener noreferrer" style={linkStyle}>v0.1.0 ↗</a>
+              <a href="https://www.notion.so/35cd6ef02c3781a793bbef482e621c47" target="_blank" rel="noopener noreferrer" style={linkStyle}>Long form write up ↗</a>
+              <a href="https://github.com/rdpilot/proto-comments/releases/tag/v0.1.0" target="_blank" rel="noopener noreferrer" style={linkStyle}>v0.1.0 release ↗</a>
             </span>
           } theme={theme} />
         </div>
@@ -247,13 +245,13 @@ export function ProtoCommentsWindow() {
             gap: "8px",
           }}
         >
-          <InfoPanel title="01 — Script tag" theme={theme}>
+          <InfoPanel title="01  Script tag" theme={theme}>
             Visitors drop one script tag into their prototype HTML. No build step, no account, no SDK.
           </InfoPanel>
-          <InfoPanel title="02 — Relay server" theme={theme}>
-            A small server turns clicks into GitHub Issues. It saves nothing of its own — no database, no user data.
+          <InfoPanel title="02  Relay server" theme={theme}>
+            A small server turns clicks into GitHub Issues. It saves nothing of its own. No database, no user data.
           </InfoPanel>
-          <InfoPanel title="03 — Slash command" theme={theme}>
+          <InfoPanel title="03  Slash command" theme={theme}>
             A Claude Code slash command orchestrates setup and pulls comments back as a clean markdown list.
           </InfoPanel>
         </div>
@@ -315,7 +313,7 @@ export function ProtoCommentsWindow() {
 
         <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
           <CutEntry num={1} title="Database" theme={theme}>
-            Pulled in week one — not for engineering reasons, for trust. People won't leave honest feedback on a prototype if a stranger running the service can read it all. Moving storage to the user's own GitHub repo fixed it in one move.
+            Pulled in week one. Not for engineering reasons, for trust. People won't leave honest feedback on a prototype if a stranger running the service can read it all. Moving storage to the user's own GitHub repo fixed it in one move.
           </CutEntry>
           <CutEntry num={2} title="Required project name" theme={theme}>
             Removed. Asking for a name before showing value is friction.
@@ -323,7 +321,7 @@ export function ProtoCommentsWindow() {
           <CutEntry num={3} title="Deploy to Vercel button" theme={theme}>
             Added then pulled. Anyone clicking it would already be in an ecosystem that has its own commenting tool. Wrong audience.
           </CutEntry>
-          <CutEntry num={4} title="Hero copy — 4 versions" theme={theme}>
+          <CutEntry num={4} title="Hero copy, 4 versions" theme={theme}>
             Started informational ("Pinned comments on any preview URL"), ended use-case-forward ("Comment on any prototype URL. Turn feedback into something your AI agent can act on").
           </CutEntry>
           <CutEntry num={5} title="Hamburger icon on the pill" theme={theme}>
@@ -335,13 +333,13 @@ export function ProtoCommentsWindow() {
           <CutEntry num={7} title="Persistent drag position across refresh" theme={theme}>
             Caused a recurring "the tool is gone!" bug from stale coordinates. Now resets every refresh.
           </CutEntry>
-          <CutEntry num={8} title="257-line slash command instructions" theme={theme}>
+          <CutEntry num={8} title="257 line slash command instructions" theme={theme}>
             Compressed to 125. Same behavior, half the per-call AI cost.
           </CutEntry>
-          <CutEntry num={9} title="Real comments on the public demo" theme={theme}>
-            Each demo visitor was creating GitHub Issues that piled up forever. Switched to memory-only mode: comments show live, vanish on refresh.
+          <CutEntry num={9} title="Real comments on the public landing page" theme={theme}>
+            Each visitor was creating GitHub Issues that piled up forever. Switched to memory-only mode: comments show live, vanish on refresh.
           </CutEntry>
-          <CutEntry num={10} title="Persistent name on demo" theme={theme}>
+          <CutEntry num={10} title="Persistent name on landing page" theme={theme}>
             Cached forever in localStorage. Now defaults to "you" and never saves. Each visitor lands fresh.
           </CutEntry>
         </div>
@@ -349,7 +347,7 @@ export function ProtoCommentsWindow() {
         <SectionRule label="Reflection" theme={theme} />
 
         <InfoPanel theme={theme}>
-          The goal was something a designer reaches for without thinking — like picking up a pen, not "an interesting tool people try once." Every cut above was about closing that gap. No database means nothing to trust. No accounts means nothing to create. No required fields means nothing to answer before you've seen the value. The AI slash command isn't a nice-to-have — it's the reason this exists. Without a fast path from "here's the feedback" to "Claude, apply fixes 1, 2, and 4," proto-comments is just another commenting widget. With it, feedback becomes code.
+          The goal was something a designer reaches for without thinking — like picking up a pen, not "an interesting tool people try once." Every cut above was about closing that gap. No database means nothing to trust. No accounts means nothing to create. No required fields means nothing to answer before you've seen the value. The AI slash command isn't a nice to have — it's the reason this exists. Without a fast path from "here's the feedback" to "Claude, apply fixes 1, 2, and 4," proto-comments is just another commenting widget. With it, feedback becomes code.
         </InfoPanel>
 
       </div>
