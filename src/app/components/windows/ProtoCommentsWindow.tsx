@@ -207,7 +207,6 @@ export function ProtoCommentsWindow() {
             <span style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
               <a href="https://proto-comments.vercel.app" target="_blank" rel="noopener noreferrer" style={linkStyle}>proto-comments.vercel.app ↗</a>
               <a href="https://github.com/rdpilot/proto-comments" target="_blank" rel="noopener noreferrer" style={linkStyle}>GitHub ↗</a>
-              <a href="https://www.notion.so/35cd6ef02c3781a793bbef482e621c47" target="_blank" rel="noopener noreferrer" style={linkStyle}>Long form write up ↗</a>
               <a href="https://github.com/rdpilot/proto-comments/releases/tag/v0.1.0" target="_blank" rel="noopener noreferrer" style={linkStyle}>v0.1.0 release ↗</a>
             </span>
           } theme={theme} />
