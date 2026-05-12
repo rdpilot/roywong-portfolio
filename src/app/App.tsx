@@ -33,6 +33,7 @@ import { GestureController } from "./components/GestureController";
 // ─── Lazy window imports ──────────────────────────────────────────────────────
 const AboutWindow            = lazy(() => import("./components/windows/AboutWindow").then(m => ({ default: m.AboutWindow })).catch(() => ({ default: () => <div>Failed to load</div> })));
 const WorkGalleryWindow      = lazy(() => import("./components/windows/WorkGalleryWindow").then(m => ({ default: m.WorkGalleryWindow })).catch(() => ({ default: () => <div>Failed to load</div> })));
+const ProtoCommentsWindow    = lazy(() => import("./components/windows/ProtoCommentsWindow").then(m => ({ default: m.ProtoCommentsWindow })).catch(() => ({ default: () => <div>Failed to load</div> })));
 const SprayAndPrayWindow     = lazy(() => import("./components/windows/SprayAndPrayWindow").then(m => ({ default: m.SprayAndPrayWindow })).catch(() => ({ default: () => <div>Failed to load</div> })));
 const DegenArcadeWindow      = lazy(() => import("./components/windows/DegenArcadeWindow").then(m => ({ default: m.DegenArcadeWindow })).catch(() => ({ default: () => <div>Failed to load</div> })));
 const ComicConWindow         = lazy(() => import("./components/windows/ComicConWindow").then(m => ({ default: m.ComicConWindow })).catch(() => ({ default: () => <div>Failed to load</div> })));
@@ -83,6 +84,7 @@ function WindowWrapper({ children }: { children: ReactNode }) {
 const WINDOW_CONTENT: Record<WindowId, ReactNode> = {
   about:              <WindowWrapper><AboutWindow /></WindowWrapper>,
   workGallery:        <WindowWrapper><WorkGalleryWindow /></WindowWrapper>,
+  protoComments:      <WindowWrapper><ProtoCommentsWindow /></WindowWrapper>,
   sprayAndPray:       <WindowWrapper><SprayAndPrayWindow /></WindowWrapper>,
   degenArcade:        <WindowWrapper><DegenArcadeWindow /></WindowWrapper>,
   comicCon:           <WindowWrapper><ComicConWindow /></WindowWrapper>,
@@ -110,6 +112,7 @@ type WindowConfig = {
 const windowConfigs: WindowConfig[] = [
   { id: "about",              title: "About me",             icon: "about",              label: "About me",             defaultPosition: { x: 580, y: 40 },  width: 440 },
   { id: "workGallery",        title: "Gallery",              icon: "workGallery",        label: "Gallery",              defaultPosition: { x: 360, y: 60 },  width: 520, maxHeight: 480 },
+  { id: "protoComments",      title: "proto-comments",       icon: "protoComments",      label: "proto-comments",       defaultPosition: { x: 420, y: 80 },  width: 600, maxHeight: 640 },
   { id: "sprayAndPray",       title: "Spray & Pray",         icon: "sprayAndPray",       label: "Spray & Pray",         defaultPosition: { x: 400, y: 60 },  width: 560, maxHeight: 640 },
   { id: "perpetualTrading",   title: "Perpetual Trading",    icon: "perpetualTrading",   label: "Perpetual Trading",    defaultPosition: { x: 440, y: 100 }, width: 750, maxHeight: 560 },
   { id: "degenArcade",        title: "Degen Arcade",         icon: "degenArcade",        label: "Degen Arcade",         defaultPosition: { x: 480, y: 140 }, width: 560, maxHeight: 560 },
@@ -130,12 +133,14 @@ const configMap = Object.fromEntries(
 
 const desktopSections: { label: string; ids: WindowId[] }[] = [
   { label: "",                        ids: ["about"] },
+  { label: "Designed for AI",         ids: ["protoComments"] },
   { label: "UI/UX Projects",          ids: ["sprayAndPray", "perpetualTrading", "degenArcade", "comicCon"] },
   { label: "Interactive Experiments", ids: ["asciiTool", "texttura", "polytrace", "minecraftVoxelizer", "orbwarp", "wavetype", "workGallery"] },
 ];
 
 const mobileOrder: { id: WindowId; defaultOpen: boolean; category?: string }[] = [
   { id: "about",              defaultOpen: true },
+  { id: "protoComments",      defaultOpen: true,  category: "Designed for AI" },
   { id: "sprayAndPray",       defaultOpen: true,  category: "UI/UX Projects" },
   { id: "perpetualTrading",   defaultOpen: true },
   { id: "degenArcade",        defaultOpen: true },
@@ -170,6 +175,10 @@ function CrawlableNav() {
       <ul>
         <li><a href="/about">About Me</a></li>
         <li><a href="/gallery">Gallery</a></li>
+      </ul>
+      <h2>Designed for AI</h2>
+      <ul>
+        <li><a href="/projects/proto-comments">proto-comments</a></li>
       </ul>
       <h2>UI/UX Case Studies</h2>
       <ul>

@@ -1,5 +1,5 @@
 import React from "react";
-import { FileText, FolderOpen, User, Type, Box, Gamepad2, Globe, Coins, TrendingUp, FlaskConical } from "lucide-react";
+import { FileText, FolderOpen, User, Type, Box, Gamepad2, Globe, Coins, TrendingUp, FlaskConical, MessageSquare } from "lucide-react";
 import { useTheme } from "../hooks/useTheme";
 
 interface DesktopIconProps {
@@ -24,6 +24,7 @@ const iconComponents: Record<string, React.ComponentType<{ size: number; color?:
   degenArcade: Gamepad2,
   comicCon: Globe,
   perpetualTrading: TrendingUp,
+  protoComments: MessageSquare,
   uTest: FlaskConical,
 };
 
