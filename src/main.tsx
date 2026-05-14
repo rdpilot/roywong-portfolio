@@ -1,12 +1,9 @@
 
   import { createRoot } from "react-dom/client";
-  import { Analytics } from "@vercel/analytics/react";
+  import { inject } from "@vercel/analytics";
   import App from "./app/App.tsx";
   import "./styles/index.css";
 
-  createRoot(document.getElementById("root")!).render(
-    <>
-      <App />
-      <Analytics />
-    </>
-  );
+  inject();
+
+  createRoot(document.getElementById("root")!).render(<App />);
