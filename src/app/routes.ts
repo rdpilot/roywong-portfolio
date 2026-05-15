@@ -16,7 +16,8 @@ export type WindowId =
   | "degenArcade"
   | "comicCon"
   | "perpetualTrading"
-  | "protoComments";
+  | "protoComments"
+  | "deFiWallet";
 
 /**
  * Maps URL paths to window IDs for routing
@@ -31,6 +32,7 @@ export const routeToWindow: Record<string, WindowId> = {
   // Designed for AI
   "/projects/proto-comments": "protoComments",
   // UI/UX Projects
+  "/projects/defi-wallet": "deFiWallet",
   "/projects/spray-and-pray": "sprayAndPray",
   "/projects/perpetual-trading": "perpetualTrading",
   "/projects/degen-arcade": "degenArcade",
@@ -51,6 +53,7 @@ export const windowToRoute: Record<WindowId, string> = {
   about: "/about",
   workGallery: "/gallery",
   protoComments: "/projects/proto-comments",
+  deFiWallet: "/projects/defi-wallet",
   sprayAndPray: "/projects/spray-and-pray",
   perpetualTrading: "/projects/perpetual-trading",
   degenArcade: "/projects/degen-arcade",
@@ -71,6 +74,7 @@ export const getPageTitle = (windowId: WindowId | null): string => {
     about: "About Me - Roy Wong | Product Designer",
     workGallery: "Gallery - Roy Wong | Product Designer",
     protoComments: "proto-comments - AI Design Tool | Roy Wong",
+    deFiWallet: "DeFi Wallet Onboarding - UX Research | Roy Wong",
     sprayAndPray: "Spray & Pray - UI/UX Case Study | Roy Wong",
     perpetualTrading: "Perpetual Trading - UI/UX Case Study | Roy Wong",
     degenArcade: "Degen Arcade - UI/UX Case Study | Roy Wong",
@@ -94,6 +98,7 @@ export const getPageDescription = (windowId: WindowId | null): string => {
     about: "Roy Wong is a senior product designer with 9 years of experience at Crypto.com and Animoca Brands, specializing in fintech, Web3, and consumer mobile. Based in Hong Kong.",
     workGallery: "Browse Roy Wong's portfolio gallery of UI/UX projects, crypto wallet designs, trading platforms, and creative web applications.",
     protoComments: "proto-comments — Pinned comments on any prototype URL. Reviewers click without an account; AI agents act on the feedback. Open source MIT project by Roy Wong.",
+    deFiWallet: "DeFi Wallet Onboarding — UX research and redesign by Roy Wong at Crypto.com. Doubled wallet creation rate from 29% to 59% by removing recovery phrase friction.",
     sprayAndPray: "Spray & Pray — UI/UX case study by Roy Wong. Tournament-based gaming platform design featuring leaderboards, stats, and competitive gameplay interfaces.",
     perpetualTrading: "Perpetual Trading — UI/UX case study by Roy Wong. Crypto perpetual trading platform design with advanced charting, order flows, and risk management interfaces.",
     degenArcade: "Degen Arcade — UI/UX case study by Roy Wong. Web3 gaming arcade interface design featuring game lobbies, NFT integration, and reward systems.",
