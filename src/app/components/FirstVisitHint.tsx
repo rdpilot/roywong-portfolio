@@ -34,7 +34,7 @@ export function FirstVisitHint() {
       onClick={() => setDismissed(true)}
       style={{
         position: "fixed",
-        bottom: "24px",
+        top: "52px",
         left: "50%",
         transform: "translateX(-50%)",
         zIndex: 9000,

@@ -102,6 +102,7 @@ type WindowConfig = {
   icon: string;
   label: string;
   company?: string;
+  desc?: string;
   defaultPosition: { x: number; y: number };
   width: number | string;
   docked?: "bottom" | null;
@@ -110,16 +111,16 @@ type WindowConfig = {
 
 const windowConfigs: WindowConfig[] = [
   { id: "about",              title: "About me",             icon: "about",              label: "About me",             defaultPosition: { x: 580, y: 40 },  width: 440 },
-  { id: "workGallery",        title: "Gallery",              icon: "workGallery",        label: "Gallery",              defaultPosition: { x: 360, y: 60 },  width: 520, maxHeight: 480 },
-  { id: "protoComments",      title: "proto-comments",       icon: "protoComments",      label: "proto-comments",         company: "Side project",   defaultPosition: { x: 420, y: 80 },  width: 600, maxHeight: 640 },
-  { id: "deFiWallet",         title: "DeFi Wallet Onboarding", icon: "deFiWallet",       label: "DeFi Wallet Onboarding", company: "Crypto.com",     defaultPosition: { x: 460, y: 100 }, width: 600, maxHeight: 640 },
-  { id: "sprayAndPray",       title: "Spray & Pray",         icon: "sprayAndPray",       label: "Spray & Pray",           company: "Animoca Brands", defaultPosition: { x: 400, y: 60 },  width: 560, maxHeight: 640 },
-  { id: "perpetualTrading",   title: "Perpetual Trading",    icon: "perpetualTrading",   label: "Perpetual Trading",      company: "Crypto.com",     defaultPosition: { x: 440, y: 100 }, width: 750, maxHeight: 560 },
-  { id: "degenArcade",        title: "Degen Arcade",         icon: "degenArcade",        label: "Degen Arcade",           company: "Crypto.com",     defaultPosition: { x: 480, y: 140 }, width: 560, maxHeight: 560 },
-  { id: "asciiTool",          title: "ASCII effect 3D tool", icon: "asciiTool",          label: "ASCII effect 3D tool", defaultPosition: { x: 160, y: 60 },  width: 400 },
-  { id: "texttura",           title: "Texttura",             icon: "texttura",           label: "Texttura",             defaultPosition: { x: 200, y: 120 }, width: 400 },
-  { id: "orbwarp",            title: "Orbwarp",              icon: "orbwarp",            label: "Orbwarp",              defaultPosition: { x: 320, y: 240 }, width: 400 },
-  { id: "wavetype",           title: "Wavetype",             icon: "wavetype",           label: "Wavetype",             defaultPosition: { x: 360, y: 280 }, width: 400 },
+  { id: "workGallery",        title: "Gallery",              icon: "workGallery",        label: "Gallery",              desc: "Browse all work",                               defaultPosition: { x: 360, y: 60 },  width: 520, maxHeight: 480 },
+  { id: "protoComments",      title: "proto-comments",       icon: "protoComments",      label: "proto-comments",       company: "Side project",   desc: "AI-native prototype review tool",          defaultPosition: { x: 420, y: 80 },  width: 600, maxHeight: 640 },
+  { id: "deFiWallet",         title: "DeFi Wallet Onboarding", icon: "deFiWallet",       label: "DeFi Wallet Onboarding", company: "Crypto.com",   desc: "Wallet creation rate doubled 29% → 59%",   defaultPosition: { x: 460, y: 100 }, width: 600, maxHeight: 640 },
+  { id: "sprayAndPray",       title: "Spray & Pray",         icon: "sprayAndPray",       label: "Spray & Pray",         company: "Animoca Brands", desc: "No-loss crypto trading platform",           defaultPosition: { x: 400, y: 60 },  width: 560, maxHeight: 640 },
+  { id: "perpetualTrading",   title: "Perpetual Trading",    icon: "perpetualTrading",   label: "Perpetual Trading",    company: "Crypto.com",     desc: "Perpetual trading interface design",        defaultPosition: { x: 440, y: 100 }, width: 750, maxHeight: 560 },
+  { id: "degenArcade",        title: "Degen Arcade",         icon: "degenArcade",        label: "Degen Arcade",         company: "Crypto.com",     desc: "Web3 gaming arcade with NFT rewards",      defaultPosition: { x: 480, y: 140 }, width: 560, maxHeight: 560 },
+  { id: "asciiTool",          title: "ASCII effect 3D tool", icon: "asciiTool",          label: "ASCII effect 3D tool", desc: "3D models → ASCII art in real time",            defaultPosition: { x: 160, y: 60 },  width: 400 },
+  { id: "texttura",           title: "Texttura",             icon: "texttura",           label: "Texttura",             desc: "Layered typography compositor",                 defaultPosition: { x: 200, y: 120 }, width: 400 },
+  { id: "orbwarp",            title: "Orbwarp",              icon: "orbwarp",            label: "Orbwarp",              desc: "Shader-based orbital warp effects",             defaultPosition: { x: 320, y: 240 }, width: 400 },
+  { id: "wavetype",           title: "Wavetype",             icon: "wavetype",           label: "Wavetype",             desc: "Wave-animated type renderer",                  defaultPosition: { x: 360, y: 280 }, width: 400 },
 ];
 
 const ALL_WINDOW_IDS = new Set(windowConfigs.map((c) => c.id));
@@ -525,6 +526,7 @@ function AppContent() {
                     label={config.label}
                     icon={config.icon}
                     company={config.company}
+                    desc={config.desc}
                     onClick={() => toggleWindow(config.id)}
                     isOpen={openWindows.has(config.id)}
                   />
