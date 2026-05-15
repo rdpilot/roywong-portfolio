@@ -175,11 +175,11 @@ export function DeFiWalletWindow() {
           </InfoPanel>
         </div>
 
-        <ImageWell theme={theme} aspectRatio="16/9" onClick={ql("/defi-wallet/slide-02-research.png", "Affinity map from research sessions")}>
+        <ImageWell theme={theme} onClick={ql("/defi-wallet/affinity-map.png", "Affinity map from research sessions")}>
           <img
-            src="/defi-wallet/slide-02-research.png"
+            src="/defi-wallet/affinity-map.png"
             alt="Affinity map from research sessions showing clustered user insights"
-            style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+            style={{ width: "100%", height: "auto", display: "block" }}
           />
         </ImageWell>
 
