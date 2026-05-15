@@ -5,6 +5,7 @@ import { useTheme } from "../hooks/useTheme";
 interface DesktopIconProps {
   label: string;
   icon: string;
+  company?: string;
   onClick: () => void;
   isOpen: boolean;
 }
@@ -29,7 +30,7 @@ const iconComponents: Record<string, React.ComponentType<{ size: number; color?:
   uTest: FlaskConical,
 };
 
-export function DesktopIcon({ label, icon, onClick, isOpen }: DesktopIconProps) {
+export function DesktopIcon({ label, icon, company, onClick, isOpen }: DesktopIconProps) {
   const { theme } = useTheme();
   const IconComponent = iconComponents[icon] || FileText;
 
@@ -55,16 +56,30 @@ export function DesktopIcon({ label, icon, onClick, isOpen }: DesktopIconProps) 
           <IconComponent size={16} color={theme.iconColor} />
         )}
       </span>
-      <span
-        className="transition-colors"
-        style={{
-          fontFamily: "'IBM Plex Mono', monospace",
-          fontSize: "13px",
-          color: theme.textPrimary,
-          textShadow: theme.iconTextShadow,
-        }}
-      >
-        {label}
+      <span style={{ display: "flex", alignItems: "baseline", gap: "6px" }}>
+        <span
+          className="transition-colors"
+          style={{
+            fontFamily: "'IBM Plex Mono', monospace",
+            fontSize: "13px",
+            color: theme.textPrimary,
+            textShadow: theme.iconTextShadow,
+          }}
+        >
+          {label}
+        </span>
+        {company && (
+          <span
+            style={{
+              fontFamily: "'IBM Plex Mono', monospace",
+              fontSize: "10px",
+              color: theme.textMuted,
+              textShadow: theme.iconTextShadow,
+            }}
+          >
+            {company}
+          </span>
+        )}
       </span>
     </button>
   );
