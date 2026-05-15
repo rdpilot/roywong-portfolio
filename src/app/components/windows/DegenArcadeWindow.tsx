@@ -5,6 +5,7 @@ import type { ThemeTokens } from "../../hooks/useTheme";
 const isLight = (t: ThemeTokens) => t.mode !== "dark" && t.mode !== "hailmary";
 import { useQuickLook } from "../QuickLookOverlay";
 import { AutoPlayVideo } from "../AutoPlayVideo";
+import { NextProject } from "../NextProject";
 import {
   ProjectHeader,
   ImageWell,
@@ -151,6 +152,8 @@ export function DegenArcadeWindow() {
             <img src="https://i.imgur.com/C8FZW3n.png" alt="Dark room memecoin trading scene capturing crypto culture energy" loading="lazy" style={{ maxWidth: "100%", maxHeight: "100%", width: "auto", height: "auto", objectFit: "contain", display: "block", margin: "0 auto" }} />
           </ImageWell>
         </div>
+
+        <NextProject id="protoComments" label="proto-comments" />
       </div>
     </div>
   );

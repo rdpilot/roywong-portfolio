@@ -3,6 +3,7 @@ import { useIsMobile } from "../../hooks/useIsMobile";
 import { useTheme } from "../../hooks/useTheme";
 import { useQuickLook } from "../QuickLookOverlay";
 import { AutoPlayVideo } from "../AutoPlayVideo";
+import { NextProject } from "../NextProject";
 import {
   ProjectHeader,
   ImageWell,
@@ -134,6 +135,8 @@ export function SprayAndPrayWindow() {
         <ImageWell theme={theme} aspectRatio="16/9" padding="24px" onClick={ql(imgTournament, "Tournament View")}>
           <img className="rounded-[16px]" src={imgTournament} alt="Full tournament overview with bracket-style competitive trading view" loading="lazy" style={{ maxWidth: "100%", maxHeight: "100%", objectFit: "contain" }} />
         </ImageWell>
+
+        <NextProject id="perpetualTrading" label="Perpetual Trading" />
       </div>
     </div>
   );

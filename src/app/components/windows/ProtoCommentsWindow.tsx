@@ -3,6 +3,7 @@ import { useIsMobile } from "../../hooks/useIsMobile";
 import { useTheme } from "../../hooks/useTheme";
 import type { ThemeTokens } from "../../hooks/useTheme";
 import { AutoPlayVideo } from "../AutoPlayVideo";
+import { NextProject } from "../NextProject";
 import {
   ProjectHeader,
   ImageWell,
@@ -349,6 +350,7 @@ export function ProtoCommentsWindow() {
           The goal was something a designer reaches for without thinking, like picking up a pen, not "an interesting tool people try once." Every cut above was about closing that gap. No database means nothing to trust. No accounts means nothing to create. No required fields means nothing to answer before you've seen the value. The AI slash command isn't a nice to have. It's the reason this exists. Without a fast path from "here's the feedback" to "Claude, apply fixes 1, 2, and 4," proto-comments is just another commenting widget. With it, feedback becomes code.
         </InfoPanel>
 
+        <NextProject id="deFiWallet" label="DeFi Wallet Onboarding" />
       </div>
     </div>
   );

@@ -5,6 +5,7 @@ import { useTheme } from "../../hooks/useTheme";
 import type { ThemeTokens } from "../../hooks/useTheme";
 const isLight = (t: ThemeTokens) => t.mode !== "dark" && t.mode !== "hailmary";
 import { ImageWithFallback } from "../figma/ImageWithFallback";
+import { NextProject } from "../NextProject";
 import {
   ProjectHeader,
   ImageWell,
@@ -268,6 +269,8 @@ export function PerpetualTradingWindow() {
             </div>
           </InfoPanel>
         </div>
+
+        <NextProject id="degenArcade" label="Degen Arcade" />
       </div>
     </div>
   );

@@ -1,6 +1,7 @@
 import React from "react";
 import { useIsMobile } from "../../hooks/useIsMobile";
 import { useTheme } from "../../hooks/useTheme";
+import { NextProject } from "../NextProject";
 import type { ThemeTokens } from "../../hooks/useTheme";
 import { useQuickLook } from "../QuickLookOverlay";
 import {
@@ -410,6 +411,7 @@ export function DeFiWalletWindow() {
         <PropRow label="Company" value="Crypto.com" theme={theme} />
         <PropRow label="Platform" value="iOS and Android" theme={theme} />
 
+        <NextProject id="sprayAndPray" label="Spray & Pray" />
       </div>
     </div>
   );

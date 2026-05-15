@@ -29,6 +29,8 @@ import { ErrorBoundary } from "./components/ErrorBoundary";
 import { UnicornBackground } from "./components/UnicornBackground";
 import { SunnyBackground } from "./components/SunnyBackground";
 import { GestureController } from "./components/GestureController";
+import { FirstVisitHint } from "./components/FirstVisitHint";
+import { Mail } from "lucide-react";
 
 // ─── Lazy window imports ──────────────────────────────────────────────────────
 const AboutWindow            = lazy(() => import("./components/windows/AboutWindow").then(m => ({ default: m.AboutWindow })).catch(() => ({ default: () => <div>Failed to load</div> })));
@@ -99,6 +101,7 @@ type WindowConfig = {
   title: string;
   icon: string;
   label: string;
+  company?: string;
   defaultPosition: { x: number; y: number };
   width: number | string;
   docked?: "bottom" | null;
@@ -367,11 +370,80 @@ function AppContent() {
     return () => window.removeEventListener("popstate", handlePopState);
   }, []);
 
+  // ── portfolio:navigate listener ───────────────────────────────────────────
+  useEffect(() => {
+    const handlePortfolioNavigate = (e: Event) => {
+      const id = (e as CustomEvent<{ id: string }>).detail.id;
+      if (ALL_WINDOW_IDS.has(id as WindowId)) {
+        toggleWindow(id as WindowId);
+      }
+    };
+    window.addEventListener("portfolio:navigate", handlePortfolioNavigate);
+    return () => window.removeEventListener("portfolio:navigate", handlePortfolioNavigate);
+  }, [toggleWindow]);
+
+  // ── Keyboard shortcuts 1–5 ────────────────────────────────────────────────
+  useEffect(() => {
+    const keyMap: Record<string, WindowId> = {
+      "1": "deFiWallet",
+      "2": "sprayAndPray",
+      "3": "perpetualTrading",
+      "4": "degenArcade",
+      "5": "protoComments",
+    };
+    const handleKeydown = (e: KeyboardEvent) => {
+      const tag = document.activeElement?.tagName;
+      if (tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT") return;
+      const id = keyMap[e.key];
+      if (id) toggleWindow(id);
+    };
+    window.addEventListener("keydown", handleKeydown);
+    return () => window.removeEventListener("keydown", handleKeydown);
+  }, [toggleWindow]);
+
+  // ── Konami code easter egg ─────────────────────────────────────────────────
+  const konamiRef = useRef<string[]>([]);
+  const KONAMI = ["ArrowUp","ArrowUp","ArrowDown","ArrowDown","ArrowLeft","ArrowRight","ArrowLeft","ArrowRight","b","a"];
+  const [konamiToast, setKonamiToast] = useState<string | null>(null);
+
+  useEffect(() => {
+    const handleKonami = (e: KeyboardEvent) => {
+      konamiRef.current = [...konamiRef.current, e.key].slice(-10);
+      if (konamiRef.current.join(",") === KONAMI.join(",")) {
+        // Switch to hailmary theme
+        const THEME_CYCLE = ["light", "dark", "hailmary", "sunny"];
+        const currentIdx = THEME_CYCLE.indexOf(theme.mode);
+        const hailmaryIdx = 2;
+        const steps = (hailmaryIdx - currentIdx + 4) % 4;
+        for (let i = 0; i < steps; i++) toggleTheme();
+
+        setKonamiToast("🎮 cheat code activated");
+        setTimeout(() => setKonamiToast(null), 3000);
+      }
+    };
+    window.addEventListener("keydown", handleKonami);
+    return () => window.removeEventListener("keydown", handleKonami);
+  }, [theme.mode, toggleTheme]);
+
   // ── Helpers ──────────────────────────────────────────────────────────────
   // Returns the lazy content for a window only after it has been mounted via
   // a startTransition — guarantees no synchronous Suspense during user input.
   const getContent = (id: WindowId): ReactNode =>
     mountedWindows.has(id) ? WINDOW_CONTENT[id] : null;
+
+  // ── Project previews for sidebar ─────────────────────────────────────────
+  const projectPreviews: Partial<Record<WindowId, { stat?: string; desc: string; image?: string }>> = {
+    deFiWallet:       { stat: "29% → 59%", desc: "Wallet creation rate doubled", image: "/defi-wallet/wallet-new-flow.png" },
+    sprayAndPray:     { stat: "560 players", desc: "No-loss crypto trading platform", image: "https://i.imgur.com/O74Q0Ds.png" },
+    perpetualTrading: { desc: "Perpetual trading interface · Crypto.com" },
+    degenArcade:      { desc: "Web3 gaming arcade with NFT rewards" },
+    protoComments:    { stat: "Open source", desc: "AI-native prototype review tool" },
+    asciiTool:        { desc: "3D models → ASCII art in real time" },
+    texttura:         { desc: "Layered typography compositor" },
+    orbwarp:          { desc: "Shader-based orbital warp effects" },
+    wavetype:         { desc: "Wave-animated type renderer" },
+    workGallery:      { desc: "Browse all work" },
+  };
 
   // ─── Mobile Layout ────────────────────────────────────────────────────────
   if (isMobile) {
@@ -468,11 +540,34 @@ function AppContent() {
                     company={config.company}
                     onClick={() => toggleWindow(config.id)}
                     isOpen={openWindows.has(config.id)}
+                    preview={projectPreviews[config.id]}
                   />
                 );
               })}
             </div>
           ))}
+          <div style={{ marginTop: "12px", paddingTop: "8px", borderTop: `1px solid ${theme.windowBorder}` }}>
+            <a
+              href="mailto:whyroy@gmail.com"
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "6px",
+                padding: "4px 4px",
+                fontFamily: "'IBM Plex Mono', monospace",
+                fontSize: "12px",
+                color: theme.textMuted,
+                textDecoration: "none",
+                borderRadius: "4px",
+                transition: "color 0.15s",
+              }}
+              onMouseEnter={e => (e.currentTarget.style.color = theme.linkColor)}
+              onMouseLeave={e => (e.currentTarget.style.color = theme.textMuted)}
+            >
+              <Mail size={12} color="currentColor" />
+              whyroy@gmail.com
+            </a>
+          </div>
         </div>
       </div>
 
@@ -496,6 +591,29 @@ function AppContent() {
           </DraggableWindow>
         ))}
       </div>
+
+      {konamiToast && (
+        <div style={{
+          position: "fixed",
+          top: "60px",
+          left: "50%",
+          transform: "translateX(-50%)",
+          zIndex: 99999,
+          background: "linear-gradient(135deg, #ff6b6b, #feca57, #48dbfb, #ff9ff3)",
+          borderRadius: "12px",
+          padding: "10px 20px",
+          fontFamily: "'IBM Plex Mono', monospace",
+          fontSize: "13px",
+          color: "#111",
+          fontWeight: 700,
+          boxShadow: "0 4px 20px rgba(0,0,0,0.3)",
+          pointerEvents: "none",
+        }}>
+          {konamiToast}
+        </div>
+      )}
+
+      <FirstVisitHint />
     </main>
   );
 }
