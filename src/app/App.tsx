@@ -127,19 +127,19 @@ const configMap = Object.fromEntries(
 
 const desktopSections: { label: string; ids: WindowId[] }[] = [
   { label: "",                        ids: ["about"] },
-  { label: "UI/UX Projects",          ids: ["deFiWallet", "sprayAndPray", "perpetualTrading", "degenArcade"] },
-  { label: "Built for AI agents",     ids: ["protoComments"] },
-  { label: "Interactive Experiments", ids: ["asciiTool", "texttura", "orbwarp", "wavetype", "workGallery"] },
+  { label: "Case Studies",        ids: ["deFiWallet", "sprayAndPray", "perpetualTrading", "degenArcade"] },
+  { label: "Built for AI agents", ids: ["protoComments"] },
+  { label: "Creative Tools",      ids: ["asciiTool", "texttura", "orbwarp", "wavetype", "workGallery"] },
 ];
 
 const mobileOrder: { id: WindowId; defaultOpen: boolean; category?: string }[] = [
   { id: "about",              defaultOpen: true },
-  { id: "deFiWallet",         defaultOpen: true,  category: "UI/UX Projects" },
+  { id: "deFiWallet",         defaultOpen: true,  category: "Case Studies" },
   { id: "sprayAndPray",       defaultOpen: true },
   { id: "perpetualTrading",   defaultOpen: true },
   { id: "degenArcade",        defaultOpen: true },
   { id: "protoComments",      defaultOpen: true,  category: "Built for AI agents" },
-  { id: "asciiTool",          defaultOpen: true,  category: "Interactive Experiments" },
+  { id: "asciiTool",          defaultOpen: true,  category: "Creative Tools" },
   { id: "texttura",           defaultOpen: false },
   { id: "orbwarp",            defaultOpen: false },
   { id: "wavetype",           defaultOpen: false },
@@ -168,7 +168,7 @@ function CrawlableNav() {
         <li><a href="/about">About Me</a></li>
         <li><a href="/gallery">Gallery</a></li>
       </ul>
-      <h2>UI/UX Case Studies</h2>
+      <h2>Case Studies</h2>
       <ul>
         <li><a href="/projects/defi-wallet">DeFi Wallet Onboarding</a></li>
         <li><a href="/projects/spray-and-pray">Spray &amp; Pray</a></li>
@@ -179,7 +179,7 @@ function CrawlableNav() {
       <ul>
         <li><a href="/projects/proto-comments">proto-comments</a></li>
       </ul>
-      <h2>Interactive Experiments</h2>
+      <h2>Creative Tools</h2>
       <ul>
         <li><a href="/tools/ascii">ASCII Effect 3D Tool</a></li>
         <li><a href="/tools/texttura">Texttura</a></li>
