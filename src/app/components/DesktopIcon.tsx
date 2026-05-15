@@ -56,30 +56,16 @@ export function DesktopIcon({ label, icon, company, onClick, isOpen }: DesktopIc
           <IconComponent size={16} color={theme.iconColor} />
         )}
       </span>
-      <span style={{ display: "flex", alignItems: "baseline", gap: "6px" }}>
-        <span
-          className="transition-colors"
-          style={{
-            fontFamily: "'IBM Plex Mono', monospace",
-            fontSize: "13px",
-            color: theme.textPrimary,
-            textShadow: theme.iconTextShadow,
-          }}
-        >
-          {label}
-        </span>
-        {company && (
-          <span
-            style={{
-              fontFamily: "'IBM Plex Mono', monospace",
-              fontSize: "10px",
-              color: theme.textMuted,
-              textShadow: theme.iconTextShadow,
-            }}
-          >
-            {company}
-          </span>
-        )}
+      <span
+        className="transition-colors"
+        style={{
+          fontFamily: "'IBM Plex Mono', monospace",
+          fontSize: "13px",
+          color: theme.textPrimary,
+          textShadow: theme.iconTextShadow,
+        }}
+      >
+        {label}
       </span>
     </button>
   );
