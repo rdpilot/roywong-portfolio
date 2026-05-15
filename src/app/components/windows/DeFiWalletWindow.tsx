@@ -172,7 +172,7 @@ export function DeFiWalletWindow() {
           }}
         >
           <InfoPanel title="Setup" theme={theme}>
-            10 participants — current users and crypto-curious non-users. Surveys plus 1-on-1 interviews to understand where and why people dropped off during wallet creation.
+            10 participants: current users and crypto-curious non-users. Surveys plus 1-on-1 interviews to understand where and why people dropped off during wallet creation.
           </InfoPanel>
           <InfoPanel title="My role" theme={theme}>
             Built the prototype, ran card-sorting sessions, translated insights into design decisions. Research to shipped redesign in one cycle.
@@ -201,7 +201,7 @@ export function DeFiWalletWindow() {
 
         {/* Insight 2 */}
         <InfoPanel title="02  Fund size dictates how seriously users back up" theme={theme}>
-          Small balances live on Dropbox or a screenshot. Big balances get a Ledger. Users don't apply uniform security — they scale it to what's at stake.
+          Small balances live on Dropbox or a screenshot. Big balances get a Ledger. Users don't apply uniform security. They scale it to what's at stake.
         </InfoPanel>
         <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
           <QuoteCard theme={theme} color="pink">"For the ease of use, any wallet with less than 5k, I backup on Dropbox"</QuoteCard>
@@ -220,10 +220,10 @@ export function DeFiWalletWindow() {
         <SectionRule label="The old flow" theme={theme} />
 
         <InfoPanel theme={theme}>
-          The existing onboarding assumed everyone needed maximum security from day one. An educational walkthrough, forced memorization, security tips — 12 taps just to reveal the recovery phrase. Most users quit here.
+          The existing onboarding assumed everyone needed maximum security from day one. An educational walkthrough, forced memorization, security tips. 12 taps just to reveal the recovery phrase. Most users quit here.
         </InfoPanel>
 
-        <ImageWell theme={theme} onClick={ql("/defi-wallet/wallet-old-flow.png", "Old onboarding flow — 12 taps to reveal recovery phrase")}>
+        <ImageWell theme={theme} onClick={ql("/defi-wallet/wallet-old-flow.png", "Old onboarding flow, 12 taps to reveal recovery phrase")}>
           <img
             src="/defi-wallet/wallet-old-flow.png"
             alt="Old onboarding flow diagram showing too many steps and high drop-off points"
@@ -233,7 +233,7 @@ export function DeFiWalletWindow() {
 
         <div style={{ display: "flex", flexDirection: "column", gap: "6px", paddingLeft: "2px" }}>
           {[
-            "Too many steps — high drop-off",
+            "Too many steps, leading to high drop-off",
             "Forcing users to memorize a recovery phrase they may not care about",
             "Revealing the phrase took 12 taps",
           ].map((p, i) => (
@@ -254,15 +254,15 @@ export function DeFiWalletWindow() {
             gap: "8px",
           }}
         >
-          <InfoPanel title="Change 1 — Simplified onboarding" theme={theme}>
+          <InfoPanel title="Change 1: Simplified onboarding" theme={theme}>
             Cut the educational walkthrough and the security tips that pushed users toward "write it down or else." For most new users with small balances, the friction wasn't worth the security gain.
           </InfoPanel>
-          <InfoPanel title="Change 2 — Cloud backup" theme={theme}>
+          <InfoPanel title="Change 2: Cloud backup" theme={theme}>
             Added Drive and iCloud backup. Met users where they already store things they care about. Writing down the phrase stayed available as the higher-security option.
           </InfoPanel>
         </div>
 
-        <ImageWell theme={theme} onClick={ql("/defi-wallet/wallet-new-flow.png", "New onboarding flow — scales security to user intent")}>
+        <ImageWell theme={theme} onClick={ql("/defi-wallet/wallet-new-flow.png", "New onboarding flow that scales security to user intent")}>
           <img
             src="/defi-wallet/wallet-new-flow.png"
             alt="New onboarding flow diagram showing streamlined path with backup options"
@@ -305,14 +305,14 @@ export function DeFiWalletWindow() {
             ]}
           />
           <div style={{ fontSize: "12px", color: theme.textSecondary, lineHeight: "1.7" }}>
-            Removing friction doubled wallet creation. But most wallets stayed empty — which meant we'd solved the wrong problem. Users got through onboarding, then didn't know what to do next.
+            Removing friction doubled wallet creation. But most wallets stayed empty, which meant we'd solved the wrong problem. Users got through onboarding, then didn't know what to do next.
           </div>
         </div>
 
         <SectionRule label="The next problem" theme={theme} />
 
         <InfoPanel theme={theme}>
-          70% of new wallets had zero balance and zero transactions. Users weren't unmotivated — they were lost. Most created a wallet to invest in yield farming, but the empty home screen didn't tell them how. We rebuilt it around two concrete actions.
+          70% of new wallets had zero balance and zero transactions. Users weren't unmotivated. They were lost. Most created a wallet to invest in yield farming, but the empty home screen didn't tell them how. We rebuilt it around two concrete actions.
         </InfoPanel>
 
         {/* Step 1 */}
@@ -333,12 +333,12 @@ export function DeFiWalletWindow() {
             </span>
           </div>
           <div style={{ fontSize: "12px", color: theme.textSecondary, lineHeight: "1.6" }}>
-            The home screen now surfaces tokens with their APY rates and a one-tap "Get" button. New users see exactly what to buy and why — no need to find their way to a separate purchase flow.
+            The home screen now surfaces tokens with their APY rates and a one-tap "Get" button. New users see exactly what to buy and why. No need to find their way to a separate purchase flow.
           </div>
-          <ImageWell theme={theme} onClick={ql("/defi-wallet/step1.png", "Step 1 — Buy a token")}>
+          <ImageWell theme={theme} onClick={ql("/defi-wallet/step1.png", "Step 1: Buy a token")}>
             <img
               src="/defi-wallet/step1.png"
-              alt="Step 1 — new home screen showing tokens to buy with APY rates, and the buy flow"
+              alt="Step 1: new home screen showing tokens to buy with APY rates, and the buy flow"
               style={{ width: "100%", height: "auto", display: "block" }}
             />
           </ImageWell>
@@ -362,12 +362,12 @@ export function DeFiWalletWindow() {
             </span>
           </div>
           <div style={{ fontSize: "12px", color: theme.textSecondary, lineHeight: "1.6" }}>
-            Once step 1 is complete, the home screen updates to show available earning pools. Step 1 is marked done, step 2 is surfaced next. Users deposit, stake, and land on a confirmation screen — their wallet is no longer empty.
+            Once step 1 is complete, the home screen updates to show available earning pools. Step 1 is marked done, step 2 is surfaced next. Users deposit, stake, and land on a confirmation screen. Their wallet is no longer empty.
           </div>
-          <ImageWell theme={theme} onClick={ql("/defi-wallet/step2.png", "Step 2 — Deposit into DeFi Earn")}>
+          <ImageWell theme={theme} onClick={ql("/defi-wallet/step2.png", "Step 2: Deposit into DeFi Earn")}>
             <img
               src="/defi-wallet/step2.png"
-              alt="Step 2 — home screen after purchase showing DeFi Earn pools and deposit flow"
+              alt="Step 2: home screen after purchase showing DeFi Earn pools and deposit flow"
               style={{ width: "100%", height: "auto", display: "block" }}
             />
           </ImageWell>
@@ -402,7 +402,7 @@ export function DeFiWalletWindow() {
             ]}
           />
           <div style={{ fontSize: "12px", color: theme.textSecondary, lineHeight: "1.7" }}>
-            A small nudge — telling new users what to do next — moved first-purchase rate from 2.4% to nearly 10%. The lesson: users weren't unmotivated. They were lost.
+            A small nudge (telling new users what to do next) moved first-purchase rate from 2.4% to nearly 10%. The lesson: users weren't unmotivated. They were lost.
           </div>
         </div>
 
