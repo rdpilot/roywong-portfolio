@@ -127,18 +127,18 @@ const configMap = Object.fromEntries(
 
 const desktopSections: { label: string; ids: WindowId[] }[] = [
   { label: "",                        ids: ["about"] },
-  { label: "Designed for AI",         ids: ["protoComments"] },
   { label: "UI/UX Projects",          ids: ["deFiWallet", "sprayAndPray", "perpetualTrading", "degenArcade"] },
+  { label: "Built for AI agents",     ids: ["protoComments"] },
   { label: "Interactive Experiments", ids: ["asciiTool", "texttura", "orbwarp", "wavetype", "workGallery"] },
 ];
 
 const mobileOrder: { id: WindowId; defaultOpen: boolean; category?: string }[] = [
   { id: "about",              defaultOpen: true },
-  { id: "protoComments",      defaultOpen: true,  category: "Designed for AI" },
   { id: "deFiWallet",         defaultOpen: true,  category: "UI/UX Projects" },
-  { id: "sprayAndPray",       defaultOpen: true,  category: "UI/UX Projects" },
+  { id: "sprayAndPray",       defaultOpen: true },
   { id: "perpetualTrading",   defaultOpen: true },
   { id: "degenArcade",        defaultOpen: true },
+  { id: "protoComments",      defaultOpen: true,  category: "Built for AI agents" },
   { id: "asciiTool",          defaultOpen: true,  category: "Interactive Experiments" },
   { id: "texttura",           defaultOpen: false },
   { id: "orbwarp",            defaultOpen: false },
@@ -168,16 +168,16 @@ function CrawlableNav() {
         <li><a href="/about">About Me</a></li>
         <li><a href="/gallery">Gallery</a></li>
       </ul>
-      <h2>Designed for AI</h2>
-      <ul>
-        <li><a href="/projects/proto-comments">proto-comments</a></li>
-      </ul>
       <h2>UI/UX Case Studies</h2>
       <ul>
         <li><a href="/projects/defi-wallet">DeFi Wallet Onboarding</a></li>
         <li><a href="/projects/spray-and-pray">Spray &amp; Pray</a></li>
         <li><a href="/projects/perpetual-trading">Perpetual Trading</a></li>
         <li><a href="/projects/degen-arcade">Degen Arcade</a></li>
+      </ul>
+      <h2>Built for AI agents</h2>
+      <ul>
+        <li><a href="/projects/proto-comments">proto-comments</a></li>
       </ul>
       <h2>Interactive Experiments</h2>
       <ul>
