@@ -159,6 +159,10 @@ export function DeFiWalletWindow() {
 
         <SectionRule label="Research" theme={theme} />
 
+        <InfoPanel title="Objective" theme={theme}>
+          Understand why users dropped off during wallet creation, and what would help them complete it.
+        </InfoPanel>
+
         <div
           style={{
             display: isMobile ? "flex" : "grid",
