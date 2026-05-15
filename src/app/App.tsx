@@ -40,8 +40,6 @@ const DegenArcadeWindow      = lazy(() => import("./components/windows/DegenArca
 const PerpetualTradingWindow = lazy(() => import("./components/windows/PerpetualTradingWindow").then(m => ({ default: m.PerpetualTradingWindow })).catch(() => ({ default: () => <div>Failed to load</div> })));
 const AsciiToolWindow        = lazy(() => import("./components/windows/AsciiToolWindow").then(m => ({ default: m.AsciiToolWindow })).catch(() => ({ default: () => <div>Failed to load</div> })));
 const TextturaWindow         = lazy(() => import("./components/windows/TextturaWindow").then(m => ({ default: m.TextturaWindow })).catch(() => ({ default: () => <div>Failed to load</div> })));
-const PolytraceWindow        = lazy(() => import("./components/windows/PolytraceWindow").then(m => ({ default: m.PolytraceWindow })).catch(() => ({ default: () => <div>Failed to load</div> })));
-const MinecraftVoxelizerWindow = lazy(() => import("./components/windows/MinecraftVoxelizerWindow").then(m => ({ default: m.MinecraftVoxelizerWindow })).catch(() => ({ default: () => <div>Failed to load</div> })));
 const OrbwarpWindow          = lazy(() => import("./components/windows/OrbwarpWindow").then(m => ({ default: m.OrbwarpWindow })).catch(() => ({ default: () => <div>Failed to load</div> })));
 const WavetypeWindow         = lazy(() => import("./components/windows/WavetypeWindow").then(m => ({ default: m.WavetypeWindow })).catch(() => ({ default: () => <div>Failed to load</div> })));
 
@@ -91,8 +89,6 @@ const WINDOW_CONTENT: Record<WindowId, ReactNode> = {
   perpetualTrading:   <WindowWrapper><PerpetualTradingWindow /></WindowWrapper>,
   asciiTool:          <WindowWrapper><AsciiToolWindow /></WindowWrapper>,
   texttura:           <WindowWrapper><TextturaWindow /></WindowWrapper>,
-  polytrace:          <WindowWrapper><PolytraceWindow /></WindowWrapper>,
-  minecraftVoxelizer: <WindowWrapper><MinecraftVoxelizerWindow /></WindowWrapper>,
   orbwarp:            <WindowWrapper><OrbwarpWindow /></WindowWrapper>,
   wavetype:           <WindowWrapper><WavetypeWindow /></WindowWrapper>,
 };
@@ -119,8 +115,6 @@ const windowConfigs: WindowConfig[] = [
   { id: "degenArcade",        title: "Degen Arcade",         icon: "degenArcade",        label: "Degen Arcade",           company: "Crypto.com",     defaultPosition: { x: 480, y: 140 }, width: 560, maxHeight: 560 },
   { id: "asciiTool",          title: "ASCII effect 3D tool", icon: "asciiTool",          label: "ASCII effect 3D tool", defaultPosition: { x: 160, y: 60 },  width: 400 },
   { id: "texttura",           title: "Texttura",             icon: "texttura",           label: "Texttura",             defaultPosition: { x: 200, y: 120 }, width: 400 },
-  { id: "polytrace",          title: "Polytrace",            icon: "polytrace",          label: "Polytrace",            defaultPosition: { x: 240, y: 160 }, width: 400 },
-  { id: "minecraftVoxelizer", title: "Minecraft Voxelizer",  icon: "minecraftVoxelizer", label: "Minecraft Voxelizer",  defaultPosition: { x: 280, y: 200 }, width: 400 },
   { id: "orbwarp",            title: "Orbwarp",              icon: "orbwarp",            label: "Orbwarp",              defaultPosition: { x: 320, y: 240 }, width: 400 },
   { id: "wavetype",           title: "Wavetype",             icon: "wavetype",           label: "Wavetype",             defaultPosition: { x: 360, y: 280 }, width: 400 },
 ];
@@ -135,7 +129,7 @@ const desktopSections: { label: string; ids: WindowId[] }[] = [
   { label: "",                        ids: ["about"] },
   { label: "Designed for AI",         ids: ["protoComments"] },
   { label: "UI/UX Projects",          ids: ["deFiWallet", "sprayAndPray", "perpetualTrading", "degenArcade"] },
-  { label: "Interactive Experiments", ids: ["asciiTool", "texttura", "polytrace", "minecraftVoxelizer", "orbwarp", "wavetype", "workGallery"] },
+  { label: "Interactive Experiments", ids: ["asciiTool", "texttura", "orbwarp", "wavetype", "workGallery"] },
 ];
 
 const mobileOrder: { id: WindowId; defaultOpen: boolean; category?: string }[] = [
@@ -147,8 +141,6 @@ const mobileOrder: { id: WindowId; defaultOpen: boolean; category?: string }[] =
   { id: "degenArcade",        defaultOpen: true },
   { id: "asciiTool",          defaultOpen: true,  category: "Interactive Experiments" },
   { id: "texttura",           defaultOpen: false },
-  { id: "polytrace",          defaultOpen: false },
-  { id: "minecraftVoxelizer", defaultOpen: false },
   { id: "orbwarp",            defaultOpen: false },
   { id: "wavetype",           defaultOpen: false },
   { id: "workGallery",        defaultOpen: false },
@@ -191,8 +183,6 @@ function CrawlableNav() {
       <ul>
         <li><a href="/tools/ascii">ASCII Effect 3D Tool</a></li>
         <li><a href="/tools/texttura">Texttura</a></li>
-        <li><a href="/tools/polytrace">Polytrace</a></li>
-        <li><a href="/tools/minecraft-voxelizer">Minecraft Voxelizer</a></li>
         <li><a href="/tools/orbwarp">Orbwarp</a></li>
         <li><a href="/tools/wavetype">Wavetype</a></li>
       </ul>
@@ -456,12 +446,13 @@ function AppContent() {
                 <div
                   style={{
                     fontFamily: "'IBM Plex Mono', monospace",
-                    fontSize: "9px",
-                    color: theme.textMuted,
+                    fontSize: "10px",
+                    fontWeight: 500,
+                    color: theme.textSecondary,
                     textTransform: "uppercase",
-                    letterSpacing: "0.08em",
-                    padding: "8px 4px 4px",
-                    marginTop: catIdx > 0 ? "4px" : "0",
+                    letterSpacing: "0.1em",
+                    padding: "10px 4px 4px",
+                    marginTop: catIdx > 0 ? "6px" : "0",
                   }}
                 >
                   {category.label}
