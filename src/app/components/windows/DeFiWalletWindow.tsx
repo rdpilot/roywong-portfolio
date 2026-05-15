@@ -175,9 +175,9 @@ export function DeFiWalletWindow() {
           </InfoPanel>
         </div>
 
-        <ImageWell theme={theme} onClick={ql("/defi-wallet/slide-02-research.png", "Affinity map from research sessions")}>
+        <ImageWell theme={theme} onClick={ql("/defi-wallet/research-notes.png", "Affinity map from research sessions")}>
           <img
-            src="/defi-wallet/slide-02-research.png"
+            src="/defi-wallet/research-notes.png"
             alt="Affinity map from research sessions showing clustered user insights"
             style={{ width: "100%", height: "auto", display: "block" }}
           />
@@ -219,11 +219,11 @@ export function DeFiWalletWindow() {
           The existing onboarding assumed everyone needed maximum security from day one. An educational walkthrough, forced memorization, security tips — 12 taps just to reveal the recovery phrase. Most users quit here.
         </InfoPanel>
 
-        <ImageWell theme={theme} aspectRatio="16/9" onClick={ql("/defi-wallet/slide-07-old-flow.png", "Old onboarding flow — 12 taps to reveal recovery phrase")}>
+        <ImageWell theme={theme} onClick={ql("/defi-wallet/wallet-old-flow.png", "Old onboarding flow — 12 taps to reveal recovery phrase")}>
           <img
-            src="/defi-wallet/slide-07-old-flow.png"
+            src="/defi-wallet/wallet-old-flow.png"
             alt="Old onboarding flow diagram showing too many steps and high drop-off points"
-            style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+            style={{ width: "100%", height: "auto", display: "block" }}
           />
         </ImageWell>
 
