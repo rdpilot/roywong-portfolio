@@ -312,20 +312,66 @@ export function DeFiWalletWindow() {
         <SectionRule label="The next problem" theme={theme} />
 
         <InfoPanel theme={theme}>
-          70% of new wallets had zero balance and zero transactions. Users weren't unmotivated — they were lost. The empty home screen didn't tell them what to do. So we rebuilt it.
+          70% of new wallets had zero balance and zero transactions. Users weren't unmotivated — they were lost. Most created a wallet to invest in yield farming, but the empty home screen didn't tell them how. We rebuilt it around two concrete actions.
         </InfoPanel>
 
-        <ImageWell theme={theme} aspectRatio="16/9" onClick={ql("/defi-wallet/slide-11-solution.png", "Redesigned home screen for first-time users")}>
-          <img
-            src="/defi-wallet/slide-11-solution.png"
-            alt="Redesigned home screen guiding new users through buy a token then deposit to earn"
-            style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
-          />
-        </ImageWell>
+        {/* Step 1 */}
+        <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+            <span style={{
+              fontFamily: "'IBM Plex Mono', monospace",
+              fontSize: "10px",
+              color: isLight(theme) ? "#007AFF" : "#0A84FF",
+              background: isLight(theme) ? "#E5F0FF" : "#0a1929",
+              border: `1px solid ${isLight(theme) ? "#007AFF" : "#0A84FF"}`,
+              borderRadius: "2px",
+              padding: "2px 7px",
+              flexShrink: 0,
+            }}>STEP 1</span>
+            <span style={{ fontSize: "12px", fontWeight: 600, color: theme.textPrimary }}>
+              Buy a token
+            </span>
+          </div>
+          <div style={{ fontSize: "12px", color: theme.textSecondary, lineHeight: "1.6" }}>
+            The home screen now surfaces tokens with their APY rates and a one-tap "Get" button. New users see exactly what to buy and why — no need to find their way to a separate purchase flow.
+          </div>
+          <ImageWell theme={theme} onClick={ql("/defi-wallet/step1.png", "Step 1 — Buy a token")}>
+            <img
+              src="/defi-wallet/step1.png"
+              alt="Step 1 — new home screen showing tokens to buy with APY rates, and the buy flow"
+              style={{ width: "100%", height: "auto", display: "block" }}
+            />
+          </ImageWell>
+        </div>
 
-        <InfoPanel title="A 2-step home for first-time users" theme={theme}>
-          Most users created a wallet to invest in yield farming, but the empty wallet didn't tell them how. We rebuilt the home screen around two concrete actions: buy a token, then deposit it to earn.
-        </InfoPanel>
+        {/* Step 2 */}
+        <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+            <span style={{
+              fontFamily: "'IBM Plex Mono', monospace",
+              fontSize: "10px",
+              color: isLight(theme) ? "#007AFF" : "#0A84FF",
+              background: isLight(theme) ? "#E5F0FF" : "#0a1929",
+              border: `1px solid ${isLight(theme) ? "#007AFF" : "#0A84FF"}`,
+              borderRadius: "2px",
+              padding: "2px 7px",
+              flexShrink: 0,
+            }}>STEP 2</span>
+            <span style={{ fontSize: "12px", fontWeight: 600, color: theme.textPrimary }}>
+              Deposit into DeFi Earn
+            </span>
+          </div>
+          <div style={{ fontSize: "12px", color: theme.textSecondary, lineHeight: "1.6" }}>
+            Once step 1 is complete, the home screen updates to show available earning pools. Step 1 is marked done, step 2 is surfaced next. Users deposit, stake, and land on a confirmation screen — their wallet is no longer empty.
+          </div>
+          <ImageWell theme={theme} onClick={ql("/defi-wallet/step2.png", "Step 2 — Deposit into DeFi Earn")}>
+            <img
+              src="/defi-wallet/step2.png"
+              alt="Step 2 — home screen after purchase showing DeFi Earn pools and deposit flow"
+              style={{ width: "100%", height: "auto", display: "block" }}
+            />
+          </ImageWell>
+        </div>
 
         <div
           style={{
