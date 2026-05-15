@@ -37,7 +37,6 @@ const ProtoCommentsWindow    = lazy(() => import("./components/windows/ProtoComm
 const DeFiWalletWindow       = lazy(() => import("./components/windows/DeFiWalletWindow").then(m => ({ default: m.DeFiWalletWindow })).catch(() => ({ default: () => <div>Failed to load</div> })));
 const SprayAndPrayWindow     = lazy(() => import("./components/windows/SprayAndPrayWindow").then(m => ({ default: m.SprayAndPrayWindow })).catch(() => ({ default: () => <div>Failed to load</div> })));
 const DegenArcadeWindow      = lazy(() => import("./components/windows/DegenArcadeWindow").then(m => ({ default: m.DegenArcadeWindow })).catch(() => ({ default: () => <div>Failed to load</div> })));
-const ComicConWindow         = lazy(() => import("./components/windows/ComicConWindow").then(m => ({ default: m.ComicConWindow })).catch(() => ({ default: () => <div>Failed to load</div> })));
 const PerpetualTradingWindow = lazy(() => import("./components/windows/PerpetualTradingWindow").then(m => ({ default: m.PerpetualTradingWindow })).catch(() => ({ default: () => <div>Failed to load</div> })));
 const AsciiToolWindow        = lazy(() => import("./components/windows/AsciiToolWindow").then(m => ({ default: m.AsciiToolWindow })).catch(() => ({ default: () => <div>Failed to load</div> })));
 const TextturaWindow         = lazy(() => import("./components/windows/TextturaWindow").then(m => ({ default: m.TextturaWindow })).catch(() => ({ default: () => <div>Failed to load</div> })));
@@ -89,7 +88,6 @@ const WINDOW_CONTENT: Record<WindowId, ReactNode> = {
   deFiWallet:         <WindowWrapper><DeFiWalletWindow /></WindowWrapper>,
   sprayAndPray:       <WindowWrapper><SprayAndPrayWindow /></WindowWrapper>,
   degenArcade:        <WindowWrapper><DegenArcadeWindow /></WindowWrapper>,
-  comicCon:           <WindowWrapper><ComicConWindow /></WindowWrapper>,
   perpetualTrading:   <WindowWrapper><PerpetualTradingWindow /></WindowWrapper>,
   asciiTool:          <WindowWrapper><AsciiToolWindow /></WindowWrapper>,
   texttura:           <WindowWrapper><TextturaWindow /></WindowWrapper>,
@@ -119,7 +117,6 @@ const windowConfigs: WindowConfig[] = [
   { id: "sprayAndPray",       title: "Spray & Pray",         icon: "sprayAndPray",       label: "Spray & Pray",         defaultPosition: { x: 400, y: 60 },  width: 560, maxHeight: 640 },
   { id: "perpetualTrading",   title: "Perpetual Trading",    icon: "perpetualTrading",   label: "Perpetual Trading",    defaultPosition: { x: 440, y: 100 }, width: 750, maxHeight: 560 },
   { id: "degenArcade",        title: "Degen Arcade",         icon: "degenArcade",        label: "Degen Arcade",         defaultPosition: { x: 480, y: 140 }, width: 560, maxHeight: 560 },
-  { id: "comicCon",           title: "0n1 Force ComicCon",   icon: "comicCon",           label: "0n1 Force ComicCon",   defaultPosition: { x: 520, y: 180 }, width: 560, maxHeight: 560 },
   { id: "asciiTool",          title: "ASCII effect 3D tool", icon: "asciiTool",          label: "ASCII effect 3D tool", defaultPosition: { x: 160, y: 60 },  width: 400 },
   { id: "texttura",           title: "Texttura",             icon: "texttura",           label: "Texttura",             defaultPosition: { x: 200, y: 120 }, width: 400 },
   { id: "polytrace",          title: "Polytrace",            icon: "polytrace",          label: "Polytrace",            defaultPosition: { x: 240, y: 160 }, width: 400 },
@@ -137,7 +134,7 @@ const configMap = Object.fromEntries(
 const desktopSections: { label: string; ids: WindowId[] }[] = [
   { label: "",                        ids: ["about"] },
   { label: "Designed for AI",         ids: ["protoComments"] },
-  { label: "UI/UX Projects",          ids: ["deFiWallet", "sprayAndPray", "perpetualTrading", "degenArcade", "comicCon"] },
+  { label: "UI/UX Projects",          ids: ["deFiWallet", "sprayAndPray", "perpetualTrading", "degenArcade"] },
   { label: "Interactive Experiments", ids: ["asciiTool", "texttura", "polytrace", "minecraftVoxelizer", "orbwarp", "wavetype", "workGallery"] },
 ];
 
@@ -148,7 +145,6 @@ const mobileOrder: { id: WindowId; defaultOpen: boolean; category?: string }[] =
   { id: "sprayAndPray",       defaultOpen: true,  category: "UI/UX Projects" },
   { id: "perpetualTrading",   defaultOpen: true },
   { id: "degenArcade",        defaultOpen: true },
-  { id: "comicCon",           defaultOpen: false },
   { id: "asciiTool",          defaultOpen: true,  category: "Interactive Experiments" },
   { id: "texttura",           defaultOpen: false },
   { id: "polytrace",          defaultOpen: false },
@@ -190,7 +186,6 @@ function CrawlableNav() {
         <li><a href="/projects/spray-and-pray">Spray &amp; Pray</a></li>
         <li><a href="/projects/perpetual-trading">Perpetual Trading</a></li>
         <li><a href="/projects/degen-arcade">Degen Arcade</a></li>
-        <li><a href="/projects/comiccon">0n1 Force ComicCon</a></li>
       </ul>
       <h2>Interactive Experiments</h2>
       <ul>
@@ -310,7 +305,6 @@ function AppContent() {
       open_spray:    "sprayAndPray",
       open_trading:  "perpetualTrading",
       open_arcade:   "degenArcade",
-      open_comiccon: "comicCon",
     };
 
     if (action === "cycle_theme") {

@@ -14,7 +14,6 @@ export type WindowId =
   | "wavetype"
   | "sprayAndPray"
   | "degenArcade"
-  | "comicCon"
   | "perpetualTrading"
   | "protoComments"
   | "deFiWallet";
@@ -36,7 +35,6 @@ export const routeToWindow: Record<string, WindowId> = {
   "/projects/spray-and-pray": "sprayAndPray",
   "/projects/perpetual-trading": "perpetualTrading",
   "/projects/degen-arcade": "degenArcade",
-  "/projects/comiccon": "comicCon",
   // Interactive Experiments
   "/tools/ascii": "asciiTool",
   "/tools/texttura": "texttura",
@@ -57,7 +55,6 @@ export const windowToRoute: Record<WindowId, string> = {
   sprayAndPray: "/projects/spray-and-pray",
   perpetualTrading: "/projects/perpetual-trading",
   degenArcade: "/projects/degen-arcade",
-  comicCon: "/projects/comiccon",
   asciiTool: "/tools/ascii",
   texttura: "/tools/texttura",
   polytrace: "/tools/polytrace",
@@ -78,7 +75,6 @@ export const getPageTitle = (windowId: WindowId | null): string => {
     sprayAndPray: "Spray & Pray - UI/UX Case Study | Roy Wong",
     perpetualTrading: "Perpetual Trading - UI/UX Case Study | Roy Wong",
     degenArcade: "Degen Arcade - UI/UX Case Study | Roy Wong",
-    comicCon: "0n1 Force ComicCon - UI/UX Case Study | Roy Wong",
     asciiTool: "ASCII Effect 3D Tool | Roy Wong",
     texttura: "Texttura - Typography Tool | Roy Wong",
     polytrace: "Polytrace - Creative Tool | Roy Wong",
@@ -102,7 +98,6 @@ export const getPageDescription = (windowId: WindowId | null): string => {
     sprayAndPray: "Spray & Pray — UI/UX case study by Roy Wong. Tournament-based gaming platform design featuring leaderboards, stats, and competitive gameplay interfaces.",
     perpetualTrading: "Perpetual Trading — UI/UX case study by Roy Wong. Crypto perpetual trading platform design with advanced charting, order flows, and risk management interfaces.",
     degenArcade: "Degen Arcade — UI/UX case study by Roy Wong. Web3 gaming arcade interface design featuring game lobbies, NFT integration, and reward systems.",
-    comicCon: "0n1 Force ComicCon — UI/UX case study by Roy Wong. Event experience design for a ComicCon activation blending physical and digital worlds.",
     asciiTool: "ASCII Effect 3D Tool — Interactive web application by Roy Wong. Transform 3D models into real-time ASCII art renderings in the browser.",
     texttura: "Texttura — Interactive typography tool by Roy Wong. Create textured, layered type compositions with real-time visual controls.",
     polytrace: "Polytrace — Creative polygon tracing tool by Roy Wong. Generate low-poly art from images with adjustable triangle density and color sampling.",
