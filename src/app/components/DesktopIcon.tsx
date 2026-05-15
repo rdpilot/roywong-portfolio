@@ -100,7 +100,7 @@ export function DesktopIcon({ label, icon, company, onClick, isOpen, desc }: Des
             fontSize: "11px",
             color: theme.textSecondary,
             whiteSpace: "nowrap",
-            boxShadow: "0 4px 16px rgba(0,0,0,0.15)",
+            boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
           }}
         >
           {desc}
