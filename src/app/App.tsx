@@ -113,7 +113,7 @@ const windowConfigs: WindowConfig[] = [
   { id: "about",              title: "About me",             icon: "about",              label: "About me",             defaultPosition: { x: 580, y: 40 },  width: 440 },
   { id: "workGallery",        title: "Gallery",              icon: "workGallery",        label: "Gallery",              defaultPosition: { x: 360, y: 60 },  width: 520, maxHeight: 480 },
   { id: "protoComments",      title: "proto-comments",       icon: "protoComments",      label: "proto-comments",       defaultPosition: { x: 420, y: 80 },  width: 600, maxHeight: 640 },
-  { id: "deFiWallet",         title: "DeFi Wallet Onboarding", icon: "deFiWallet",       label: "DeFi Wallet",          defaultPosition: { x: 460, y: 100 }, width: 600, maxHeight: 640 },
+  { id: "deFiWallet",         title: "DeFi Wallet Onboarding", icon: "deFiWallet",       label: "DeFi Wallet Onboarding", defaultPosition: { x: 460, y: 100 }, width: 600, maxHeight: 640 },
   { id: "sprayAndPray",       title: "Spray & Pray",         icon: "sprayAndPray",       label: "Spray & Pray",         defaultPosition: { x: 400, y: 60 },  width: 560, maxHeight: 640 },
   { id: "perpetualTrading",   title: "Perpetual Trading",    icon: "perpetualTrading",   label: "Perpetual Trading",    defaultPosition: { x: 440, y: 100 }, width: 750, maxHeight: 560 },
   { id: "degenArcade",        title: "Degen Arcade",         icon: "degenArcade",        label: "Degen Arcade",         defaultPosition: { x: 480, y: 140 }, width: 560, maxHeight: 560 },
