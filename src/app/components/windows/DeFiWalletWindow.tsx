@@ -258,11 +258,11 @@ export function DeFiWalletWindow() {
           </InfoPanel>
         </div>
 
-        <ImageWell theme={theme} aspectRatio="16/9" onClick={ql("/defi-wallet/slide-08-new-flow.png", "New onboarding flow — scales security to user intent")}>
+        <ImageWell theme={theme} onClick={ql("/defi-wallet/wallet-new-flow.png", "New onboarding flow — scales security to user intent")}>
           <img
-            src="/defi-wallet/slide-08-new-flow.png"
+            src="/defi-wallet/wallet-new-flow.png"
             alt="New onboarding flow diagram showing streamlined path with backup options"
-            style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+            style={{ width: "100%", height: "auto", display: "block" }}
           />
         </ImageWell>
 
