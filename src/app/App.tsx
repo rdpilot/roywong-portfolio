@@ -431,19 +431,6 @@ function AppContent() {
   const getContent = (id: WindowId): ReactNode =>
     mountedWindows.has(id) ? WINDOW_CONTENT[id] : null;
 
-  // ── Project previews for sidebar ─────────────────────────────────────────
-  const projectPreviews: Partial<Record<WindowId, { stat?: string; desc: string; image?: string }>> = {
-    deFiWallet:       { stat: "29% → 59%", desc: "Wallet creation rate doubled", image: "/defi-wallet/wallet-new-flow.png" },
-    sprayAndPray:     { stat: "560 players", desc: "No-loss crypto trading platform", image: "https://i.imgur.com/O74Q0Ds.png" },
-    perpetualTrading: { desc: "Perpetual trading interface · Crypto.com" },
-    degenArcade:      { desc: "Web3 gaming arcade with NFT rewards" },
-    protoComments:    { stat: "Open source", desc: "AI-native prototype review tool" },
-    asciiTool:        { desc: "3D models → ASCII art in real time" },
-    texttura:         { desc: "Layered typography compositor" },
-    orbwarp:          { desc: "Shader-based orbital warp effects" },
-    wavetype:         { desc: "Wave-animated type renderer" },
-    workGallery:      { desc: "Browse all work" },
-  };
 
   // ─── Mobile Layout ────────────────────────────────────────────────────────
   if (isMobile) {
@@ -540,7 +527,6 @@ function AppContent() {
                     company={config.company}
                     onClick={() => toggleWindow(config.id)}
                     isOpen={openWindows.has(config.id)}
-                    preview={projectPreviews[config.id]}
                   />
                 );
               })}
