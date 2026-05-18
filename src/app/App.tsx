@@ -44,7 +44,6 @@ const AsciiToolWindow        = lazy(() => import("./components/windows/AsciiTool
 const TextturaWindow         = lazy(() => import("./components/windows/TextturaWindow").then(m => ({ default: m.TextturaWindow })).catch(() => ({ default: () => <div>Failed to load</div> })));
 const OrbwarpWindow          = lazy(() => import("./components/windows/OrbwarpWindow").then(m => ({ default: m.OrbwarpWindow })).catch(() => ({ default: () => <div>Failed to load</div> })));
 const WavetypeWindow         = lazy(() => import("./components/windows/WavetypeWindow").then(m => ({ default: m.WavetypeWindow })).catch(() => ({ default: () => <div>Failed to load</div> })));
-const ColorMatchWindow       = lazy(() => import("./components/windows/ColorMatchWindow").then(m => ({ default: m.ColorMatchWindow })).catch(() => ({ default: () => <div>Failed to load</div> })));
 
 // ─── WindowWrapper ────────────────────────────────────────────────────────────
 // Lives at MODULE SCOPE so React never sees a new component type between renders.
@@ -94,7 +93,6 @@ const WINDOW_CONTENT: Record<WindowId, ReactNode> = {
   texttura:           <WindowWrapper><TextturaWindow /></WindowWrapper>,
   orbwarp:            <WindowWrapper><OrbwarpWindow /></WindowWrapper>,
   wavetype:           <WindowWrapper><WavetypeWindow /></WindowWrapper>,
-  colorMatch:         <WindowWrapper><ColorMatchWindow /></WindowWrapper>,
 };
 
 // ─── Static config ────────────────────────────────────────────────────────────
@@ -123,7 +121,6 @@ const windowConfigs: WindowConfig[] = [
   { id: "texttura",           title: "Texttura",             icon: "texttura",           label: "Texttura",             desc: "Layered typography compositor",                 defaultPosition: { x: 200, y: 120 }, width: 400 },
   { id: "orbwarp",            title: "Orbwarp",              icon: "orbwarp",            label: "Orbwarp",              desc: "Shader-based orbital warp effects",             defaultPosition: { x: 320, y: 240 }, width: 400 },
   { id: "wavetype",           title: "Wavetype",             icon: "wavetype",           label: "Wavetype",             desc: "Wave-animated type renderer",                  defaultPosition: { x: 360, y: 280 }, width: 400 },
-  { id: "colorMatch",         title: "Color Match",          icon: "colorMatch",         label: "Color Match",          desc: "Match colors by eye — global leaderboard",      defaultPosition: { x: 240, y: 80  }, width: 420, maxHeight: 600 },
 ];
 
 const ALL_WINDOW_IDS = new Set(windowConfigs.map((c) => c.id));
@@ -137,7 +134,6 @@ const desktopSections: { label: string; ids: WindowId[] }[] = [
   { label: "Case Studies",        ids: ["deFiWallet", "sprayAndPray", "perpetualTrading", "degenArcade"] },
   { label: "Built for AI agents", ids: ["protoComments"] },
   { label: "Creative Tools",      ids: ["asciiTool", "texttura", "orbwarp", "wavetype", "workGallery"] },
-  { label: "Mini Game",           ids: ["colorMatch"] },
 ];
 
 const mobileOrder: { id: WindowId; defaultOpen: boolean; category?: string }[] = [
@@ -152,7 +148,6 @@ const mobileOrder: { id: WindowId; defaultOpen: boolean; category?: string }[] =
   { id: "orbwarp",            defaultOpen: false },
   { id: "wavetype",           defaultOpen: false },
   { id: "workGallery",        defaultOpen: false },
-  { id: "colorMatch",         defaultOpen: false, category: "Mini Game" },
 ];
 
 /** Visually-hidden crawlable nav for SEO */

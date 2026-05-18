@@ -14,8 +14,7 @@ export type WindowId =
   | "degenArcade"
   | "perpetualTrading"
   | "protoComments"
-  | "deFiWallet"
-  | "colorMatch";
+  | "deFiWallet";
 
 /**
  * Maps URL paths to window IDs for routing
@@ -39,7 +38,6 @@ export const routeToWindow: Record<string, WindowId> = {
   "/tools/texttura": "texttura",
   "/tools/orbwarp": "orbwarp",
   "/tools/wavetype": "wavetype",
-  "/game/color-match": "colorMatch",
 };
 
 /**
@@ -57,7 +55,6 @@ export const windowToRoute: Record<WindowId, string> = {
   texttura: "/tools/texttura",
   orbwarp: "/tools/orbwarp",
   wavetype: "/tools/wavetype",
-  colorMatch: "/game/color-match",
 };
 
 /**
@@ -76,7 +73,6 @@ export const getPageTitle = (windowId: WindowId | null): string => {
     texttura: "Texttura - Typography Tool | Roy Wong",
     orbwarp: "Orbwarp - Interactive Tool | Roy Wong",
     wavetype: "Wavetype - Typography Tool | Roy Wong",
-    colorMatch: "Color Match - Designer Mini Game | Roy Wong",
   };
   
   return windowId ? titles[windowId] : "Roy Wong - Product Designer | UI/UX Portfolio";
@@ -98,7 +94,6 @@ export const getPageDescription = (windowId: WindowId | null): string => {
     texttura: "Texttura — Interactive typography tool by Roy Wong. Create textured, layered type compositions with real-time visual controls.",
     orbwarp: "Orbwarp — Interactive orbital warping effect tool by Roy Wong. Create mesmerizing animated orb distortions with shader-based effects.",
     wavetype: "Wavetype — Wave-based typography tool by Roy Wong. Animate text along sine-wave paths with adjustable frequency, amplitude, and speed.",
-    colorMatch: "Color Match — Designer mini game by Roy Wong. Match colors by eye using HSL sliders. Compete on the global leaderboard.",
   };
   
   return windowId 

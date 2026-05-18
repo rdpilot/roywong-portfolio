@@ -115,7 +115,6 @@ export function useGestureRecognition(
 
   const smoothCursorRef      = useRef<CursorPos>({ x: -100, y: -100 });
   const twoFingerYHistoryRef = useRef<number[]>([]);
-  const indexXHistoryRef     = useRef<number[]>([]);
 
   // Dwell
   const dwellStartTimeRef  = useRef(0);
