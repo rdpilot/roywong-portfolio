@@ -28,7 +28,7 @@ const MOCK_BOARD: Entry[] = [
 function mergeWithMock(real: Entry[]): Entry[] {
   const realNames = new Set(real.map(e => e.name.toLowerCase()));
   const padding = MOCK_BOARD.filter(e => !realNames.has(e.name.toLowerCase()));
-  return [...real, ...padding].slice(0, 10);
+  return [...real, ...padding].sort((a, b) => b.score - a.score).slice(0, 10);
 }
 
 function hslToRgb(h: number, s: number, l: number): [number, number, number] {
