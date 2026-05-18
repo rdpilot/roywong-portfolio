@@ -21,6 +21,7 @@ interface DraggableWindowProps {
   className?: string;
   docked?: "bottom" | null;
   maxHeight?: number;
+  resizable?: boolean;
 }
 
 export function DraggableWindow({
@@ -39,6 +40,7 @@ export function DraggableWindow({
   className = "",
   docked = null,
   maxHeight,
+  resizable = true,
 }: DraggableWindowProps) {
   const { theme } = useTheme();
   const [position, setPosition] = useState(defaultPosition);
@@ -371,7 +373,7 @@ export function DraggableWindow({
         </div>
 
         {/* ── Resize grip (bottom-right corner) ─────────── */}
-        {!(docked && isDocked) && (
+        {resizable && !(docked && isDocked) && (
           <div
             onMouseDown={(e) => handleResizeStart(e, "corner")}
             style={{
@@ -404,7 +406,7 @@ export function DraggableWindow({
       </div>
 
       {/* ── Edge resize handles (invisible hit areas) ────── */}
-      {!(docked && isDocked) && (
+      {resizable && !(docked && isDocked) && (
         <>
           {/* Right edge */}
           <div
