@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { FileText, FolderOpen, User, Type, Box, Gamepad2, Globe, Coins, TrendingUp, FlaskConical, MessageSquare, Wallet } from "lucide-react";
+import { FileText, FolderOpen, User, Type, Box, Gamepad2, Globe, Coins, TrendingUp, FlaskConical, MessageSquare, Wallet, Palette } from "lucide-react";
 import { useTheme } from "../hooks/useTheme";
 
 interface DesktopIconProps {
@@ -28,6 +28,7 @@ const iconComponents: Record<string, React.ComponentType<{ size: number; color?:
   perpetualTrading: TrendingUp,
   protoComments: MessageSquare,
   deFiWallet: Wallet,
+  colorMatch: Palette,
   uTest: FlaskConical,
 };
 
