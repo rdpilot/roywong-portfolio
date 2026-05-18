@@ -44,6 +44,7 @@ const AsciiToolWindow        = lazy(() => import("./components/windows/AsciiTool
 const TextturaWindow         = lazy(() => import("./components/windows/TextturaWindow").then(m => ({ default: m.TextturaWindow })).catch(() => ({ default: () => <div>Failed to load</div> })));
 const OrbwarpWindow          = lazy(() => import("./components/windows/OrbwarpWindow").then(m => ({ default: m.OrbwarpWindow })).catch(() => ({ default: () => <div>Failed to load</div> })));
 const WavetypeWindow         = lazy(() => import("./components/windows/WavetypeWindow").then(m => ({ default: m.WavetypeWindow })).catch(() => ({ default: () => <div>Failed to load</div> })));
+const ColorMatchWindow       = lazy(() => import("./components/windows/ColorMatchWindow").then(m => ({ default: m.ColorMatchWindow })).catch(() => ({ default: () => <div>Failed to load</div> })));
 
 // ─── WindowWrapper ────────────────────────────────────────────────────────────
 // Lives at MODULE SCOPE so React never sees a new component type between renders.
@@ -93,6 +94,7 @@ const WINDOW_CONTENT: Record<WindowId, ReactNode> = {
   texttura:           <WindowWrapper><TextturaWindow /></WindowWrapper>,
   orbwarp:            <WindowWrapper><OrbwarpWindow /></WindowWrapper>,
   wavetype:           <WindowWrapper><WavetypeWindow /></WindowWrapper>,
+  colorMatch:         <WindowWrapper><ColorMatchWindow /></WindowWrapper>,
 };
 
 // ─── Static config ────────────────────────────────────────────────────────────
