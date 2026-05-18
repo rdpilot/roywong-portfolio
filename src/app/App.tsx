@@ -152,7 +152,9 @@ const CM_MOCK = [
 ];
 function cmMerge(real: {name:string;score:number}[]) {
   const names = new Set(real.map(e => e.name.toLowerCase()));
-  return [...real, ...CM_MOCK.filter(e => !names.has(e.name.toLowerCase()))].slice(0, 3);
+  return [...real, ...CM_MOCK.filter(e => !names.has(e.name.toLowerCase()))]
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 3);
 }
 
 const mobileOrder: { id: WindowId; defaultOpen: boolean; category?: string }[] = [
