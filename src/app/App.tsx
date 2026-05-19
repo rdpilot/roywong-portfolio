@@ -569,42 +569,54 @@ function AppContent() {
         </div>
 
         {/* Color Match card — pinned to bottom of sidebar */}
-        <button
-          onClick={() => toggleWindow("colorMatch")}
-          style={{
-            width: "152px",
-            borderRadius: "10px",
-            border: `1px solid ${openWindows.has("colorMatch") ? "#FF3CAC" : "rgba(255,255,255,0.1)"}`,
-            padding: "9px 11px 10px",
-            cursor: "pointer",
-            background: "#0a0a0a",
-            boxShadow: openWindows.has("colorMatch") ? "0 0 0 1px #FF3CAC40" : "none",
-            transition: "box-shadow 0.15s, border-color 0.15s, transform 0.15s",
-            textAlign: "left",
-            fontFamily: "'Syne', sans-serif",
-          }}
-          onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.transform = "scale(1.04)"; miniVideoRef.current?.play(); }}
-          onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.transform = "scale(1)"; const v = miniVideoRef.current; if (v) { v.pause(); v.currentTime = 0; } }}
-          title="Color Match — designer mini game"
-        >
-          <div style={{ display: "flex", gap: 9, alignItems: "stretch" }}>
-            <div style={{ width: 52, flexShrink: 0, borderRadius: 6, overflow: "hidden" }}>
-              <video ref={miniVideoRef} src="/color-match-hero.mp4" muted playsInline style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
-            </div>
-            <div style={{ flex: 1, minWidth: 0, display: "flex", flexDirection: "column", gap: 5 }}>
-              <span style={{ color: "#fff", fontSize: 8, fontWeight: 700, letterSpacing: "0.02em", fontFamily: "'Syne', sans-serif", whiteSpace: "nowrap" }}>Color Match</span>
-              <div style={{ display: "flex", flexDirection: "column", gap: 2.5 }}>
-                {miniBoard.map((e, i) => (
-                  <div key={i} style={{ display: "flex", gap: 5, alignItems: "center" }}>
-                    <span style={{ color: "rgba(255,255,255,0.28)", fontSize: 8, width: 8, textAlign: "right", fontFamily: "'IBM Plex Mono', monospace", flexShrink: 0 }}>{i + 1}</span>
-                    <span style={{ color: "rgba(255,255,255,0.65)", fontSize: 8, flex: 1, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", fontFamily: "'IBM Plex Mono', monospace" }}>{e.name}</span>
-                    <span style={{ color: "#fff", fontSize: 8, fontFamily: "'IBM Plex Mono', monospace", flexShrink: 0 }}>{e.score}</span>
+        {(() => {
+          const isDark = theme.mode === "dark" || theme.mode === "hailmary";
+          const cardBg = theme.windowContentBg;
+          const cardBorder = openWindows.has("colorMatch") ? theme.linkColor : theme.windowBorder;
+          const cardShadow = openWindows.has("colorMatch") ? `0 0 0 1px ${theme.linkColor}40` : "none";
+          const titleColor = theme.windowTitleText;
+          const rankColor = theme.textMuted;
+          const nameColor = isDark ? "rgba(255,255,255,0.65)" : theme.textSecondary ?? theme.textMuted;
+          const scoreColor = titleColor;
+          return (
+            <button
+              onClick={() => toggleWindow("colorMatch")}
+              style={{
+                width: "152px",
+                borderRadius: "10px",
+                border: `1px solid ${cardBorder}`,
+                padding: "9px 11px 10px",
+                cursor: "pointer",
+                background: cardBg,
+                boxShadow: cardShadow,
+                transition: "box-shadow 0.15s, border-color 0.15s, transform 0.15s",
+                textAlign: "left",
+                fontFamily: "'Syne', sans-serif",
+              }}
+              onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.transform = "scale(1.04)"; miniVideoRef.current?.play(); }}
+              onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.transform = "scale(1)"; const v = miniVideoRef.current; if (v) { v.pause(); v.currentTime = 0; } }}
+              title="Color Match — designer mini game"
+            >
+              <div style={{ display: "flex", gap: 9, alignItems: "stretch" }}>
+                <div style={{ width: 52, flexShrink: 0, borderRadius: 6, overflow: "hidden" }}>
+                  <video ref={miniVideoRef} src="/color-match-hero.mp4" muted playsInline style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", mixBlendMode: isDark ? "screen" : "normal" }} />
+                </div>
+                <div style={{ flex: 1, minWidth: 0, display: "flex", flexDirection: "column", gap: 5 }}>
+                  <span style={{ color: titleColor, fontSize: 8, fontWeight: 700, letterSpacing: "0.02em", fontFamily: "'Syne', sans-serif", whiteSpace: "nowrap" }}>Color Match</span>
+                  <div style={{ display: "flex", flexDirection: "column", gap: 2.5 }}>
+                    {miniBoard.map((e, i) => (
+                      <div key={i} style={{ display: "flex", gap: 5, alignItems: "center" }}>
+                        <span style={{ color: rankColor, fontSize: 8, width: 8, textAlign: "right", fontFamily: "'IBM Plex Mono', monospace", flexShrink: 0 }}>{i + 1}</span>
+                        <span style={{ color: nameColor, fontSize: 8, flex: 1, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", fontFamily: "'IBM Plex Mono', monospace" }}>{e.name}</span>
+                        <span style={{ color: scoreColor, fontSize: 8, fontFamily: "'IBM Plex Mono', monospace", flexShrink: 0 }}>{e.score}</span>
+                      </div>
+                    ))}
                   </div>
-                ))}
+                </div>
               </div>
-            </div>
-          </div>
-        </button>
+            </button>
+          );
+        })()}
       </div>
 
       {/* Windows */}
