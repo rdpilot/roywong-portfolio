@@ -571,7 +571,7 @@ function AppContent() {
         {/* Color Match card — pinned to bottom of sidebar */}
         {(() => {
           const isDark = theme.mode === "dark" || theme.mode === "hailmary";
-          const cardBg = theme.windowContentBg;
+          const cardBg = isDark ? theme.windowContentBg : "#E0E0E0";
           const cardBorder = openWindows.has("colorMatch") ? theme.linkColor : theme.windowBorder;
           const cardShadow = openWindows.has("colorMatch") ? `0 0 0 1px ${theme.linkColor}40` : "none";
           const titleColor = theme.windowTitleText;
@@ -598,8 +598,8 @@ function AppContent() {
               title="Color Match — designer mini game"
             >
               <div style={{ display: "flex", gap: 9, alignItems: "stretch" }}>
-                <div style={{ width: 52, flexShrink: 0, borderRadius: 6, overflow: "hidden" }}>
-                  <video ref={miniVideoRef} src="/color-match-hero.mp4" muted playsInline style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", mixBlendMode: isDark ? "screen" : "normal" }} />
+                <div style={{ width: 52, flexShrink: 0, borderRadius: 6, overflow: "hidden", background: cardBg }}>
+                  <video ref={miniVideoRef} src="/color-match-hero.mp4" muted playsInline style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", mixBlendMode: "screen" }} />
                 </div>
                 <div style={{ flex: 1, minWidth: 0, display: "flex", flexDirection: "column", gap: 5 }}>
                   <span style={{ color: titleColor, fontSize: 8, fontWeight: 700, letterSpacing: "0.02em", fontFamily: "'Syne', sans-serif", whiteSpace: "nowrap" }}>Color Match</span>
