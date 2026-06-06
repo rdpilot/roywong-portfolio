@@ -68,7 +68,7 @@ export function SprayAndPrayWindow() {
         <SectionRule label="Chip Economy" theme={theme} />
 
         <InfoPanel theme={theme}>
-          Players receive a free daily chip allowance every 12 hours. Chips are the entry fee into tournaments. Pick a direction, trade, and climb the leaderboard. Win chips, earn prizes. Run out? The daily top-up brings you back in. No real money ever changes hands.
+          Players receive a free daily chip allowance every 12 hours. Chips are the entry fee into tournaments. Pick a direction, trade, and climb the leaderboard. The higher your PnL, the bigger the prize. Get liquidated? Re-enter as long as you have chips. Run out? Wait for the free daily allowance or buy more. No real money ever changes hands on the trades themselves.
         </InfoPanel>
 
         <ImageWell theme={theme} onClick={ql("/the-loop.png", "Chip Economy Loop")} style={{ height: isMobile ? "auto" : "320px" }}>
