@@ -128,8 +128,8 @@ export function SprayAndPrayWindow() {
 
         <SectionRule label="Leaderboard & Ranking" theme={theme} />
 
-        <InfoPanel title="Aesthetic" theme={theme}>
-          We are going for the dark mode professional, High-contrast, "Bloomberg-meets-Gaming" aesthetics.
+        <InfoPanel theme={theme}>
+          Rank is the primary motivator. Seeing your name move up the leaderboard in real time pushes users to trade more, take bigger positions, and return for the next tournament. The higher your PnL rank, the larger your share of the prize pool — turning every trade into a competitive act.
         </InfoPanel>
 
         <div style={{ display: isMobile ? "flex" : "grid", gridTemplateColumns: "1fr 1fr", flexDirection: "column", gap: "8px" }}>
