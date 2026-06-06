@@ -65,24 +65,11 @@ export function SprayAndPrayWindow() {
           </div>
         </div>
 
-        <SectionRule label="Mobile Experience" theme={theme} />
+        <SectionRule label="Chip Economy" theme={theme} />
 
-        <div style={{ display: isMobile ? "flex" : "grid", gridTemplateColumns: "1fr 1fr", flexDirection: "column", height: isMobile ? undefined : "280px", gap: "8px" }}>
-          <ImageWell theme={theme} style={isMobile ? { minHeight: "280px" } : undefined} onClick={ql("https://i.imgur.com/uf9h04I.mp4", "Mobile Experience Video", "video")}>
-            <AutoPlayVideo
-              className="rounded-[16px]"
-              src="https://i.imgur.com/uf9h04I.mp4"
-              style={{ maxWidth: "100%", maxHeight: "100%", width: "auto", height: "auto", objectFit: "contain", display: "block", margin: "0 auto" }}
-            />
-          </ImageWell>
-          <ImageWell theme={theme} style={isMobile ? { minHeight: "280px" } : undefined} onClick={ql("https://i.imgur.com/O74Q0Ds.png", "Mobile Experience Screenshot")}>
-            <img src="https://i.imgur.com/O74Q0Ds.png" alt="Spray & Pray mobile trading interface showing live chart and chip balance" loading="lazy" style={{ height: isMobile ? "auto" : "100%", maxHeight: isMobile ? "260px" : undefined, width: "auto", objectFit: "contain", margin: "0 auto", display: "block" }} />
-          </ImageWell>
-        </div>
-
-        <InfoPanel title="The Loop" theme={theme}>
-          Trade &rarr; Win/Lose &rarr; Return in 12h for more chips / Buy chips from us &rarr; Repeat.
-        </InfoPanel>
+        <ImageWell theme={theme} onClick={ql("/the-loop.png", "Chip Economy Loop")} style={{ height: isMobile ? "auto" : "320px" }}>
+          <img src="/the-loop.png" alt="Chip economy loop flowchart: daily allowance → enter tournament → trade → win/lose → climb leaderboard or run out of chips" loading="lazy" style={{ maxHeight: isMobile ? "300px" : "300px", width: "auto", objectFit: "contain", margin: "0 auto", display: "block" }} />
+        </ImageWell>
 
         <SectionRule label="Trading Interface" theme={theme} />
 
