@@ -67,9 +67,36 @@ export function SprayAndPrayWindow() {
 
         <SectionRule label="Chip Economy" theme={theme} />
 
+        <InfoPanel theme={theme}>
+          Players receive a free daily chip allowance every 12 hours. Chips are the entry fee into tournaments — spend them to pick a direction, trade, and climb the leaderboard. Win chips, earn prizes. Run out? The daily top-up brings you back in. No real money ever changes hands.
+        </InfoPanel>
+
         <ImageWell theme={theme} onClick={ql("/the-loop.png", "Chip Economy Loop")} style={{ height: isMobile ? "auto" : "320px" }}>
-          <img src="/the-loop.png" alt="Chip economy loop flowchart: daily allowance → enter tournament → trade → win/lose → climb leaderboard or run out of chips" loading="lazy" style={{ maxHeight: isMobile ? "300px" : "300px", width: "auto", objectFit: "contain", margin: "0 auto", display: "block" }} />
+          <img src="/the-loop.png" alt="Chip economy loop flowchart: daily allowance → enter tournament → trade → win/lose → climb leaderboard or run out of chips" loading="lazy" style={{ maxHeight: "300px", width: "auto", objectFit: "contain", margin: "0 auto", display: "block" }} />
         </ImageWell>
+
+        <div style={{ display: isMobile ? "flex" : "grid", gridTemplateColumns: "1fr 1fr", flexDirection: "column", gap: "8px" }}>
+          <div className="flex flex-col gap-2">
+            <ImageWell theme={theme} style={isMobile ? { minHeight: "240px" } : undefined} onClick={ql("https://i.imgur.com/uf9h04I.mp4", "Daily Chip Top-Up", "video")}>
+              <AutoPlayVideo
+                className="rounded-[16px]"
+                src="https://i.imgur.com/uf9h04I.mp4"
+                style={{ maxWidth: "100%", maxHeight: "100%", width: "auto", height: "auto", objectFit: "contain", display: "block", margin: "0 auto" }}
+              />
+            </ImageWell>
+            <InfoPanel title="Daily Top-Up" theme={theme}>
+              Chips replenish every 12 hours automatically. The countdown timer creates a daily return habit — no purchase needed to keep playing.
+            </InfoPanel>
+          </div>
+          <div className="flex flex-col gap-2">
+            <ImageWell theme={theme} style={isMobile ? { minHeight: "240px" } : undefined} onClick={ql("https://i.imgur.com/O74Q0Ds.png", "Tournament Entry")}>
+              <img src="https://i.imgur.com/O74Q0Ds.png" alt="Spray & Pray tournament entry screen showing chip balance and buy-in options" loading="lazy" style={{ height: isMobile ? "auto" : "100%", maxHeight: isMobile ? "220px" : undefined, width: "auto", objectFit: "contain", margin: "0 auto", display: "block" }} />
+            </ImageWell>
+            <InfoPanel title="Tournament Entry" theme={theme}>
+              Each tournament has a fixed chip buy-in, prize pool, and timer. Spending chips creates commitment — players trade more boldly because they've already bought in.
+            </InfoPanel>
+          </div>
+        </div>
 
         <SectionRule label="Trading Interface" theme={theme} />
 
