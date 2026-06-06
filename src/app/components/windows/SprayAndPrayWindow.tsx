@@ -85,7 +85,7 @@ export function SprayAndPrayWindow() {
               />
             </ImageWell>
             <InfoPanel title="Daily Top-Up" theme={theme}>
-              Chips replenish every 12 hours automatically. The countdown timer creates a daily return habit. No purchase needed to keep playing.
+              Chips replenish every 12 hours automatically. The countdown timer creates a daily return habit.
             </InfoPanel>
           </div>
           <div className="flex flex-col gap-2">
