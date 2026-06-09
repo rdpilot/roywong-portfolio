@@ -71,7 +71,7 @@ export function SprayAndPrayWindow() {
           Players receive a free daily chip allowance every 12 hours. Chips are the entry fee into tournaments. Pick a direction, trade, and climb the leaderboard. The higher your PnL, the bigger the prize. Get liquidated? Re-enter as long as you have chips. Run out? Wait for the free daily allowance or buy more.
         </InfoPanel>
 
-        <ImageWell theme={theme} onClick={ql("/the-loop.png", "Chip Economy Loop")} style={{ height: isMobile ? "auto" : "320px" }}>
+        <ImageWell theme={theme} onClick={() => openQuickLook({ src: "/the-loop.png", alt: "Chip Economy Loop", type: "image", bg: "#000000" })} style={{ height: isMobile ? "auto" : "320px" }}>
           <img src="/the-loop.png" alt="Chip economy loop flowchart: daily allowance → enter tournament → trade → win/lose → climb leaderboard or run out of chips" loading="lazy" style={{ maxHeight: "300px", width: "auto", objectFit: "contain", margin: "0 auto", display: "block" }} />
         </ImageWell>
 

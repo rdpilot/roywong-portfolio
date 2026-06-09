@@ -8,6 +8,7 @@ interface QuickLookItem {
   src: string;
   alt?: string;
   type: "image" | "video";
+  bg?: string;
 }
 
 interface QuickLookCtx {
@@ -117,7 +118,7 @@ export function QuickLookProvider({ children }: { children: React.ReactNode }) {
             </div>
 
             {/* Content */}
-            <div style={{ background: isLight(theme) ? "#E0E0E0" : "#1a1e24" }}>
+            <div style={{ background: item.bg ?? (isLight(theme) ? "#E0E0E0" : "#1a1e24") }}>
               {item.type === "image" ? (
                 <img
                   src={item.src}
