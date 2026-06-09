@@ -28,7 +28,6 @@ import { MenuBar } from "./components/MenuBar";
 import { ErrorBoundary } from "./components/ErrorBoundary";
 import { UnicornBackground } from "./components/UnicornBackground";
 import { SunnyBackground } from "./components/SunnyBackground";
-import { GestureController } from "./components/GestureController";
 import { FirstVisitHint } from "./components/FirstVisitHint";
 import { Mail } from "lucide-react";
 
@@ -220,7 +219,6 @@ function AppContent() {
   const isMobile = useIsMobile();
   const { theme, toggleTheme } = useTheme();
   const [siteLoading, setSiteLoading] = useState(true);
-  const [gestureMode, setGestureMode] = useState(false);
 
   const handleLoadingFinished = useCallback(() => setSiteLoading(false), []);
 
@@ -323,26 +321,6 @@ function AppContent() {
     [windowOrder]
   );
 
-  // ── Gesture action handler ────────────────────────────────────────────────
-  const handleGestureAction = useCallback((action: string) => {
-    const windowMap: Record<string, WindowId> = {
-      open_about:    "about",
-      open_gallery:  "workGallery",
-      open_spray:    "sprayAndPray",
-      open_trading:  "perpetualTrading",
-      open_arcade:   "degenArcade",
-    };
-
-    if (action === "cycle_theme") {
-      toggleTheme();
-    } else if (action === "close_window") {
-      const focused = windowOrder[windowOrder.length - 1];
-      if (focused) closeWindow(focused);
-    } else if (windowMap[action]) {
-      toggleWindow(windowMap[action]);
-    }
-    // "click" is handled internally in useGestureRecognition
-  }, [toggleTheme, windowOrder, closeWindow, toggleWindow]);
 
   // ── Sync URL ─────────────────────────────────────────────────────────────
   useEffect(() => {
@@ -518,11 +496,7 @@ function AppContent() {
       <MenuBar
         onToggleWindow={toggleWindow}
         openWindows={openWindows}
-        gestureMode={gestureMode}
-        onToggleGesture={() => setGestureMode((v) => !v)}
       />
-
-      {gestureMode && <GestureController onAction={handleGestureAction} />}
 
       {/* Dotted background */}
       <div className="absolute inset-0 mt-10" style={{ zIndex: 1 }}>

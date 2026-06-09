@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, memo } from "react";
-import { Atom, Sun, Moon, Disc3, Flame, Leaf, Coins, Gamepad2, Globe, Box, Type, Image, TrendingUp, FlaskConical, Camera } from "lucide-react";
+import { Atom, Sun, Moon, Disc3, Flame, Leaf, Coins, Gamepad2, Globe, Box, Type, Image, TrendingUp, FlaskConical } from "lucide-react";
 import { useTheme } from "../hooks/useTheme";
 
 type WindowId = "about" | "workGallery" | "asciiTool" | "texttura" | "polytrace" | "minecraftVoxelizer" | "orbwarp" | "wavetype" | "sprayAndPray" | "degenArcade" | "comicCon" | "perpetualTrading" | "uTest";
@@ -7,8 +7,6 @@ type WindowId = "about" | "workGallery" | "asciiTool" | "texttura" | "polytrace"
 interface MenuBarProps {
   onToggleWindow?: (id: WindowId) => void;
   openWindows?: Set<WindowId>;
-  gestureMode?: boolean;
-  onToggleGesture?: () => void;
 }
 
 const menuItemIcons: Record<string, React.ComponentType<{ size: number; strokeWidth?: number }>> = {
@@ -200,105 +198,7 @@ function ThemePicker() {
   );
 }
 
-function GestureButton({ gestureMode, onToggleGesture }: { gestureMode: boolean; onToggleGesture: () => void }) {
-  const { theme } = useTheme();
-  const [hovered, setHovered] = useState(false);
-
-  // Active colour is always green — universally means "on"
-  const activeBorder = "#22aa66";
-  const activeBg     = theme.mode === "dark"
-    ? "linear-gradient(to bottom, #1a3a2a, #0f2a1a)"
-    : theme.mode === "hailmary"
-    ? "linear-gradient(to bottom, #0f2a1a, #0a1f12)"
-    : "linear-gradient(to bottom, #d0f0e0, #a0e0c0)";
-  const activeIcon   = theme.mode === "dark" || theme.mode === "hailmary" ? "#34D399" : "#059669";
-
-  // Normal state: borrow exact chrome colours from the current theme
-  const idleBorder = theme.windowBorder;
-  const idleBg     = theme.windowChrome;
-  const idleIcon   = theme.menuBarText;
-
-  const isLight = theme.mode === "light" || theme.mode === "sunny";
-
-  return (
-    <div style={{ position: "relative" }} onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}>
-      <button
-        onClick={onToggleGesture}
-        className="flex items-center justify-center rounded-[3px] cursor-pointer"
-        style={{
-          width: 24,
-          height: 24,
-          border: `1px solid ${gestureMode ? activeBorder : idleBorder}`,
-          background: gestureMode ? activeBg : idleBg,
-          boxShadow: gestureMode ? "0 0 6px rgba(52,211,153,0.4)" : "none",
-          transition: "background 0.2s, border-color 0.2s, box-shadow 0.2s",
-        }}
-        aria-label={gestureMode ? "Disable gesture control" : "Enable gesture control"}
-      >
-        <Camera size={12} color={gestureMode ? activeIcon : idleIcon} strokeWidth={2} />
-      </button>
-
-      {/* Custom tooltip */}
-      {hovered && (
-        <div
-          style={{
-            position: "absolute",
-            top: "calc(100% + 8px)",
-            right: 0,
-            width: 230,
-            background: isLight ? "rgba(255,255,255,0.97)" : "rgba(30,30,35,0.97)",
-            border: `1px solid ${theme.windowBorder}`,
-            borderRadius: 6,
-            padding: "9px 11px",
-            boxShadow: "0 4px 16px rgba(0,0,0,0.25)",
-            zIndex: 99999,
-            pointerEvents: "none",
-            fontFamily: "'IBM Plex Mono', monospace",
-          }}
-        >
-          {/* Arrow */}
-          <div style={{
-            position: "absolute",
-            top: -5,
-            right: 9,
-            width: 8,
-            height: 8,
-            background: isLight ? "rgba(255,255,255,0.97)" : "rgba(30,30,35,0.97)",
-            border: `1px solid ${theme.windowBorder}`,
-            borderBottom: "none",
-            borderRight: "none",
-            transform: "rotate(45deg)",
-          }} />
-
-          <div style={{ fontSize: 10, fontWeight: 700, color: gestureMode ? "#34D399" : theme.textPrimary, marginBottom: 5 }}>
-            {gestureMode ? "✦ Gesture mode ON" : "Gesture control"}
-          </div>
-          <div style={{ fontSize: 9, color: theme.textMuted, lineHeight: 1.65 }}>
-            {gestureMode ? (
-              <>
-                Control the site with your hand via camera.<br />
-                <span style={{ color: theme.textSecondary }}>✦ Dwell</span> — hold still over a target to click<br />
-                <span style={{ color: theme.textSecondary }}>✦ 2 fingers</span> — swipe up/down to scroll<br />
-                <span style={{ color: theme.textSecondary }}>✦ Open palm</span> — move to drag a window<br />
-                <span style={{ color: theme.textSecondary }}>✦ Fist</span> — close the active window<br />
-                <br />
-                <span style={{ color: theme.textMuted }}>Click to turn off.</span>
-              </>
-            ) : (
-              <>
-                Use your hand + camera to navigate.<br />
-                No touch or mouse needed — point your<br />
-                finger at the camera to get started.
-              </>
-            )}
-          </div>
-        </div>
-      )}
-    </div>
-  );
-}
-
-export function MenuBar({ onToggleWindow, openWindows, gestureMode, onToggleGesture }: MenuBarProps) {
+export function MenuBar({ onToggleWindow, openWindows }: MenuBarProps) {
   const { theme, toggleTheme } = useTheme();
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
@@ -341,14 +241,8 @@ export function MenuBar({ onToggleWindow, openWindows, gestureMode, onToggleGest
 
       </div>
 
-      {/* Right: Gesture toggle + Theme picker + Clock */}
+      {/* Right: Theme picker + Clock */}
       <div className="flex items-center gap-3">
-        {onToggleGesture && (
-          <GestureButton
-            gestureMode={!!gestureMode}
-            onToggleGesture={onToggleGesture}
-          />
-        )}
         <ThemePicker />
         <MenuClock color={theme.menuBarClockText} />
       </div>
