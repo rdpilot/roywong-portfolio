@@ -97,6 +97,40 @@ export function SprayAndPrayWindow() {
           </div>
         </div>
 
+        <SectionRule label="Design Decisions" theme={theme} />
+
+        {/* Decision 1: Tournament length */}
+        <div style={{ display: isMobile ? "flex" : "grid", gridTemplateColumns: "1fr 1fr", flexDirection: "column", gap: "8px" }}>
+          <InfoPanel title="How long should a tournament be?" theme={theme}>
+            <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+              <div><span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10, color: theme.textMuted }}>OPTION A</span><br />Minutes to under 24 hours. Short and intense.</div>
+              <div><span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10, color: theme.textMuted }}>OPTION B</span><br />Weekly rounds. Softer pacing, but engagement drops between entry and result.</div>
+              <div style={{ borderTop: `1px solid ${theme.windowBorder}`, paddingTop: 8, color: theme.linkColor, fontSize: 12, lineHeight: 1.6 }}>
+                We chose short. 1000x leverage works as adrenaline, not as a weeklong wait.
+              </div>
+            </div>
+          </InfoPanel>
+          <div className="flex flex-col gap-2">
+            <ImageWell theme={theme} onClick={ql("/Pray Trade Overlay_long.png", "Betting UI")}>
+              <img src="/Pray Trade Overlay_long.png" alt="Bet and leverage sliders in one gesture" loading="lazy" style={{ maxWidth: "100%", maxHeight: "100%", width: "auto", height: "auto", objectFit: "contain", display: "block", margin: "0 auto" }} />
+            </ImageWell>
+            <InfoPanel title="Input UI had to match" theme={theme}>
+              A slider sets bet and leverage in one gesture. No keyboard, no thinking in numbers.
+            </InfoPanel>
+          </div>
+        </div>
+
+        {/* Decision 2: Chips after loss */}
+        <InfoPanel title="Should we give chips back after a loss?" theme={theme}>
+          <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+            <div><span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10, color: theme.textMuted }}>OPTION A</span><br />Yes. Softens the loss, keeps users playing, looks good on re-entry rate.</div>
+            <div><span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10, color: theme.textMuted }}>OPTION B</span><br />No. Daily allowance only, paywall after that.</div>
+            <div style={{ borderTop: `1px solid ${theme.windowBorder}`, paddingTop: 8, color: theme.linkColor, fontSize: 12, lineHeight: 1.6 }}>
+              We chose B. Rewarding losses trains the wrong behavior and undermines the tournament's stakes. The daily reset gives a softer landing without breaking the economy.
+            </div>
+          </div>
+        </InfoPanel>
+
         <SectionRule label="Trading Interface" theme={theme} />
 
         <div style={{ display: isMobile ? "flex" : "grid", gridTemplateColumns: "1fr 1fr", flexDirection: "column", gap: "8px" }}>
