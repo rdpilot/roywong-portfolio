@@ -49,6 +49,35 @@ export function SprayAndPrayWindow() {
           />
         </ImageWell>
 
+        <SectionRule label="Results" theme={theme} />
+
+        <div style={{ display: isMobile ? "flex" : "grid", gridTemplateColumns: "1fr 1fr 1fr", flexDirection: "column", gap: "8px" }}>
+          {[
+            { stat: "1,800", label: "Players in tournament 2" },
+            { stat: "5×", label: "Avg trades per session" },
+            { stat: "3%", label: "Free-to-paid conversion" },
+          ].map(({ stat, label }) => (
+            <div key={label} style={{
+              borderRadius: 8,
+              border: `1px solid ${theme.windowBorder}`,
+              padding: "20px 12px 16px",
+              background: theme.windowContentBg,
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              gap: 6,
+              textAlign: "center",
+            }}>
+              <span style={{ fontSize: 36, fontWeight: 700, color: theme.linkColor, fontFamily: "'Syne', sans-serif", lineHeight: 1 }}>{stat}</span>
+              <span style={{ fontSize: 11, color: theme.textMuted, fontFamily: "'IBM Plex Sans', sans-serif", lineHeight: 1.4 }}>{label}</span>
+            </div>
+          ))}
+        </div>
+
+        <InfoPanel theme={theme}>
+          Players got liquidated fast and came back. The loudest signal was wanting shorter tournaments for quicker prizes. The reward loop was working. It just needed tightening.
+        </InfoPanel>
+
         <SectionRule label="Design Strategy" theme={theme} />
 
         <div style={{ display: isMobile ? "flex" : "grid", gridTemplateColumns: "1fr 1fr", flexDirection: "column", gap: "8px" }}>
@@ -61,7 +90,6 @@ export function SprayAndPrayWindow() {
           <div className="flex flex-col gap-2">
             <PropRow label="Mission" value="To demystify crypto trading for beginners by removing the primary barrier to entry: financial risk." theme={theme} />
             <PropRow label="Solution" value='A "Free-to-Play" ecosystem where users collect 5 chips every 12 hours to participate in market movements.' theme={theme} />
-            <PropRow label="Outcome" value="Players averaged 5 trades per session, got liquidated fast, and kept coming back. The loudest feedback was wanting shorter tournaments for quicker prizes. A sign the reward loop was working, just needed tightening. 3% converted to buying chips. Small, but enough to prove the free-to-paid model had legs." theme={theme} />
           </div>
         </div>
 
