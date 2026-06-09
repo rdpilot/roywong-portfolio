@@ -67,7 +67,7 @@ export function SprayAndPrayWindow() {
 
         <SectionRule label="Chip Economy" theme={theme} />
 
-        <InfoPanel theme={theme}>
+        <InfoPanel title="How It Works" theme={theme}>
           Players receive a free daily chip allowance every 12 hours. Chips are the entry fee into tournaments. Pick a direction, trade, and climb the leaderboard. The higher your PnL, the bigger the prize. Get liquidated? Re-enter as long as you have chips. Run out? Wait for the free daily allowance or buy more.
         </InfoPanel>
 
@@ -108,7 +108,7 @@ export function SprayAndPrayWindow() {
             />
           </ImageWell>
           <div className="flex flex-col gap-2">
-            <InfoPanel theme={theme}>
+            <InfoPanel title="Home Screen" theme={theme}>
               The home screen keeps it simple: collect your chips, pick a tournament, and enter. Two actions, no distractions. Users are never overwhelmed before they even start trading.
             </InfoPanel>
             <InfoPanel title="Challenge" theme={theme}>
@@ -130,7 +130,7 @@ export function SprayAndPrayWindow() {
         </div>
 
         <InfoPanel title="Gamified Feedback" theme={theme}>
-          Every outcome is animated and felt. Win, lose, or get wiped out — the interface reacts. Motion makes each trade memorable, turning what could be a dry data screen into something closer to a game.
+          Every outcome is animated and felt. Win, lose, or get wiped out. The interface reacts. Motion makes each trade memorable, turning what could be a dry data screen into something closer to a game.
         </InfoPanel>
 
         <div style={{ display: isMobile ? "flex" : "grid", gridTemplateColumns: "1fr 1fr 1fr", flexDirection: "column", gap: "8px" }}>
@@ -155,11 +155,17 @@ export function SprayAndPrayWindow() {
             <InfoPanel theme={theme} centered>
               Higher PnL &rarr; High rank &rarr; Bigger prize
             </InfoPanel>
-            <InfoPanel theme={theme}>
+            <InfoPanel title="Why It Works" theme={theme}>
               Rank is the primary motivator. Seeing your name move up the leaderboard in real time pushes users to trade more, take bigger positions, and return for the next tournament. The higher your PnL rank, the larger your share of the prize pool. Every trade is a competitive act.
             </InfoPanel>
           </div>
         </div>
+
+        <SectionRule label="Desktop" theme={theme} />
+
+        <InfoPanel title="Cards Scale Up" theme={theme}>
+          Because the mobile UI was built on a card-based layout, adapting it to desktop was straightforward. The same components rearrange into a wider canvas without redesigning from scratch. More space, same system.
+        </InfoPanel>
 
         <ImageWell theme={theme} aspectRatio="16/9" padding="24px" onClick={ql(imgTournament, "Tournament View")}>
           <img className="rounded-[16px]" src={imgTournament} alt="Full tournament overview with bracket-style competitive trading view" loading="lazy" style={{ maxWidth: "100%", maxHeight: "100%", objectFit: "contain" }} />
