@@ -126,9 +126,14 @@ export function DegenArcadeWindow() {
 
         <SectionRule label="Process & Testing" theme={theme} />
 
-        <InfoPanel theme={theme}>
-          We also prototyped a character select screen: Chad, Doomer, Boomer, each surfacing a different token risk profile. Culturally on point. Confused every first-time user who hadn't figured out the product yet.
-        </InfoPanel>
+        <div style={{ display: isMobile ? "flex" : "grid", gridTemplateColumns: "1fr 1fr", flexDirection: "column", gap: "8px" }}>
+          <InfoPanel theme={theme}>
+            We also prototyped a character select screen: Chad, Doomer, Boomer, each surfacing a different token risk profile. Culturally on point. Confused every first-time user who hadn't figured out the product yet.
+          </InfoPanel>
+          <ImageWell theme={theme} onClick={ql("/streetfighter.png", "Street Fighter player select reference")}>
+            <img src="/streetfighter.png" alt="Street Fighter player select — the reference behind the character picker" loading="lazy" style={{ maxWidth: "100%", maxHeight: "100%", width: "auto", height: "auto", objectFit: "contain", display: "block", margin: "0 auto" }} />
+          </ImageWell>
+        </div>
 
         <SectionRule label="Explorations" theme={theme} />
 
