@@ -9,7 +9,6 @@ import {
   ImageWell,
   SectionRule,
   InfoPanel,
-  PropRow,
 } from "./ProjectLayout";
 
 const isLight = (t: ThemeTokens) => t.mode !== "dark" && t.mode !== "hailmary";
