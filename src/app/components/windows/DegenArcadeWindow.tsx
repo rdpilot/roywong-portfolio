@@ -126,15 +126,7 @@ export function DegenArcadeWindow() {
 
         <SectionRule label="Process & Testing" theme={theme} />
 
-        <div style={{ display: isMobile ? "flex" : "grid", gridTemplateColumns: "1fr 1fr 1fr", flexDirection: "column", gap: "8px" }}>
-          <InfoPanel title="Character Select" theme={theme}>
-            Early on, players picked a character before trading. Chad, Doomer, Boomer — each with a different risk profile. Boomer gave you conservative tokens. Doomer gave you volatile ones. The Street Fighter reference was deliberate: memecoin trading is a game, pick your fighter. It made cultural sense. But first-time users hit the screen before they understood what Degen Arcade was. The mechanic landed perfectly once you knew the product. It confused everyone who didn't.
-            <div style={{ marginTop: 10 }}>
-              <ImageWell theme={theme} onClick={ql("/streetfighter.png", "Street Fighter player select reference")}>
-                <img src="/streetfighter.png" alt="Street Fighter player select screen — the cultural reference behind Degen Arcade's character picker" loading="lazy" style={{ maxWidth: "100%", height: "auto", display: "block", margin: "0 auto" }} />
-              </ImageWell>
-            </div>
-          </InfoPanel>
+        <div style={{ display: isMobile ? "flex" : "grid", gridTemplateColumns: "1fr 1fr", flexDirection: "column", gap: "8px" }}>
           <InfoPanel title="Bulk Buy" theme={theme}>
             Memecoin traders don't pick one coin and commit. They spread across five, hoping one rockets. Bulk buy was a direct response to that behavior. In testing, the open selection created a different problem: users spent more time assembling a basket than making a trade. The spray-and-pray instinct was real, but the UI made it deliberate instead of fast. Single token, single decision.
           </InfoPanel>
@@ -142,6 +134,10 @@ export function DegenArcadeWindow() {
             On-chain data fetches introduced noticeable lag between screens. We trimmed redundant calls and added optimistic UI updates. Some flows still felt sluggish. Where the wait couldn't be hidden, we simplified the flow to reduce round-trips entirely.
           </InfoPanel>
         </div>
+
+        <InfoPanel theme={theme}>
+          We also prototyped a character select screen: Chad, Doomer, Boomer, each surfacing a different token risk profile. Culturally on point. Confused every first-time user who hadn't figured out the product yet.
+        </InfoPanel>
 
         <SectionRule label="Explorations" theme={theme} />
 
