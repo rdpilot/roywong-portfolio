@@ -79,9 +79,15 @@ export function DegenArcadeWindow() {
 
         <SectionRule label="Results" theme={theme} />
 
-        <InfoPanel theme={theme}>
-          Zero paid marketing. Players found the product, traded, and came back. The arcade mechanic drove organic volume from day one.
-        </InfoPanel>
+        <div style={{ display: isMobile ? "flex" : "grid", gridTemplateColumns: "1fr 1fr", flexDirection: "column", gap: "8px" }}>
+          <InfoPanel theme={theme} centered>
+            <span style={{ display: "block", fontSize: 36, fontWeight: 700, color: theme.windowTitleText, fontFamily: "'IBM Plex Mono', monospace", lineHeight: 1, marginBottom: 6 }}>3 ETH</span>
+            <span style={{ fontSize: 11, color: theme.textMuted }}>Fee revenue, first 3 days</span>
+          </InfoPanel>
+          <InfoPanel theme={theme}>
+            Zero paid marketing. Players found the product, traded, and came back. The arcade mechanic drove organic volume from day one.
+          </InfoPanel>
+        </div>
 
         <SectionRule label="Core Flow" theme={theme} />
 
