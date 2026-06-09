@@ -147,17 +147,18 @@ export function SprayAndPrayWindow() {
 
         <SectionRule label="Leaderboard & Ranking" theme={theme} />
 
-        <InfoPanel theme={theme}>
-          Rank is the primary motivator. Seeing your name move up the leaderboard in real time pushes users to trade more, take bigger positions, and return for the next tournament. The higher your PnL rank, the larger your share of the prize pool. Every trade is a competitive act.
-        </InfoPanel>
-
         <div style={{ display: isMobile ? "flex" : "grid", gridTemplateColumns: "1fr 1fr", flexDirection: "column", gap: "8px" }}>
           <ImageWell theme={theme} onClick={ql("/leaderboard.mov", "Leaderboard", "video")}>
             <AutoPlayVideo src="/leaderboard.mov" style={{ width: "100%", height: "100%", objectFit: "contain", display: "block" }} />
           </ImageWell>
-          <InfoPanel theme={theme} centered>
-            Higher PnL &rarr; High rank &rarr; Bigger prize
-          </InfoPanel>
+          <div className="flex flex-col gap-2">
+            <InfoPanel theme={theme} centered>
+              Higher PnL &rarr; High rank &rarr; Bigger prize
+            </InfoPanel>
+            <InfoPanel theme={theme}>
+              Rank is the primary motivator. Seeing your name move up the leaderboard in real time pushes users to trade more, take bigger positions, and return for the next tournament. The higher your PnL rank, the larger your share of the prize pool. Every trade is a competitive act.
+            </InfoPanel>
+          </div>
         </div>
 
         <ImageWell theme={theme} aspectRatio="16/9" padding="24px" onClick={ql(imgTournament, "Tournament View")}>
