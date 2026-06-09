@@ -9,10 +9,10 @@ export function AboutWindow() {
   return (
     <div className="p-5" style={{ fontFamily: "'IBM Plex Sans', sans-serif" }}>
       <p className="mb-3" style={{ fontSize: "13px", lineHeight: "1.7", color: theme.textPrimary }}>
-        I'm Roy, a senior product designer shipping end to end digital products in fintech and Web3. Trading platforms, crypto wallets, onboarding flows. I've led design across the full stack at Crypto.com and Animoca Brands, working directly with engineering to get things built right.
+        Nine years designing products people use to learn and to trade. Three in edtech, six in crypto. Wallet onboarding, trading interfaces, gamified finance. Work where a confusing screen costs users real money.
       </p>
       <p className="mb-3" style={{ fontSize: "13px", lineHeight: "1.7", color: theme.textPrimary }}>
-        I also build. The interactive experiments in this portfolio (type renderers, 3D voxelizers, shader tools) aren't side projects. They're how I think. Writing code makes me a faster prototyper, a better collaborator with engineers, and someone who cares about what actually ships.
+        I build tools to work more efficiently. The experiments in this portfolio started as things I needed: a 3D renderer to test a motion idea, a voxelizer to explore a concept fast. AI is in my workflow at every layer too. Research, writing, prototyping, scaffolding. Between the two, the gap between idea and something testable stays small.
       </p>
       <p className="mb-3" style={{ fontSize: "13px", lineHeight: "1.7", color: theme.textPrimary }}>
         {isMobile
