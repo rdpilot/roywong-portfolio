@@ -101,25 +101,15 @@ export function SprayAndPrayWindow() {
         <SectionRule label="Trading Interface" theme={theme} />
 
         <div style={{ display: isMobile ? "flex" : "grid", gridTemplateColumns: "1fr 1fr", flexDirection: "column", gap: "8px" }}>
-          <ImageWell theme={theme} style={{ flex: 1, minWidth: 0 }} onClick={ql("https://i.imgur.com/RNWSddS.mp4", "Trading Interface", "video")}>
-            <AutoPlayVideo className="rounded-[24px] rounded-[32px]"
-              src="https://i.imgur.com/RNWSddS.mp4"
+          <ImageWell theme={theme} style={{ flex: 1, minWidth: 0 }} onClick={ql("/enter-tournament.mov", "Enter Tournament", "video")}>
+            <AutoPlayVideo
+              src="/enter-tournament.mov"
               style={{ width: "100%", height: "100%", objectFit: "contain", display: "block" }}
             />
           </ImageWell>
-          <div className="flex flex-col gap-2 flex-1" style={{ minWidth: 0 }}>
-            <InfoPanel title="Sentiment-Driven UI" theme={theme}>
-              Large, unmistakable "Long" (Green) and "Short" (Red) UI to help beginners quickly associate market direction with action.
-            </InfoPanel>
-            <div className="flex gap-2 flex-1">
-              <ImageWell theme={theme} style={{ flex: 1 }} onClick={ql("https://i.imgur.com/YvGLpv0.mp4", "Sentiment-Driven UI", "video")}>
-                <AutoPlayVideo
-                  src="https://i.imgur.com/YvGLpv0.mp4"
-                  style={{ width: "100%", height: "100%", objectFit: "contain", display: "block", margin: 0, padding: 0 }}
-                />
-              </ImageWell>
-            </div>
-          </div>
+          <InfoPanel theme={theme}>
+            The home screen keeps it simple: collect your chips, pick a tournament, and enter. Two actions, no distractions. Users are never overwhelmed before they even start trading.
+          </InfoPanel>
         </div>
 
         <InfoPanel title="Challenge" theme={theme}>
