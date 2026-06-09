@@ -152,8 +152,8 @@ export function SprayAndPrayWindow() {
         </InfoPanel>
 
         <div style={{ display: isMobile ? "flex" : "grid", gridTemplateColumns: "1fr 1fr", flexDirection: "column", gap: "8px" }}>
-          <ImageWell theme={theme} padding="12px" onClick={ql(imgLeaderboard, "Leaderboard")}>
-            <img src={imgLeaderboard} alt="Spray & Pray competitive leaderboard ranking traders by PnL performance" loading="lazy" style={{ maxHeight: "100%", maxWidth: "100%", objectFit: "contain" }} />
+          <ImageWell theme={theme} onClick={ql("/leaderboard.mov", "Leaderboard", "video")}>
+            <AutoPlayVideo src="/leaderboard.mov" style={{ width: "100%", height: "100%", objectFit: "contain", display: "block" }} />
           </ImageWell>
           <div style={{ display: "grid", gridTemplateRows: "1fr 1fr", gap: "8px" }}>
             <InfoPanel theme={theme} centered>
