@@ -117,6 +117,18 @@ export function SprayAndPrayWindow() {
           </div>
         </div>
 
+        <div style={{ display: isMobile ? "flex" : "grid", gridTemplateColumns: "1fr 1fr", flexDirection: "column", gap: "8px" }}>
+          <ImageWell theme={theme} style={{ flex: 1, minWidth: 0 }} onClick={ql("/social-feed.mov", "Social Feed", "video")}>
+            <AutoPlayVideo
+              src="/social-feed.mov"
+              style={{ width: "100%", height: "100%", objectFit: "contain", display: "block" }}
+            />
+          </ImageWell>
+          <InfoPanel title="Social Feed" theme={theme}>
+            See live positions from top-ranked traders. Lowers the bar for new users without dumbing down the product.
+          </InfoPanel>
+        </div>
+
         <SectionRule label="Leaderboard & Ranking" theme={theme} />
 
         <InfoPanel theme={theme}>
