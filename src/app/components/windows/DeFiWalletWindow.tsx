@@ -94,11 +94,6 @@ export function DeFiWalletWindow() {
           <StatCard theme={theme} stat="2.41% → 9.91%" label="First-purchase rate" title="Home screen rebuild" />
         </div>
 
-        {/* Opening hook: the gap */}
-        <InfoPanel title="The question" theme={theme}>
-          After FTX collapsed, downloads spiked 300%. Wallet creation only moved 12%. We ran research to find out why the gap was so wide.
-        </InfoPanel>
-
         <SectionRule label="Research" theme={theme} />
 
         <InfoPanel title="Objective" theme={theme}>
@@ -223,18 +218,12 @@ export function DeFiWalletWindow() {
           ))}
         </div>
 
-        <SectionRule label="Onboarding result" theme={theme} />
+        <SectionRule label="The next problem" theme={theme} />
 
         <StatCard theme={theme} stat="70%" label="Dead wallets (zero balance)" />
 
         <InfoPanel theme={theme}>
-          Removing friction doubled wallet creation. But most wallets stayed empty. We had solved the wrong problem. Users got through onboarding, then didn't know what to do next.
-        </InfoPanel>
-
-        <SectionRule label="The next problem" theme={theme} />
-
-        <InfoPanel theme={theme}>
-          70% of new wallets had zero balance and zero transactions. Users weren't unmotivated. They were lost. Most created a wallet to invest in yield farming, but the empty home screen didn't tell them how. We rebuilt it around two concrete actions.
+          The redesign doubled wallet creation. But 70% of new wallets had zero balance and zero transactions. Users weren't unmotivated. They were lost. Most created a wallet to invest in yield farming, but the empty home screen didn't tell them how. We rebuilt it around two concrete actions.
         </InfoPanel>
 
         {/* Step 1 */}
@@ -295,12 +284,12 @@ export function DeFiWalletWindow() {
           </ImageWell>
         </div>
 
-        <SectionRule label="Final result" theme={theme} />
+        <SectionRule label="Outcome" theme={theme} />
 
         <StatCard theme={theme} stat="2.41% → 9.91%" label="First-purchase rate (Jul → Aug)" />
 
         <InfoPanel theme={theme}>
-          A small nudge (surfacing what to do next) moved first-purchase rate from 2.4% to nearly 10%. Users weren't unmotivated. They were lost.
+          Surfacing what to do next moved first-purchase rate from 2.4% to nearly 10%. The fix wasn't big. Users weren't unmotivated. They were just lost.
         </InfoPanel>
 
         <NextProject id="sprayAndPray" label="Spray & Pray" />
