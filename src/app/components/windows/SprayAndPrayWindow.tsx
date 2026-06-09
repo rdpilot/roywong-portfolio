@@ -107,14 +107,15 @@ export function SprayAndPrayWindow() {
               style={{ width: "100%", height: "100%", objectFit: "contain", display: "block" }}
             />
           </ImageWell>
-          <InfoPanel theme={theme}>
-            The home screen keeps it simple: collect your chips, pick a tournament, and enter. Two actions, no distractions. Users are never overwhelmed before they even start trading.
-          </InfoPanel>
+          <div className="flex flex-col gap-2">
+            <InfoPanel theme={theme}>
+              The home screen keeps it simple: collect your chips, pick a tournament, and enter. Two actions, no distractions. Users are never overwhelmed before they even start trading.
+            </InfoPanel>
+            <InfoPanel title="Challenge" theme={theme}>
+              The trading screen needed to pack a lot of functionality (live charts, order entry, position tracking, sentiment indicators) all into a single view with very limited screen real estate. After several rounds of internal testing and iteration, we landed on this final layout that balances information density with clarity.
+            </InfoPanel>
+          </div>
         </div>
-
-        <InfoPanel title="Challenge" theme={theme}>
-          The trading screen needed to pack a lot of functionality (live charts, order entry, position tracking, sentiment indicators) all into a single view with very limited screen real estate. After several rounds of internal testing and iteration, we landed on this final layout that balances information density with clarity.
-        </InfoPanel>
 
         <SectionRule label="Leaderboard & Ranking" theme={theme} />
 
