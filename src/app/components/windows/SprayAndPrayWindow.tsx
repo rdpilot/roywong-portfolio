@@ -129,6 +129,18 @@ export function SprayAndPrayWindow() {
           </InfoPanel>
         </div>
 
+        <div style={{ display: isMobile ? "flex" : "grid", gridTemplateColumns: "1fr 1fr", flexDirection: "column", gap: "8px" }}>
+          <ImageWell theme={theme} style={{ flex: 1, minWidth: 0 }} onClick={ql("/liquidated.mov", "Liquidated", "video")}>
+            <AutoPlayVideo
+              src="/liquidated.mov"
+              style={{ width: "100%", height: "100%", objectFit: "contain", display: "block" }}
+            />
+          </ImageWell>
+          <InfoPanel title="Gamified Feedback" theme={theme}>
+            Getting liquidated isn't just a number going red. Every outcome is animated and felt. Win, lose, or get wiped out — the interface reacts. Motion and sound make each trade memorable, turning what could be a dry data screen into something closer to a game.
+          </InfoPanel>
+        </div>
+
         <SectionRule label="Leaderboard & Ranking" theme={theme} />
 
         <InfoPanel theme={theme}>
