@@ -155,14 +155,9 @@ export function SprayAndPrayWindow() {
           <ImageWell theme={theme} onClick={ql("/leaderboard.mov", "Leaderboard", "video")}>
             <AutoPlayVideo src="/leaderboard.mov" style={{ width: "100%", height: "100%", objectFit: "contain", display: "block" }} />
           </ImageWell>
-          <div style={{ display: "grid", gridTemplateRows: "1fr 1fr", gap: "8px" }}>
-            <InfoPanel theme={theme} centered>
-              Higher PnL &rarr; High rank &rarr; Bigger prize
-            </InfoPanel>
-            <ImageWell theme={theme} padding="12px" onClick={ql(imgTournamentStats, "Tournament Stats")}>
-              <img src={imgTournamentStats} alt="Tournament statistics showing prize pool distribution and player rankings" loading="lazy" style={{ maxWidth: "100%", maxHeight: "100%", objectFit: "contain" }} />
-            </ImageWell>
-          </div>
+          <InfoPanel theme={theme} centered>
+            Higher PnL &rarr; High rank &rarr; Bigger prize
+          </InfoPanel>
         </div>
 
         <ImageWell theme={theme} aspectRatio="16/9" padding="24px" onClick={ql(imgTournament, "Tournament View")}>
