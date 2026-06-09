@@ -56,20 +56,10 @@ export function SprayAndPrayWindow() {
             { stat: "5×", label: "Avg trades per session" },
             { stat: "3%", label: "Free-to-paid conversion" },
           ].map(({ stat, label }) => (
-            <div key={label} style={{
-              borderRadius: 8,
-              border: `1px solid ${theme.windowBorder}`,
-              padding: "20px 12px 16px",
-              background: theme.windowContentBg,
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              gap: 6,
-              textAlign: "center",
-            }}>
-              <span style={{ fontSize: 36, fontWeight: 700, color: theme.windowTitleText, fontFamily: "'Syne', sans-serif", lineHeight: 1 }}>{stat}</span>
-              <span style={{ fontSize: 11, color: theme.textMuted, fontFamily: "'IBM Plex Sans', sans-serif", lineHeight: 1.4 }}>{label}</span>
-            </div>
+            <InfoPanel key={label} theme={theme} centered>
+              <span style={{ display: "block", fontSize: 36, fontWeight: 700, color: theme.windowTitleText, fontFamily: "'Syne', sans-serif", lineHeight: 1, marginBottom: 6 }}>{stat}</span>
+              <span style={{ fontSize: 11, color: theme.textMuted }}>{label}</span>
+            </InfoPanel>
           ))}
         </div>
 
