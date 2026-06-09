@@ -9,11 +9,8 @@ import {
   ImageWell,
   SectionRule,
   InfoPanel,
-  PropRow,
 } from "./ProjectLayout";
 
-import imgLeaderboard from "figma:asset/f88735de614a52d65a6ee1166a70a9fa08e21e98.png";
-import imgTournamentStats from "figma:asset/2fc0e2329cc3e93865d616351ac5a155de21d0d9.png";
 import imgTournament from "figma:asset/77158358b20c4eac75ecaad21fccdbdd3f174f73.png";
 
 export function SprayAndPrayWindow() {
@@ -66,21 +63,6 @@ export function SprayAndPrayWindow() {
         <InfoPanel theme={theme}>
           Players got liquidated fast and came back. The loudest signal was wanting shorter tournaments for quicker prizes. The reward loop was working. It just needed tightening.
         </InfoPanel>
-
-        <SectionRule label="Design Strategy" theme={theme} />
-
-        <div style={{ display: isMobile ? "flex" : "grid", gridTemplateColumns: "1fr 1fr", flexDirection: "column", gap: "8px" }}>
-          <ImageWell theme={theme} onClick={ql("https://i.imgur.com/NjmcraP.mp4", "Design Strategy", "video")}>
-            <AutoPlayVideo
-              src="https://i.imgur.com/NjmcraP.mp4"
-              style={{ width: "100%", height: "100%", objectFit: "contain", display: "block" }}
-            />
-          </ImageWell>
-          <div className="flex flex-col gap-2">
-            <PropRow label="Mission" value="To demystify crypto trading for beginners by removing the primary barrier to entry: financial risk." theme={theme} />
-            <PropRow label="Solution" value='A "Free-to-Play" ecosystem where users collect 5 chips every 12 hours to participate in market movements.' theme={theme} />
-          </div>
-        </div>
 
         <SectionRule label="Chip Economy" theme={theme} />
 
