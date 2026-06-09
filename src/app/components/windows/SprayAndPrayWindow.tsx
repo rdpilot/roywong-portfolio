@@ -36,7 +36,7 @@ export function SprayAndPrayWindow() {
       <ProjectHeader
         title="Spray & Pray"
         company="Animoca"
-        description="An innovative no-loss social trading crypto platform, allowing you to trade big and dream even bigger. All of the fun, none of the risk, real prizes to win."
+        description="Learning to trade is expensive. Spray &amp; Pray is a starter town (新手村) for new traders: practice perps with real prizes, no real losses. Paper trading alone isn't compelling, so we tied wins to real rewards ($ETH, $PENGU, $USDC). The goal: bring beginners into trading through play, before they touch their own money."
         tags={["Mobile & Desktop App", "Web3", "Design System", "UI Motion"]}
         theme={theme}
       />
@@ -61,7 +61,7 @@ export function SprayAndPrayWindow() {
           <div className="flex flex-col gap-2">
             <PropRow label="Mission" value="To demystify crypto trading for beginners by removing the primary barrier to entry: financial risk." theme={theme} />
             <PropRow label="Solution" value='A "Free-to-Play" ecosystem where users collect 5 chips every 12 hours to participate in market movements.' theme={theme} />
-            <PropRow label="Outcome" value="560 participants in the first tournament. The no-loss model worked: users traded aggressively knowing they couldn't lose real money." theme={theme} />
+            <PropRow label="Outcome" value="Players averaged 5 trades per session, got liquidated fast, and kept coming back. The loudest feedback was wanting shorter tournaments for quicker prizes. A sign the reward loop was working, just needed tightening. 3% converted to buying chips. Small, but enough to prove the free-to-paid model had legs." theme={theme} />
           </div>
         </div>
 
@@ -112,7 +112,7 @@ export function SprayAndPrayWindow() {
               The home screen keeps it simple: collect your chips, pick a tournament, and enter. Two actions, no distractions. Users are never overwhelmed before they even start trading.
             </InfoPanel>
             <InfoPanel title="Challenge" theme={theme}>
-              The trading screen needed to pack a lot of functionality (live charts, order entry, position tracking, sentiment indicators) all into a single view with very limited screen real estate. After several rounds of internal testing and iteration, we landed on this final layout that balances information density with clarity.
+              At 1000x leverage, PnL moves in seconds. We originally put active positions on a separate screen, but that meant switching screens to close a trade. Too slow when a position can flip in a heartbeat. We moved active positions directly onto the trading screen, above the chart. More information, less space, but users can lock in profit without leaving the view.
             </InfoPanel>
           </div>
         </div>
@@ -125,7 +125,7 @@ export function SprayAndPrayWindow() {
             />
           </ImageWell>
           <InfoPanel title="Social Feed" theme={theme}>
-            See live positions from top-ranked traders. Lowers the bar for new users without dumbing down the product.
+            New traders don't know what a good position looks like. Showing live trades from top-ranked players gives beginners a reference point without a tutorial. No feature explanation needed. Watch, copy, learn by doing.
           </InfoPanel>
         </div>
 
