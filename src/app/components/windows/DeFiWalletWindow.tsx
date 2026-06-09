@@ -29,8 +29,6 @@ function QuoteGroup({
   };
   return (
     <div style={{
-      borderLeft: `2px solid ${borderColors[color]}`,
-      paddingLeft: "12px",
       display: "flex",
       flexDirection: "column",
       gap: "8px",
