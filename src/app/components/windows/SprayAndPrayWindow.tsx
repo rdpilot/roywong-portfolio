@@ -51,9 +51,8 @@ export function SprayAndPrayWindow() {
 
         <SectionRule label="Results" theme={theme} />
 
-        <div style={{ display: isMobile ? "flex" : "grid", gridTemplateColumns: "1fr 1fr 1fr", flexDirection: "column", gap: "8px" }}>
+        <div style={{ display: isMobile ? "flex" : "grid", gridTemplateColumns: "1fr 1fr", flexDirection: "column", gap: "8px" }}>
           {[
-            { stat: "1,800", label: "Players in tournament 2" },
             { stat: "5×", label: "Avg trades per session" },
             { stat: "3%", label: "Free-to-paid conversion" },
           ].map(({ stat, label }) => (
@@ -68,7 +67,7 @@ export function SprayAndPrayWindow() {
               gap: 6,
               textAlign: "center",
             }}>
-              <span style={{ fontSize: 36, fontWeight: 700, color: theme.linkColor, fontFamily: "'Syne', sans-serif", lineHeight: 1 }}>{stat}</span>
+              <span style={{ fontSize: 36, fontWeight: 700, color: theme.windowTitleText, fontFamily: "'Syne', sans-serif", lineHeight: 1 }}>{stat}</span>
               <span style={{ fontSize: 11, color: theme.textMuted, fontFamily: "'IBM Plex Sans', sans-serif", lineHeight: 1.4 }}>{label}</span>
             </div>
           ))}
