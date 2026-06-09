@@ -13,39 +13,39 @@ import {
 
 const isLight = (t: ThemeTokens) => t.mode !== "dark" && t.mode !== "hailmary";
 
-function QuoteCard({
+function QuoteGroup({
   theme,
-  children,
+  quotes,
   color = "green",
 }: {
   theme: ThemeTokens;
-  children: React.ReactNode;
+  quotes: string[];
   color?: "green" | "pink" | "purple";
 }) {
-  const colors = {
-    green:  isLight(theme) ? "#d4f5e9" : "#1a3d2e",
-    pink:   isLight(theme) ? "#fde8e8" : "#3d1a1a",
-    purple: isLight(theme) ? "#ede8fd" : "#2a1a3d",
-  };
-  const textColors = {
-    green:  isLight(theme) ? "#0a5c38" : "#4ade80",
-    pink:   isLight(theme) ? "#7c1d1d" : "#f87171",
-    purple: isLight(theme) ? "#4c1d95" : "#c084fc",
+  const borderColors = {
+    green:  isLight(theme) ? "#34C759" : "#4ade80",
+    pink:   isLight(theme) ? "#FF3B30" : "#f87171",
+    purple: isLight(theme) ? "#7C3AED" : "#c084fc",
   };
   return (
-    <div
-      style={{
-        background: colors[color],
-        borderRadius: "2px",
-        padding: "12px 14px",
-        fontSize: "12px",
-        lineHeight: "1.6",
-        color: textColors[color],
-        fontFamily: "'IBM Plex Sans', sans-serif",
-        fontStyle: "italic",
-      }}
-    >
-      {children}
+    <div style={{
+      borderLeft: `2px solid ${borderColors[color]}`,
+      paddingLeft: "12px",
+      display: "flex",
+      flexDirection: "column",
+      gap: "8px",
+    }}>
+      {quotes.map((q, i) => (
+        <div key={i} style={{
+          fontSize: "12px",
+          lineHeight: "1.6",
+          color: theme.textSecondary,
+          fontFamily: "'IBM Plex Sans', sans-serif",
+          fontStyle: "italic",
+        }}>
+          {q}
+        </div>
+      ))}
     </div>
   );
 }
@@ -130,27 +130,27 @@ export function DeFiWalletWindow() {
         <InfoPanel title="01  Users needed a reason to create a wallet" theme={theme}>
           Downloads from FTX anxiety didn't convert because anxiety isn't a use case. Users who did create wallets had a concrete reason first: an NFT to buy, a yield farm to join, a friend earning in Axie.
         </InfoPanel>
-        <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-          <QuoteCard theme={theme} color="green">"I saw the insane APY on VVS Finance, which is the first DApp that I got in"</QuoteCard>
-          <QuoteCard theme={theme} color="green">"I joined Web3 because of pay2earn. I saw my friend make a fortune in Axie"</QuoteCard>
-          <QuoteCard theme={theme} color="green">"I was looking to get my first NFT"</QuoteCard>
-        </div>
+        <QuoteGroup theme={theme} color="green" quotes={[
+          '"I saw the insane APY on VVS Finance, which is the first DApp that I got in"',
+          '"I joined Web3 because of pay2earn. I saw my friend make a fortune in Axie"',
+          '"I was looking to get my first NFT"',
+        ]} />
 
         <InfoPanel title="02  Fund size dictates how seriously users back up" theme={theme}>
           Small balances live on Dropbox or a screenshot. Big balances get a Ledger. Users don't apply uniform security. They scale it to what's at stake.
         </InfoPanel>
-        <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-          <QuoteCard theme={theme} color="pink">"For the ease of use, any wallet with less than 5k, I backup on Dropbox"</QuoteCard>
-          <QuoteCard theme={theme} color="pink">"I have my Ledger as well as my hot wallets. Ledger is for long term holding and bigger fund"</QuoteCard>
-        </div>
+        <QuoteGroup theme={theme} color="pink" quotes={[
+          '"For the ease of use, any wallet with less than 5k, I backup on Dropbox"',
+          '"I have my Ledger as well as my hot wallets. Ledger is for long term holding and bigger fund"',
+        ]} />
 
         <InfoPanel title="03  Recovery phrases were the biggest friction point" theme={theme}>
           "Too much of a chore." "I don't know where to put it." Users either skipped backup entirely or relied on YouTube tutorials and friends. The 12-word seed phrase was the moment most people quit.
         </InfoPanel>
-        <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-          <QuoteCard theme={theme} color="purple">"I watch walkthrough video from some crypto influencer, or get help from my friends"</QuoteCard>
-          <QuoteCard theme={theme} color="purple">"Too much of a chore of writing it down and put it somewhere safe"</QuoteCard>
-        </div>
+        <QuoteGroup theme={theme} color="purple" quotes={[
+          '"I watch walkthrough video from some crypto influencer, or get help from my friends"',
+          '"Too much of a chore of writing it down and put it somewhere safe"',
+        ]} />
 
         <SectionRule label="The old flow" theme={theme} />
 
