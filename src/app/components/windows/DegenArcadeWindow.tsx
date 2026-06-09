@@ -11,7 +11,6 @@ import {
   ImageWell,
   SectionRule,
   InfoPanel,
-  PropRow,
 } from "./ProjectLayout";
 
 function HeroSection({ theme, onClick }: { theme: ThemeTokens; onClick?: () => void }) {
@@ -59,36 +58,13 @@ export function DegenArcadeWindow() {
       <ProjectHeader
         title="Degen Arcade"
         company="Crypto.com"
-        description="Discover a fast and straightforward method to trade memecoins within a secure environment, ensuring your investments are protected while you enjoy the excitement of the crypto market."
+        description="Memecoins are exciting and dangerous in equal measure. Beginners want in, but scam tokens, rug pulls, and contract verification kill the fun before it starts. Degen Arcade removes the security layer from the user's hands entirely. Pre-vetted tokens, one-swipe trading, no contract addresses to check."
         tags={["Mobile Application", "WEB3 Application", "UI Motion"]}
         theme={theme}
       />
 
       <div className="flex flex-col gap-4" style={{ padding: "16px 16px 24px" }}>
         <HeroSection theme={theme} onClick={ql("https://i.imgur.com/CCsujLL.mp4", "Degen Arcade — Hero", "video")} />
-
-        <SectionRule label="Design Strategy" theme={theme} />
-
-        <PropRow
-          label="Mission"
-          value='To create a "Secure-by-Design" arcade for memecoin trading, removing the friction of manual contract verification.'
-          theme={theme}
-        />
-        <PropRow
-          label="Problem"
-          value="Beginners crave the excitement of the crypto market but are often paralyzed by security concerns, the fear of trading a scam coin, or simply buying the wrong coin due to complex interfaces."
-          theme={theme}
-        />
-        <PropRow
-          label="Key Win"
-          value='Executing a "One-Swipe" trade on a trending coin with the confidence that automated security protocols are protecting their investment in the background.'
-          theme={theme}
-        />
-        <PropRow
-          label="Outcome"
-          value="Transform a high-stress activity into a safe, straightforward, and engaging experience that encourages frequent participation."
-          theme={theme}
-        />
 
         <SectionRule label="Core Flow" theme={theme} />
 
@@ -132,7 +108,7 @@ export function DegenArcadeWindow() {
           </InfoPanel>
         </div>
 
-        <SectionRule label="Unused Designs" theme={theme} />
+        <SectionRule label="Explorations" theme={theme} />
 
         <InfoPanel title="Degen in the Dark Room" theme={theme}>
           These visuals explored the narrative of a lone degen trading memecoins from a dimly lit room — screens glowing, charts flickering, fully immersed in the chaos of the market. The illustrations aimed to capture the raw, underground energy of memecoin culture but were ultimately set aside as the product shifted toward a more approachable, arcade-style identity.
