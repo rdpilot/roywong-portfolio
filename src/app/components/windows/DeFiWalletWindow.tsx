@@ -86,12 +86,8 @@ export function DeFiWalletWindow() {
 
         {/* Opening hook: the gap */}
         <InfoPanel title="The question" theme={theme}>
-          Why did a 300% download spike only convert 12% more wallets?
+          After FTX collapsed, downloads spiked 300%. Wallet creation only moved 12%. We ran research to find out why the gap was so wide.
         </InfoPanel>
-        <div style={{ display: isMobile ? "flex" : "grid", gridTemplateColumns: "1fr 1fr", flexDirection: "column", gap: "8px" }}>
-          <StatCard theme={theme} stat="↑ 300%" label="Download rate" />
-          <StatCard theme={theme} stat="↑ 12%" label="Wallet creation rate" />
-        </div>
 
         <SectionRule label="Research" theme={theme} />
 
