@@ -72,6 +72,18 @@ export function DegenArcadeWindow() {
           Zero paid marketing. Players found the product, traded, and came back. The arcade mechanic drove organic volume from day one.
         </InfoPanel>
 
+        <SectionRule label="Design Decision" theme={theme} />
+
+        <InfoPanel title="Should a memecoin product look serious?" theme={theme}>
+          <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+            <div><span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10, color: theme.textMuted }}>OPTION A</span><br />Polished, serious trading UI. Trustworthy, signals "we handle real money."</div>
+            <div><span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10, color: theme.textMuted }}>OPTION B</span><br />Retro arcade aesthetic. Matches memecoin culture: fun, a bit absurd, unapologetically speculative.</div>
+            <div style={{ borderTop: `1px solid ${theme.windowBorder}`, paddingTop: 8, color: theme.linkColor, fontSize: 12, lineHeight: 1.6 }}>
+              We chose B. Memecoin trading isn't serious trading. The users wanted something that matched the energy of the culture. A polished UI would've felt off-brand. The aesthetic was a positioning decision: it signaled to the community we were part of the culture, not a serious exchange dabbling in it.
+            </div>
+          </div>
+        </InfoPanel>
+
         <SectionRule label="Core Flow" theme={theme} />
 
         <div style={{ display: isMobile ? "flex" : "grid", gridTemplateColumns: "1fr 1fr", flexDirection: "column", minHeight: isMobile ? undefined : "320px", gap: "8px" }}>
