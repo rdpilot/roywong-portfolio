@@ -68,13 +68,8 @@ export function DegenArcadeWindow() {
 
         <SectionRule label="Results" theme={theme} />
 
-        <InfoPanel theme={theme} centered>
-          <span style={{ display: "block", fontSize: 32, fontWeight: 700, color: theme.windowTitleText, fontFamily: "'IBM Plex Mono', monospace", lineHeight: 1, marginBottom: 6, whiteSpace: "nowrap" }}>3 ETH</span>
-          <span style={{ fontSize: 11, color: theme.textMuted }}>Trading volume in first 3 days</span>
-        </InfoPanel>
-
         <InfoPanel theme={theme}>
-          Zero paid marketing. Players found the product, traded, and came back. The arcade mechanic was enough to drive organic volume from day one.
+          Zero paid marketing. Players found the product, traded, and came back. The arcade mechanic drove organic volume from day one.
         </InfoPanel>
 
         <SectionRule label="Core Flow" theme={theme} />
