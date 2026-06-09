@@ -14,46 +14,6 @@ import {
 
 const isLight = (t: ThemeTokens) => t.mode !== "dark" && t.mode !== "hailmary";
 
-function StatBlock({
-  theme,
-  stats,
-}: {
-  theme: ThemeTokens;
-  stats: { value: string; label: string; highlight?: boolean }[];
-}) {
-  return (
-    <div style={{ display: "flex", gap: "24px", flexWrap: "wrap" }}>
-      {stats.map((s, i) => (
-        <div key={i}>
-          <div
-            style={{
-              fontFamily: "'IBM Plex Mono', monospace",
-              fontSize: "22px",
-              fontWeight: 600,
-              color: s.highlight
-                ? isLight(theme) ? "#007AFF" : "#0A84FF"
-                : theme.textPrimary,
-              lineHeight: 1.2,
-            }}
-          >
-            {s.value}
-          </div>
-          <div
-            style={{
-              fontSize: "11px",
-              color: theme.textMuted,
-              fontFamily: "'IBM Plex Mono', monospace",
-              marginTop: "2px",
-            }}
-          >
-            {s.label}
-          </div>
-        </div>
-      ))}
-    </div>
-  );
-}
-
 function QuoteCard({
   theme,
   children,
@@ -91,6 +51,15 @@ function QuoteCard({
   );
 }
 
+function StatCard({ theme, stat, label }: { theme: ThemeTokens; stat: string; label: string }) {
+  return (
+    <InfoPanel theme={theme} centered>
+      <span style={{ display: "block", fontSize: 32, fontWeight: 700, color: theme.windowTitleText, fontFamily: "'Syne', sans-serif", lineHeight: 1, marginBottom: 6 }}>{stat}</span>
+      <span style={{ fontSize: 11, color: theme.textMuted }}>{label}</span>
+    </InfoPanel>
+  );
+}
+
 export function DeFiWalletWindow() {
   const isMobile = useIsMobile();
   const { theme } = useTheme();
@@ -118,44 +87,13 @@ export function DeFiWalletWindow() {
 
       <div className="flex flex-col gap-4" style={{ padding: "16px 16px 24px" }}>
 
-        {/* Headline stats */}
-        <div
-          style={{
-            padding: "16px",
-            background: isLight(theme) ? "#F5F5F5" : "#1a1e24",
-            border: `1px solid ${isLight(theme) ? "#E0E0E0" : "#2a2e34"}`,
-            borderRadius: "2px",
-          }}
-        >
-          <div
-            style={{
-              fontSize: "11px",
-              color: theme.textMuted,
-              fontFamily: "'IBM Plex Mono', monospace",
-              textTransform: "uppercase",
-              letterSpacing: "0.06em",
-              marginBottom: "12px",
-            }}
-          >
-            The question
-          </div>
-          <div
-            style={{
-              fontSize: "13px",
-              color: theme.textPrimary,
-              lineHeight: "1.7",
-              marginBottom: "16px",
-            }}
-          >
-            Why did a 300% download spike only convert 12% more wallets?
-          </div>
-          <StatBlock
-            theme={theme}
-            stats={[
-              { value: "↑ 300%", label: "Download rate" },
-              { value: "↑ 12%", label: "Wallet creation rate" },
-            ]}
-          />
+        {/* Opening hook: the gap */}
+        <InfoPanel title="The question" theme={theme}>
+          Why did a 300% download spike only convert 12% more wallets?
+        </InfoPanel>
+        <div style={{ display: isMobile ? "flex" : "grid", gridTemplateColumns: "1fr 1fr", flexDirection: "column", gap: "8px" }}>
+          <StatCard theme={theme} stat="↑ 300%" label="Download rate" />
+          <StatCard theme={theme} stat="↑ 12%" label="Wallet creation rate" />
         </div>
 
         <SectionRule label="Research" theme={theme} />
@@ -190,7 +128,6 @@ export function DeFiWalletWindow() {
 
         <SectionRule label="Insights" theme={theme} />
 
-        {/* Insight 1 */}
         <InfoPanel title="01  Users needed a reason to create a wallet" theme={theme}>
           Downloads from FTX anxiety didn't convert because anxiety isn't a use case. Users who did create wallets had a concrete reason first: an NFT to buy, a yield farm to join, a friend earning in Axie.
         </InfoPanel>
@@ -200,7 +137,6 @@ export function DeFiWalletWindow() {
           <QuoteCard theme={theme} color="green">"I was looking to get my first NFT"</QuoteCard>
         </div>
 
-        {/* Insight 2 */}
         <InfoPanel title="02  Fund size dictates how seriously users back up" theme={theme}>
           Small balances live on Dropbox or a screenshot. Big balances get a Ledger. Users don't apply uniform security. They scale it to what's at stake.
         </InfoPanel>
@@ -209,7 +145,6 @@ export function DeFiWalletWindow() {
           <QuoteCard theme={theme} color="pink">"I have my Ledger as well as my hot wallets. Ledger is for long term holding and bigger fund"</QuoteCard>
         </div>
 
-        {/* Insight 3 */}
         <InfoPanel title="03  Recovery phrases were the biggest friction point" theme={theme}>
           "Too much of a chore." "I don't know where to put it." Users either skipped backup entirely or relied on YouTube tutorials and friends. The 12-word seed phrase was the moment most people quit.
         </InfoPanel>
@@ -287,28 +222,14 @@ export function DeFiWalletWindow() {
 
         <SectionRule label="Results" theme={theme} />
 
-        <div
-          style={{
-            padding: "16px",
-            background: isLight(theme) ? "#F5F5F5" : "#1a1e24",
-            border: `1px solid ${isLight(theme) ? "#E0E0E0" : "#2a2e34"}`,
-            borderRadius: "2px",
-            display: "flex",
-            flexDirection: "column",
-            gap: "16px",
-          }}
-        >
-          <StatBlock
-            theme={theme}
-            stats={[
-              { value: "29% → 59%", label: "Wallet creation rate", highlight: true },
-              { value: "70%", label: "Dead wallets (zero balance)" },
-            ]}
-          />
-          <div style={{ fontSize: "12px", color: theme.textSecondary, lineHeight: "1.7" }}>
-            Removing friction doubled wallet creation. But most wallets stayed empty, which meant we'd solved the wrong problem. Users got through onboarding, then didn't know what to do next.
-          </div>
+        <div style={{ display: isMobile ? "flex" : "grid", gridTemplateColumns: "1fr 1fr", flexDirection: "column", gap: "8px" }}>
+          <StatCard theme={theme} stat="29% → 59%" label="Wallet creation rate" />
+          <StatCard theme={theme} stat="70%" label="Dead wallets (zero balance)" />
         </div>
+
+        <InfoPanel theme={theme}>
+          Removing friction doubled wallet creation. But most wallets stayed empty. We had solved the wrong problem. Users got through onboarding, then didn't know what to do next.
+        </InfoPanel>
 
         <SectionRule label="The next problem" theme={theme} />
 
@@ -374,42 +295,13 @@ export function DeFiWalletWindow() {
           </ImageWell>
         </div>
 
-        <div
-          style={{
-            padding: "16px",
-            background: isLight(theme) ? "#F5F5F5" : "#1a1e24",
-            border: `1px solid ${isLight(theme) ? "#E0E0E0" : "#2a2e34"}`,
-            borderRadius: "2px",
-            display: "flex",
-            flexDirection: "column",
-            gap: "12px",
-          }}
-        >
-          <div
-            style={{
-              fontSize: "11px",
-              color: theme.textMuted,
-              fontFamily: "'IBM Plex Mono', monospace",
-              textTransform: "uppercase",
-              letterSpacing: "0.06em",
-            }}
-          >
-            Final result
-          </div>
-          <StatBlock
-            theme={theme}
-            stats={[
-              { value: "2.41% → 9.91%", label: "First-purchase rate (Jul → Aug)", highlight: true },
-            ]}
-          />
-          <div style={{ fontSize: "12px", color: theme.textSecondary, lineHeight: "1.7" }}>
-            A small nudge (telling new users what to do next) moved first-purchase rate from 2.4% to nearly 10%. The lesson: users weren't unmotivated. They were lost.
-          </div>
-        </div>
+        <SectionRule label="Final result" theme={theme} />
 
-        <PropRow label="Role" value="UX Research, Product Design" theme={theme} />
-        <PropRow label="Company" value="Crypto.com" theme={theme} />
-        <PropRow label="Platform" value="iOS and Android" theme={theme} />
+        <StatCard theme={theme} stat="2.41% → 9.91%" label="First-purchase rate (Jul → Aug)" />
+
+        <InfoPanel theme={theme}>
+          A small nudge (surfacing what to do next) moved first-purchase rate from 2.4% to nearly 10%. Users weren't unmotivated. They were lost.
+        </InfoPanel>
 
         <NextProject id="sprayAndPray" label="Spray & Pray" />
       </div>
