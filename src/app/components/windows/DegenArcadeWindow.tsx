@@ -72,6 +72,28 @@ export function DegenArcadeWindow() {
           Zero paid marketing. Players found the product, traded, and came back. The arcade mechanic drove organic volume from day one.
         </InfoPanel>
 
+        <SectionRule label="Core Flow" theme={theme} />
+
+        <div style={{ display: isMobile ? "flex" : "grid", gridTemplateColumns: "1fr 1fr", flexDirection: "column", minHeight: isMobile ? undefined : "320px", gap: "8px" }}>
+          <ImageWell theme={theme} style={isMobile ? { minHeight: "320px" } : { paddingTop: "4px", paddingBottom: "4px" }} onClick={ql("https://i.imgur.com/kOfXQck.mp4", "Core Flow", "video")}>
+            <AutoPlayVideo
+              src="https://i.imgur.com/kOfXQck.mp4"
+              style={{ maxWidth: "100%", maxHeight: "100%", width: "auto", height: "auto", objectFit: "contain", display: "block", margin: "0 auto" }}
+            />
+          </ImageWell>
+          <div className="flex flex-col gap-2">
+            <InfoPanel title="1 · Discover" theme={theme}>
+              Browse the curated Arcade Floor: a live feed of tokens that have already passed automated security checks. No contract addresses to verify, no scam tokens to dodge.
+            </InfoPanel>
+            <InfoPanel title="2 · Swipe to Trade" theme={theme}>
+              A swipe executes the trade. Fast enough for impulse, deliberate enough to prevent accidents. Minimising steps also minimises the chance of making a mistake.
+            </InfoPanel>
+            <InfoPanel title="3 · Review & Confirm" theme={theme}>
+              Market cap, liquidity, and volume surface at the point of decision. Users get the data they need exactly when they need it, without hunting for it.
+            </InfoPanel>
+          </div>
+        </div>
+
         <SectionRule label="Design Decision" theme={theme} />
 
         <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
@@ -102,52 +124,24 @@ export function DegenArcadeWindow() {
           </InfoPanel>
         </div>
 
-        <SectionRule label="Core Flow" theme={theme} />
-
-        <div style={{ display: isMobile ? "flex" : "grid", gridTemplateColumns: "1fr 1fr", flexDirection: "column", minHeight: isMobile ? undefined : "320px", gap: "8px" }}>
-          <ImageWell theme={theme} style={isMobile ? { minHeight: "320px" } : { paddingTop: "4px", paddingBottom: "4px" }} onClick={ql("https://i.imgur.com/kOfXQck.mp4", "Core Flow", "video")}>
-            <AutoPlayVideo
-              src="https://i.imgur.com/kOfXQck.mp4"
-              style={{ maxWidth: "100%", maxHeight: "100%", width: "auto", height: "auto", objectFit: "contain", display: "block", margin: "0 auto" }}
-            />
-          </ImageWell>
-          <div className="flex flex-col gap-2">
-            <InfoPanel title="1 · Discover" theme={theme}>
-              Browse the curated "Arcade Floor", a live feed of tokens that have
-              already passed automated security checks, so users never have to
-              verify contracts manually.
-            </InfoPanel>
-            <InfoPanel title="2 · Swipe to Trade" theme={theme}>
-              Execute a "One-Swipe" trade on any trending coin. The deliberate
-              swipe gesture prevents accidental purchases while keeping the flow
-              fast and satisfying.
-            </InfoPanel>
-            <InfoPanel title="3 · Review & Confirm" theme={theme}>
-              Transparent token data (Market Cap, Liquidity, and Volume) is
-              surfaced at the point of decision, giving users full confidence
-              before committing.
-            </InfoPanel>
-          </div>
-        </div>
-
         <SectionRule label="Process & Testing" theme={theme} />
 
         <div style={{ display: isMobile ? "flex" : "grid", gridTemplateColumns: "1fr 1fr 1fr", flexDirection: "column", gap: "8px" }}>
+          <InfoPanel title="Character Select" theme={theme}>
+            Early on, players picked a character before trading. Chad, Doomer, Boomer — each with a different risk profile. Boomer gave you conservative tokens. Doomer gave you volatile ones. The Street Fighter reference was deliberate: memecoin trading is a game, pick your fighter. It made cultural sense. But first-time users hit the screen before they understood what Degen Arcade was. The mechanic landed perfectly once you knew the product. It confused everyone who didn't.
+          </InfoPanel>
           <InfoPanel title="Bulk Buy" theme={theme}>
-            Early prototypes included a batch-purchase flow for buying multiple tokens at once. Testing revealed it added too much cognitive load. Users second-guessed selections and abandoned carts. A single-token flow proved far more decisive.
+            Memecoin traders don't pick one coin and commit. They spread across five, hoping one rockets. Bulk buy was a direct response to that behavior. In testing, the open selection created a different problem: users spent more time assembling a basket than making a trade. The spray-and-pray instinct was real, but the UI made it deliberate instead of fast. Single token, single decision.
           </InfoPanel>
           <InfoPanel title="Loading Time" theme={theme}>
-            On-chain data fetches introduced noticeable wait times between screens. We trimmed redundant calls and added optimistic UI updates, but some flows still felt sluggish and were simplified to reduce round-trips.
-          </InfoPanel>
-          <InfoPanel title="Character Select" theme={theme}>
-            An avatar/character-picker was designed to personalize the arcade experience. User testing showed it confused first-time users who didn't understand its purpose, so the feature was removed to streamline onboarding.
+            On-chain data fetches introduced noticeable lag between screens. We trimmed redundant calls and added optimistic UI updates. Some flows still felt sluggish. Where the wait couldn't be hidden, we simplified the flow to reduce round-trips entirely.
           </InfoPanel>
         </div>
 
         <SectionRule label="Explorations" theme={theme} />
 
         <InfoPanel title="Degen in the Dark Room" theme={theme}>
-          These visuals explored the narrative of a lone degen trading memecoins from a dimly lit room — screens glowing, charts flickering, fully immersed in the chaos of the market. The illustrations aimed to capture the raw, underground energy of memecoin culture but were ultimately set aside as the product shifted toward a more approachable, arcade-style identity.
+          These visuals explored the narrative of a lone degen trading memecoins from a dimly lit room: screens glowing, charts flickering, fully immersed in the chaos of the market. The illustrations aimed to capture the raw, underground energy of memecoin culture but were ultimately set aside as the product shifted toward a more approachable, arcade-style identity.
         </InfoPanel>
 
         <div style={{ display: isMobile ? "flex" : "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", flexDirection: "column", height: isMobile ? undefined : "260px", gap: "8px" }}>
