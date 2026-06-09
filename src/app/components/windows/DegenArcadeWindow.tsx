@@ -66,6 +66,17 @@ export function DegenArcadeWindow() {
       <div className="flex flex-col gap-4" style={{ padding: "16px 16px 24px" }}>
         <HeroSection theme={theme} onClick={ql("https://i.imgur.com/CCsujLL.mp4", "Degen Arcade — Hero", "video")} />
 
+        <SectionRule label="Results" theme={theme} />
+
+        <InfoPanel theme={theme} centered>
+          <span style={{ display: "block", fontSize: 32, fontWeight: 700, color: theme.windowTitleText, fontFamily: "'IBM Plex Mono', monospace", lineHeight: 1, marginBottom: 6, whiteSpace: "nowrap" }}>3 ETH</span>
+          <span style={{ fontSize: 11, color: theme.textMuted }}>Trading volume in first 3 days</span>
+        </InfoPanel>
+
+        <InfoPanel theme={theme}>
+          Zero paid marketing. Players found the product, traded, and came back. The arcade mechanic was enough to drive organic volume from day one.
+        </InfoPanel>
+
         <SectionRule label="Core Flow" theme={theme} />
 
         <div style={{ display: isMobile ? "flex" : "grid", gridTemplateColumns: "1fr 1fr", flexDirection: "column", minHeight: isMobile ? undefined : "320px", gap: "8px" }}>
