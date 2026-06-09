@@ -11,7 +11,6 @@ import {
   InfoPanel,
 } from "./ProjectLayout";
 
-import imgTournament from "figma:asset/77158358b20c4eac75ecaad21fccdbdd3f174f73.png";
 
 export function SprayAndPrayWindow() {
   const isMobile = useIsMobile();
@@ -74,28 +73,6 @@ export function SprayAndPrayWindow() {
           <img src="/the-loop.png" alt="Chip economy loop flowchart: daily allowance → enter tournament → trade → win/lose → climb leaderboard or run out of chips" loading="lazy" style={{ maxHeight: "300px", width: "auto", objectFit: "contain", margin: "0 auto", display: "block" }} />
         </ImageWell>
 
-        <div style={{ display: isMobile ? "flex" : "grid", gridTemplateColumns: "1fr 1fr", flexDirection: "column", gap: "8px" }}>
-          <div className="flex flex-col gap-2">
-            <ImageWell theme={theme} style={isMobile ? { minHeight: "240px" } : undefined} onClick={ql("https://i.imgur.com/uf9h04I.mp4", "Daily Chip Top-Up", "video")}>
-              <AutoPlayVideo
-                className="rounded-[16px]"
-                src="https://i.imgur.com/uf9h04I.mp4"
-                style={{ maxWidth: "100%", maxHeight: "100%", width: "auto", height: "auto", objectFit: "contain", display: "block", margin: "0 auto" }}
-              />
-            </ImageWell>
-            <InfoPanel title="Daily Top-Up" theme={theme}>
-              Chips replenish every 12 hours automatically. The countdown timer creates a daily return habit.
-            </InfoPanel>
-          </div>
-          <div className="flex flex-col gap-2">
-            <ImageWell theme={theme} style={isMobile ? { minHeight: "240px" } : undefined} onClick={ql("https://i.imgur.com/O74Q0Ds.png", "Tournament Entry")}>
-              <img src="https://i.imgur.com/O74Q0Ds.png" alt="Spray & Pray tournament entry screen showing chip balance and buy-in options" loading="lazy" style={{ height: isMobile ? "auto" : "100%", maxHeight: isMobile ? "220px" : undefined, width: "auto", objectFit: "contain", margin: "0 auto", display: "block" }} />
-            </ImageWell>
-            <InfoPanel title="Tournament Entry" theme={theme}>
-              Each tournament has a fixed chip buy-in, prize pool, and timer. Spending chips creates commitment. Players trade more boldly because they've already bought in.
-            </InfoPanel>
-          </div>
-        </div>
 
         <SectionRule label="Design Decisions" theme={theme} />
 
@@ -167,20 +144,13 @@ export function SprayAndPrayWindow() {
           </InfoPanel>
         </div>
 
-        <InfoPanel title="Gamified Feedback" theme={theme}>
-          Every outcome is animated and felt. Win, lose, or get wiped out. The interface reacts. Motion makes each trade memorable, turning what could be a dry data screen into something closer to a game.
-        </InfoPanel>
-
-        <div style={{ display: isMobile ? "flex" : "grid", gridTemplateColumns: "1fr 1fr 1fr", flexDirection: "column", gap: "8px" }}>
-          <ImageWell theme={theme} onClick={ql("/profit.mov", "Profit", "video")}>
-            <AutoPlayVideo src="/profit.mov" style={{ width: "100%", height: "100%", objectFit: "contain", display: "block" }} />
-          </ImageWell>
-          <ImageWell theme={theme} onClick={ql("/loss.mov", "Loss", "video")}>
-            <AutoPlayVideo src="/loss.mov" style={{ width: "100%", height: "100%", objectFit: "contain", display: "block" }} />
-          </ImageWell>
+        <div style={{ display: isMobile ? "flex" : "grid", gridTemplateColumns: "1fr 1fr", flexDirection: "column", gap: "8px" }}>
           <ImageWell theme={theme} onClick={ql("/liquidated.mov", "Liquidated", "video")}>
             <AutoPlayVideo src="/liquidated.mov" style={{ width: "100%", height: "100%", objectFit: "contain", display: "block" }} />
           </ImageWell>
+          <InfoPanel title="Gamified Feedback" theme={theme}>
+            Every outcome is animated and felt. Win, lose, or get wiped out. The interface reacts. Motion makes each trade memorable, turning what could be a dry data screen into something closer to a game.
+          </InfoPanel>
         </div>
 
         <SectionRule label="Leaderboard & Ranking" theme={theme} />
@@ -198,16 +168,6 @@ export function SprayAndPrayWindow() {
             </InfoPanel>
           </div>
         </div>
-
-        <SectionRule label="Desktop" theme={theme} />
-
-        <InfoPanel title="Cards Scale Up" theme={theme}>
-          Because the mobile UI was built on a card-based layout, adapting it to desktop was straightforward. The same components rearrange into a wider canvas without redesigning from scratch. More space, same system.
-        </InfoPanel>
-
-        <ImageWell theme={theme} aspectRatio="16/9" padding="24px" onClick={ql(imgTournament, "Tournament View")}>
-          <img className="rounded-[16px]" src={imgTournament} alt="Full tournament overview with bracket-style competitive trading view" loading="lazy" style={{ maxWidth: "100%", maxHeight: "100%", objectFit: "contain" }} />
-        </ImageWell>
 
         <NextProject id="perpetualTrading" label="Perpetual Trading" />
       </div>
