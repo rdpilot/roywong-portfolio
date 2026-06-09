@@ -11,7 +11,6 @@ import {
   ImageWell,
   SectionRule,
   InfoPanel,
-  PropRow,
 } from "./ProjectLayout";
 
 export function PerpetualTradingWindow() {
@@ -35,7 +34,7 @@ export function PerpetualTradingWindow() {
       <ProjectHeader
         title="Perpetual Trading"
         company="Crypto.com"
-        description="Simplifies complex perpetual futures trading into a clean, intuitive mobile experience. Lets users set leverage, manage risk with TP/SL, and execute trades confidently without the clutter of traditional trading platforms."
+        description="Perpetual trading is the most complex product in crypto. Professional traders want every data point. First-timers get liquidated trying to find the order button. The brief: one interface for both, on mobile. Clean enough for beginners, deep enough for pros."
         tags={["Trading", "WEB3 Application", "Mobile Application", "Interactive Prototype"]}
         theme={theme}
       />
@@ -185,26 +184,12 @@ export function PerpetualTradingWindow() {
             </div>
           </ImageWell>
           <div className="flex flex-col gap-2">
-            <PropRow
-              label="Mission"
-              value="To simplify perpetual futures trading for mobile users by stripping away unnecessary complexity and focusing on the core trading actions."
-              theme={theme}
-            />
-            <PropRow
-              label="Problem"
-              value="Existing perpetual trading interfaces are dense and intimidating — overloaded with charts, order books, and settings that overwhelm users who just want to open a position quickly."
-              theme={theme}
-            />
-            <PropRow
-              label="Solution"
-              value="A streamlined mobile-first trading flow with clear leverage controls, integrated TP/SL management, and a single-tap execution that keeps the experience fast and confident."
-              theme={theme}
-            />
-            <PropRow
-              label="Outcome"
-              value="Became one of the most-used features on the Crypto.com app. Traders could open leveraged positions in seconds — complex enough for professionals, approachable enough for first-timers."
-              theme={theme}
-            />
+            <InfoPanel title="Outcome" theme={theme}>
+              Became one of the most-used features on the Crypto.com app. Traders could open leveraged positions in seconds. Complex enough for professionals, approachable enough for first-timers.
+            </InfoPanel>
+            <InfoPanel title="Interactive Prototype" theme={theme}>
+              The left panel is a live Figma prototype. Tap through the full trading flow: select a market, set leverage, configure TP/SL, and execute a position.
+            </InfoPanel>
           </div>
         </div>
 
