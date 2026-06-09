@@ -74,7 +74,7 @@ export function DegenArcadeWindow() {
 
         <SectionRule label="Design Decision" theme={theme} />
 
-        <div style={{ display: isMobile ? "flex" : "grid", gridTemplateColumns: "1fr 1fr", flexDirection: "column", gap: "8px" }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
           <InfoPanel title="Should a memecoin product look serious?" theme={theme}>
             <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
               <div><span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10, color: theme.textMuted }}>OPTION A</span><br />Polished, serious trading UI. Trustworthy, signals "we handle real money."</div>
@@ -84,11 +84,11 @@ export function DegenArcadeWindow() {
               </div>
             </div>
           </InfoPanel>
-          <div className="flex flex-col gap-2">
-            <ImageWell theme={theme} onClick={ql("/optionA.png", "Option A: Polished trading UI")}>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "8px" }}>
+            <ImageWell theme={theme} style={{ height: "180px" }} onClick={ql("/optionA.png", "Option A: Polished trading UI")}>
               <img src="/optionA.png" alt="Option A: clean, serious memecoin trading interface" loading="lazy" style={{ maxWidth: "100%", maxHeight: "100%", width: "auto", height: "auto", objectFit: "contain", display: "block", margin: "0 auto" }} />
             </ImageWell>
-            <ImageWell theme={theme} onClick={ql("/optionB.png", "Option B: Degen Arcade")}>
+            <ImageWell theme={theme} style={{ height: "180px" }} onClick={ql("/optionB.png", "Option B: Degen Arcade")}>
               <img src="/optionB.png" alt="Option B: retro arcade aesthetic with character select and dark theme" loading="lazy" style={{ maxWidth: "100%", maxHeight: "100%", width: "auto", height: "auto", objectFit: "contain", display: "block", margin: "0 auto" }} />
             </ImageWell>
           </div>
