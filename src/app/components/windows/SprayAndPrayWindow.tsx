@@ -121,15 +121,20 @@ export function SprayAndPrayWindow() {
         </div>
 
         {/* Decision 2: Chips after loss */}
-        <InfoPanel title="Should we give chips back after a loss?" theme={theme}>
-          <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-            <div><span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10, color: theme.textMuted }}>OPTION A</span><br />Yes. Softens the loss, keeps users playing, looks good on re-entry rate.</div>
-            <div><span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10, color: theme.textMuted }}>OPTION B</span><br />No. Daily allowance only, paywall after that.</div>
-            <div style={{ borderTop: `1px solid ${theme.windowBorder}`, paddingTop: 8, color: theme.linkColor, fontSize: 12, lineHeight: 1.6 }}>
-              We chose B. Rewarding losses trains the wrong behavior and undermines the tournament's stakes. The daily reset gives a softer landing without breaking the economy.
+        <div style={{ display: isMobile ? "flex" : "grid", gridTemplateColumns: "1fr 1fr", flexDirection: "column", gap: "8px" }}>
+          <InfoPanel title="Should we give chips back after a loss?" theme={theme}>
+            <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+              <div><span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10, color: theme.textMuted }}>OPTION A</span><br />Yes. Softens the loss, keeps users playing, looks good on re-entry rate.</div>
+              <div><span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10, color: theme.textMuted }}>OPTION B</span><br />No. Daily allowance only, paywall after that.</div>
+              <div style={{ borderTop: `1px solid ${theme.windowBorder}`, paddingTop: 8, color: theme.linkColor, fontSize: 12, lineHeight: 1.6 }}>
+                We chose B. Rewarding losses trains the wrong behavior and undermines the tournament's stakes. The daily reset gives a softer landing without breaking the economy.
+              </div>
             </div>
-          </div>
-        </InfoPanel>
+          </InfoPanel>
+          <ImageWell theme={theme} onClick={ql("/buy chip.png", "Buy Chips UI")}>
+            <img src="/buy chip.png" alt="Buy chips screen showing daily allowance and purchase options" loading="lazy" style={{ maxWidth: "100%", maxHeight: "100%", width: "auto", height: "auto", objectFit: "contain", display: "block", margin: "0 auto" }} />
+          </ImageWell>
+        </div>
 
         <SectionRule label="Trading Interface" theme={theme} />
 
