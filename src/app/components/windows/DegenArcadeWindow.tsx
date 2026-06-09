@@ -76,21 +76,29 @@ export function DegenArcadeWindow() {
 
         <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "8px" }}>
-            <ImageWell theme={theme} style={{ height: "180px" }} onClick={ql("/optionA.png", "Option A: Polished trading UI")}>
-              <img src="/optionA.png" alt="Option A: clean, serious memecoin trading interface" loading="lazy" style={{ maxWidth: "100%", maxHeight: "100%", width: "auto", height: "auto", objectFit: "contain", display: "block", margin: "0 auto" }} />
-            </ImageWell>
-            <ImageWell theme={theme} style={{ height: "180px" }} onClick={ql("/optionB.png", "Option B: Degen Arcade")}>
-              <img src="/optionB.png" alt="Option B: retro arcade aesthetic with character select and dark theme" loading="lazy" style={{ maxWidth: "100%", maxHeight: "100%", width: "auto", height: "auto", objectFit: "contain", display: "block", margin: "0 auto" }} />
-            </ImageWell>
+            <div className="flex flex-col gap-2">
+              <ImageWell theme={theme} style={{ height: "200px" }} onClick={ql("/optionA.png", "Option A: Polished trading UI")}>
+                <img src="/optionA.png" alt="Option A: clean, serious memecoin trading interface" loading="lazy" style={{ maxWidth: "100%", maxHeight: "100%", width: "auto", height: "auto", objectFit: "contain", display: "block", margin: "0 auto" }} />
+              </ImageWell>
+              <InfoPanel theme={theme}>
+                <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10, color: theme.textMuted }}>OPTION A</span>
+                <br />Polished, serious trading UI. Trustworthy, signals "we handle real money."
+              </InfoPanel>
+            </div>
+            <div className="flex flex-col gap-2">
+              <ImageWell theme={theme} style={{ height: "200px" }} onClick={ql("/optionB.png", "Option B: Degen Arcade")}>
+                <img src="/optionB.png" alt="Option B: retro arcade aesthetic with character select and dark theme" loading="lazy" style={{ maxWidth: "100%", maxHeight: "100%", width: "auto", height: "auto", objectFit: "contain", display: "block", margin: "0 auto" }} />
+              </ImageWell>
+              <InfoPanel theme={theme}>
+                <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10, color: theme.textMuted }}>OPTION B</span>
+                <br />Retro arcade aesthetic. Matches memecoin culture: fun, a bit absurd, unapologetically speculative.
+              </InfoPanel>
+            </div>
           </div>
           <InfoPanel title="Should a memecoin product look serious?" theme={theme}>
-            <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-              <div><span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10, color: theme.textMuted }}>OPTION A</span><br />Polished, serious trading UI. Trustworthy, signals "we handle real money."</div>
-              <div><span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10, color: theme.textMuted }}>OPTION B</span><br />Retro arcade aesthetic. Matches memecoin culture: fun, a bit absurd, unapologetically speculative.</div>
-              <div style={{ borderTop: `1px solid ${theme.windowBorder}`, paddingTop: 8, color: theme.linkColor, fontSize: 12, lineHeight: 1.6 }}>
-                We chose B. Memecoin trading isn't serious trading. The users wanted something that matched the energy of the culture. A polished UI would've felt off-brand. The aesthetic was a positioning decision: it signaled to the community we were part of the culture, not a serious exchange dabbling in it.
-              </div>
-            </div>
+            <span style={{ color: theme.linkColor, fontSize: 12, lineHeight: 1.6 }}>
+              We chose B. Memecoin trading isn't serious trading. The users wanted something that matched the energy of the culture. A polished UI would've felt off-brand. The aesthetic was a positioning decision: it signaled to the community we were part of the culture, not a serious exchange dabbling in it.
+            </span>
           </InfoPanel>
         </div>
 
