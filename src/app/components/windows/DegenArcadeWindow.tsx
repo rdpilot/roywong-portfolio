@@ -66,6 +66,17 @@ export function DegenArcadeWindow() {
       <div className="flex flex-col gap-4" style={{ padding: "16px 16px 24px" }}>
         <HeroSection theme={theme} onClick={ql("https://i.imgur.com/CCsujLL.mp4", "Degen Arcade — Hero", "video")} />
 
+        <SectionRule label="The Opportunity" theme={theme} />
+
+        <div style={{ display: isMobile ? "flex" : "grid", gridTemplateColumns: "1fr 1fr", flexDirection: "column", gap: "8px" }}>
+          <ImageWell theme={theme} onClick={ql("/unibot.png", "UniBot — Telegram memecoin trading bot")}>
+            <img src="/unibot.png" alt="UniBot Sniper Telegram bot interface for memecoin trading" loading="lazy" style={{ maxWidth: "100%", maxHeight: "100%", width: "auto", height: "auto", objectFit: "contain", display: "block", margin: "0 auto" }} />
+          </ImageWell>
+          <InfoPanel title="Why we built this" theme={theme}>
+            In June 2023, people were trading memecoins heavily on UniBot, a Telegram bot charging 1% per transaction. It was making millions in revenue. The UX was a chat window. We saw the opportunity: bring that same memecoin energy into a proper mobile app, with a better experience and a monetisation model to match.
+          </InfoPanel>
+        </div>
+
         <SectionRule label="Results" theme={theme} />
 
         <InfoPanel theme={theme}>
