@@ -48,9 +48,12 @@ function QuoteGroup({
   );
 }
 
-function StatCard({ theme, stat, label }: { theme: ThemeTokens; stat: string; label: string }) {
+function StatCard({ theme, stat, label, title }: { theme: ThemeTokens; stat: string; label: string; title?: string }) {
   return (
     <InfoPanel theme={theme} centered>
+      {title && (
+        <span style={{ display: "block", fontFamily: "'IBM Plex Mono', monospace", fontSize: 10, color: theme.textMuted, textTransform: "uppercase", letterSpacing: "0.06em", marginBottom: 8 }}>{title}</span>
+      )}
       <span style={{ display: "block", fontSize: 32, fontWeight: 700, color: theme.windowTitleText, fontFamily: "'IBM Plex Mono', monospace", lineHeight: 1, marginBottom: 6 }}>{stat}</span>
       <span style={{ fontSize: 11, color: theme.textMuted }}>{label}</span>
     </InfoPanel>
@@ -87,8 +90,8 @@ export function DeFiWalletWindow() {
         {/* Results up front */}
         <SectionRule label="Results" theme={theme} />
         <div style={{ display: isMobile ? "flex" : "grid", gridTemplateColumns: "1fr 1fr", flexDirection: "column", gap: "8px" }}>
-          <StatCard theme={theme} stat="29% → 59%" label="Wallet creation rate" />
-          <StatCard theme={theme} stat="2.41% → 9.91%" label="First-purchase rate" />
+          <StatCard theme={theme} stat="29% → 59%" label="Wallet creation rate" title="Onboarding redesign" />
+          <StatCard theme={theme} stat="2.41% → 9.91%" label="First-purchase rate" title="Home screen rebuild" />
         </div>
 
         {/* Opening hook: the gap */}
