@@ -84,6 +84,13 @@ export function DeFiWalletWindow() {
 
       <div className="flex flex-col gap-4" style={{ padding: "16px 16px 24px" }}>
 
+        {/* Results up front */}
+        <SectionRule label="Results" theme={theme} />
+        <div style={{ display: isMobile ? "flex" : "grid", gridTemplateColumns: "1fr 1fr", flexDirection: "column", gap: "8px" }}>
+          <StatCard theme={theme} stat="29% → 59%" label="Wallet creation rate" />
+          <StatCard theme={theme} stat="2.41% → 9.91%" label="First-purchase rate" />
+        </div>
+
         {/* Opening hook: the gap */}
         <InfoPanel title="The question" theme={theme}>
           After FTX collapsed, downloads spiked 300%. Wallet creation only moved 12%. We ran research to find out why the gap was so wide.
@@ -213,12 +220,9 @@ export function DeFiWalletWindow() {
           ))}
         </div>
 
-        <SectionRule label="Results" theme={theme} />
+        <SectionRule label="Onboarding result" theme={theme} />
 
-        <div style={{ display: isMobile ? "flex" : "grid", gridTemplateColumns: "1fr 1fr", flexDirection: "column", gap: "8px" }}>
-          <StatCard theme={theme} stat="29% → 59%" label="Wallet creation rate" />
-          <StatCard theme={theme} stat="70%" label="Dead wallets (zero balance)" />
-        </div>
+        <StatCard theme={theme} stat="70%" label="Dead wallets (zero balance)" />
 
         <InfoPanel theme={theme}>
           Removing friction doubled wallet creation. But most wallets stayed empty. We had solved the wrong problem. Users got through onboarding, then didn't know what to do next.
