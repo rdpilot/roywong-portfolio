@@ -80,6 +80,7 @@ export function DeFiWalletWindow() {
       <ProjectHeader
         title="DeFi Wallet Onboarding"
         company="Crypto.com"
+        role="Sole product designer"
         description="After FTX collapsed, downloads spiked 300% but wallet creation barely moved. We ran research to find out why, redesigned the flow, and doubled creation rate. Then found the next problem."
         tags={["Mobile Application", "UX Research", "Onboarding", "Web3"]}
         theme={theme}

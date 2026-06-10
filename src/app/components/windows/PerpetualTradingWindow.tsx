@@ -34,6 +34,7 @@ export function PerpetualTradingWindow() {
       <ProjectHeader
         title="Perpetual Trading"
         company="Crypto.com"
+        role="Sole product designer"
         description="Perpetual trading is the most complex product in crypto. Professional traders want every data point. First-timers get liquidated trying to find the order button. The brief: one interface for both, on mobile. Clean enough for beginners, deep enough for pros."
         tags={["Trading", "WEB3 Application", "Mobile Application", "Interactive Prototype"]}
         theme={theme}

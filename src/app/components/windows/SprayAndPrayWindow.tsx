@@ -32,6 +32,7 @@ export function SprayAndPrayWindow() {
       <ProjectHeader
         title="Spray & Pray"
         company="Animoca"
+        role="Sole product designer"
         description="Learning to trade is expensive. Spray &amp; Pray is a starter town (新手村) for new traders: practice perps with real prizes, no real losses. Paper trading alone isn't compelling, so we tied wins to real rewards ($ETH, $PENGU, $USDC). The goal: bring beginners into trading through play, before they touch their own money."
         tags={["Mobile & Desktop App", "Web3", "Design System", "UI Motion"]}
         theme={theme}

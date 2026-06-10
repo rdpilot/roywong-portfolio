@@ -236,6 +236,7 @@ export function TagBadge({
 export function ProjectHeader({
   title,
   company,
+  role,
   description,
   tags,
   theme,
@@ -243,6 +244,7 @@ export function ProjectHeader({
 }: {
   title: string;
   company: string;
+  role?: string;
   description: string;
   tags: string[];
   theme: ThemeTokens;
@@ -278,6 +280,7 @@ export function ProjectHeader({
           }}
         >
           {company}
+          {role && ` · ${role}`}
         </span>
       </div>
 
