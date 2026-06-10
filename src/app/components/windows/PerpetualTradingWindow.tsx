@@ -194,6 +194,18 @@ export function PerpetualTradingWindow() {
           </div>
         </div>
 
+        <SectionRule label="Design Decision" theme={theme} />
+
+        <InfoPanel title="Where should the entry point live?" theme={theme}>
+          <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+            <div><span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10, color: theme.textMuted }}>OPTION A</span><br />The trading drawer, next to the other trading features. Consistent and predictable: traders already look there. This was my position.</div>
+            <div><span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10, color: theme.textMuted }}>OPTION B</span><br />The bottom nav. Maximum exposure, one tap from anywhere. The PM's position.</div>
+            <div style={{ borderTop: `1px solid ${theme.windowBorder}`, paddingTop: 8, color: theme.linkColor, fontSize: 12, lineHeight: 1.6 }}>
+              Both arguments came from good instincts, so instead of going back and forth we made it testable. The A/B test backed the bottom nav, and I was glad the data decided rather than seniority. When two people are arguing from reasonable positions, the fastest way through is to test it and be willing to be wrong.
+            </div>
+          </div>
+        </InfoPanel>
+
         <SectionRule label="Challenges" theme={theme} />
 
         <div
