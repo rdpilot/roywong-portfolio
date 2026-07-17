@@ -43,7 +43,6 @@ const AsciiToolWindow        = lazy(() => import("./components/windows/AsciiTool
 const TextturaWindow         = lazy(() => import("./components/windows/TextturaWindow").then(m => ({ default: m.TextturaWindow })).catch(() => ({ default: () => <div>Failed to load</div> })));
 const OrbwarpWindow          = lazy(() => import("./components/windows/OrbwarpWindow").then(m => ({ default: m.OrbwarpWindow })).catch(() => ({ default: () => <div>Failed to load</div> })));
 const WavetypeWindow         = lazy(() => import("./components/windows/WavetypeWindow").then(m => ({ default: m.WavetypeWindow })).catch(() => ({ default: () => <div>Failed to load</div> })));
-const ColorMatchWindow       = lazy(() => import("./components/windows/ColorMatchWindow").then(m => ({ default: m.ColorMatchWindow })).catch(() => ({ default: () => <div>Failed to load</div> })));
 const OneGoodThingWindow     = lazy(() => import("./components/windows/OneGoodThingWindow").then(m => ({ default: m.OneGoodThingWindow })).catch(() => ({ default: () => <div>Failed to load</div> })));
 
 // ─── WindowWrapper ────────────────────────────────────────────────────────────
@@ -95,7 +94,6 @@ const WINDOW_CONTENT: Record<WindowId, ReactNode> = {
   texttura:           <WindowWrapper><TextturaWindow /></WindowWrapper>,
   orbwarp:            <WindowWrapper><OrbwarpWindow /></WindowWrapper>,
   wavetype:           <WindowWrapper><WavetypeWindow /></WindowWrapper>,
-  colorMatch:         <WindowWrapper><ColorMatchWindow /></WindowWrapper>,
 };
 
 // ─── Static config ────────────────────────────────────────────────────────────
@@ -126,7 +124,6 @@ const windowConfigs: WindowConfig[] = [
   { id: "texttura",           title: "Texttura",             icon: "texttura",           label: "Texttura",             desc: "Layered typography compositor",                 defaultPosition: { x: 200, y: 120 }, width: 400 },
   { id: "orbwarp",            title: "Orbwarp",              icon: "orbwarp",            label: "Orbwarp",              desc: "Shader-based orbital warp effects",             defaultPosition: { x: 320, y: 240 }, width: 400 },
   { id: "wavetype",           title: "Wavetype",             icon: "wavetype",           label: "Wavetype",             desc: "Wave-animated type renderer",                  defaultPosition: { x: 360, y: 280 }, width: 400 },
-  { id: "colorMatch",         title: "Color Match",          icon: "colorMatch",         label: "Color Match",          desc: "Match colors by eye — global leaderboard",      defaultPosition: { x: 240, y: 80  }, width: 420, resizable: false },
 ];
 
 const ALL_WINDOW_IDS = new Set(windowConfigs.map((c) => c.id));
@@ -142,22 +139,6 @@ const desktopSections: { label: string; ids: WindowId[] }[] = [
   { label: "Creative Tools",      ids: ["asciiTool", "texttura", "orbwarp", "wavetype", "workGallery"] },
 ];
 
-// ─── Color Match mini leaderboard (floating card) ────────────────────────────
-const CM_URL = "https://lvpbjesawdsdlpcofoim.supabase.co";
-const CM_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imx2cGJqZXNhd2RzZGxwY29mb2ltIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA0OTgxMTAsImV4cCI6MjA4NjA3NDExMH0.q9rhmhzGCR2FQGy-b9DE8l_mvVXuozgeWA4u01FWZJk";
-const CM_MOCK = [
-  { name: "James", score: 587 }, { name: "aaa", score: 543 },
-  { name: "Sarah", score: 512 }, { name: "test", score: 478 },
-  { name: "mike123", score: 441 }, { name: "asdf", score: 398 },
-  { name: "player1", score: 362 }, { name: "idfk", score: 321 },
-  { name: "no", score: 274 }, { name: "...", score: 201 },
-];
-function cmMerge(real: {name:string;score:number}[]) {
-  const names = new Set(real.map(e => e.name.toLowerCase()));
-  return [...real, ...CM_MOCK.filter(e => !names.has(e.name.toLowerCase()))]
-    .sort((a, b) => b.score - a.score)
-    .slice(0, 3);
-}
 
 const mobileOrder: { id: WindowId; defaultOpen: boolean; category?: string }[] = [
   { id: "about",              defaultOpen: true },
@@ -244,17 +225,7 @@ function AppContent() {
 
   const [openWindows,  setOpenWindows]  = useState<Set<WindowId>>(getInitialWindows);
   const [windowOrder,  setWindowOrder]  = useState<WindowId[]>(["sprayAndPray", "about"]);
-  const [miniBoard, setMiniBoard] = useState<{name:string;score:number}[]>(CM_MOCK.slice(0, 3));
-  const miniVideoRef = useRef<HTMLVideoElement>(null);
 
-  useEffect(() => {
-    fetch(`${CM_URL}/rest/v1/color_match_scores?select=name,score&order=score.desc&limit=10`, {
-      headers: { apikey: CM_KEY, Authorization: `Bearer ${CM_KEY}` },
-    })
-      .then(r => r.json())
-      .then((real: {name:string;score:number}[]) => setMiniBoard(cmMerge(real)))
-      .catch(() => {});
-  }, []);
 
   // ── mountedWindows gate ──────────────────────────────────────────────────
   // Starts EMPTY. Lazy content is NEVER rendered during the initial
@@ -406,6 +377,7 @@ function AppContent() {
       "4": "perpetualTrading",
       "5": "degenArcade",
       "6": "protoComments",
+
     };
     const handleKeydown = (e: KeyboardEvent) => {
       const tag = document.activeElement?.tagName;
@@ -547,55 +519,6 @@ function AppContent() {
           ))}
         </div>
 
-        {/* Color Match card — pinned to bottom of sidebar */}
-        {(() => {
-          const isDark = theme.mode === "dark" || theme.mode === "hailmary";
-          const cardBg = isDark ? theme.windowContentBg : "#E0E0E0";
-          const cardBorder = openWindows.has("colorMatch") ? theme.linkColor : theme.windowBorder;
-          const cardShadow = openWindows.has("colorMatch") ? `0 0 0 1px ${theme.linkColor}40` : "none";
-          const titleColor = theme.windowTitleText;
-          const rankColor = theme.textMuted;
-          const nameColor = isDark ? "rgba(255,255,255,0.65)" : theme.textSecondary ?? theme.textMuted;
-          const scoreColor = titleColor;
-          return (
-            <button
-              onClick={() => toggleWindow("colorMatch")}
-              style={{
-                width: "152px",
-                borderRadius: "10px",
-                border: `1px solid ${cardBorder}`,
-                padding: "9px 11px 10px",
-                cursor: "pointer",
-                background: cardBg,
-                boxShadow: cardShadow,
-                transition: "box-shadow 0.15s, border-color 0.15s, transform 0.15s",
-                textAlign: "left",
-                fontFamily: "'Syne', sans-serif",
-              }}
-              onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.transform = "scale(1.04)"; miniVideoRef.current?.play(); }}
-              onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.transform = "scale(1)"; const v = miniVideoRef.current; if (v) { v.pause(); v.currentTime = 0; } }}
-              title="Color Match — designer mini game"
-            >
-              <div style={{ display: "flex", gap: 9, alignItems: "stretch" }}>
-                <div style={{ width: 52, flexShrink: 0, borderRadius: 6, overflow: "hidden", background: isDark ? cardBg : "#1a1a1a" }}>
-                  <video ref={miniVideoRef} src="/color-match-hero.mp4" muted playsInline style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", mixBlendMode: isDark ? "screen" : "normal" }} />
-                </div>
-                <div style={{ flex: 1, minWidth: 0, display: "flex", flexDirection: "column", gap: 5 }}>
-                  <span style={{ color: titleColor, fontSize: 8, fontWeight: 700, letterSpacing: "0.02em", fontFamily: "'Syne', sans-serif", whiteSpace: "nowrap" }}>Color Match</span>
-                  <div style={{ display: "flex", flexDirection: "column", gap: 2.5 }}>
-                    {miniBoard.map((e, i) => (
-                      <div key={i} style={{ display: "flex", gap: 5, alignItems: "center" }}>
-                        <span style={{ color: rankColor, fontSize: 8, width: 8, textAlign: "right", fontFamily: "'IBM Plex Mono', monospace", flexShrink: 0 }}>{i + 1}</span>
-                        <span style={{ color: nameColor, fontSize: 8, flex: 1, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", fontFamily: "'IBM Plex Mono', monospace" }}>{e.name}</span>
-                        <span style={{ color: scoreColor, fontSize: 8, fontFamily: "'IBM Plex Mono', monospace", flexShrink: 0 }}>{e.score}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </button>
-          );
-        })()}
       </div>
 
       {/* Windows */}
