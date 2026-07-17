@@ -44,6 +44,7 @@ const TextturaWindow         = lazy(() => import("./components/windows/TextturaW
 const OrbwarpWindow          = lazy(() => import("./components/windows/OrbwarpWindow").then(m => ({ default: m.OrbwarpWindow })).catch(() => ({ default: () => <div>Failed to load</div> })));
 const WavetypeWindow         = lazy(() => import("./components/windows/WavetypeWindow").then(m => ({ default: m.WavetypeWindow })).catch(() => ({ default: () => <div>Failed to load</div> })));
 const ColorMatchWindow       = lazy(() => import("./components/windows/ColorMatchWindow").then(m => ({ default: m.ColorMatchWindow })).catch(() => ({ default: () => <div>Failed to load</div> })));
+const OneGoodThingWindow     = lazy(() => import("./components/windows/OneGoodThingWindow").then(m => ({ default: m.OneGoodThingWindow })).catch(() => ({ default: () => <div>Failed to load</div> })));
 
 // ─── WindowWrapper ────────────────────────────────────────────────────────────
 // Lives at MODULE SCOPE so React never sees a new component type between renders.
@@ -85,6 +86,7 @@ const WINDOW_CONTENT: Record<WindowId, ReactNode> = {
   about:              <WindowWrapper><AboutWindow /></WindowWrapper>,
   workGallery:        <WindowWrapper><WorkGalleryWindow /></WindowWrapper>,
   protoComments:      <WindowWrapper><ProtoCommentsWindow /></WindowWrapper>,
+  oneGoodThing:       <WindowWrapper><OneGoodThingWindow /></WindowWrapper>,
   deFiWallet:         <WindowWrapper><DeFiWalletWindow /></WindowWrapper>,
   sprayAndPray:       <WindowWrapper><SprayAndPrayWindow /></WindowWrapper>,
   degenArcade:        <WindowWrapper><DegenArcadeWindow /></WindowWrapper>,
@@ -115,6 +117,7 @@ const windowConfigs: WindowConfig[] = [
   { id: "about",              title: "About me",             icon: "about",              label: "About me",             defaultPosition: { x: 580, y: 40 },  width: 440 },
   { id: "workGallery",        title: "Gallery",              icon: "workGallery",        label: "Gallery",              desc: "Browse all work",                               defaultPosition: { x: 360, y: 60 },  width: 520, maxHeight: 480 },
   { id: "protoComments",      title: "proto-comments",       icon: "protoComments",      label: "proto-comments",       company: "Side project",   desc: "AI-native prototype review tool",          defaultPosition: { x: 420, y: 80 },  width: 600, maxHeight: 640 },
+  { id: "oneGoodThing",       title: "1 Good Thing",         icon: "oneGoodThing",       label: "1 Good Thing",         company: "Personal Project", desc: "Gratitude jar iOS app — draw, not write", defaultPosition: { x: 420, y: 60 },  width: 560, maxHeight: 640 },
   { id: "deFiWallet",         title: "DeFi Wallet Onboarding", icon: "deFiWallet",       label: "DeFi Wallet Onboarding", company: "Crypto.com",   desc: "Wallet creation rate doubled 29% → 59%",   defaultPosition: { x: 460, y: 100 }, width: 600, maxHeight: 640 },
   { id: "sprayAndPray",       title: "Spray & Pray",         icon: "sprayAndPray",       label: "Spray & Pray",         company: "Animoca Brands", desc: "No-loss crypto trading platform",           defaultPosition: { x: 400, y: 60 },  width: 560, maxHeight: 640 },
   { id: "perpetualTrading",   title: "Perpetual Trading",    icon: "perpetualTrading",   label: "Perpetual Trading",    company: "Crypto.com",     desc: "Perpetual trading interface design",        defaultPosition: { x: 440, y: 100 }, width: 750, maxHeight: 560 },
@@ -134,7 +137,7 @@ const configMap = Object.fromEntries(
 
 const desktopSections: { label: string; ids: WindowId[] }[] = [
   { label: "",                        ids: ["about"] },
-  { label: "Case Studies",        ids: ["deFiWallet", "sprayAndPray", "perpetualTrading", "degenArcade"] },
+  { label: "Case Studies",        ids: ["oneGoodThing", "deFiWallet", "sprayAndPray", "perpetualTrading", "degenArcade"] },
   { label: "Built for AI agents", ids: ["protoComments"] },
   { label: "Creative Tools",      ids: ["asciiTool", "texttura", "orbwarp", "wavetype", "workGallery"] },
 ];
@@ -158,7 +161,8 @@ function cmMerge(real: {name:string;score:number}[]) {
 
 const mobileOrder: { id: WindowId; defaultOpen: boolean; category?: string }[] = [
   { id: "about",              defaultOpen: true },
-  { id: "deFiWallet",         defaultOpen: true,  category: "Case Studies" },
+  { id: "oneGoodThing",       defaultOpen: true,  category: "Case Studies" },
+  { id: "deFiWallet",         defaultOpen: true },
   { id: "sprayAndPray",       defaultOpen: true },
   { id: "perpetualTrading",   defaultOpen: true },
   { id: "degenArcade",        defaultOpen: true },
@@ -396,11 +400,12 @@ function AppContent() {
   // ── Keyboard shortcuts 1–5 ────────────────────────────────────────────────
   useEffect(() => {
     const keyMap: Record<string, WindowId> = {
-      "1": "deFiWallet",
-      "2": "sprayAndPray",
-      "3": "perpetualTrading",
-      "4": "degenArcade",
-      "5": "protoComments",
+      "1": "oneGoodThing",
+      "2": "deFiWallet",
+      "3": "sprayAndPray",
+      "4": "perpetualTrading",
+      "5": "degenArcade",
+      "6": "protoComments",
     };
     const handleKeydown = (e: KeyboardEvent) => {
       const tag = document.activeElement?.tagName;
