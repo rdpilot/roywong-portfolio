@@ -43,22 +43,23 @@ export function OneGoodThingWindow() {
 
       <div className="flex flex-col gap-4" style={{ padding: "16px 16px 24px" }}>
 
-        <ImageWell theme={theme} aspectRatio="9/16" onClick={ql("/1goodthing/hero.mp4", "1 Good Thing — App walkthrough", "video")}>
-          <AutoPlayVideo
-            src="/1goodthing/hero.mp4"
-            style={{ width: "100%", height: "100%", objectFit: "contain", display: "block" }}
-          />
-        </ImageWell>
-
         <SectionRule label="Why I built this" theme={theme} />
 
-        <div style={{ display: isMobile ? "flex" : "grid", gridTemplateColumns: "1fr 1fr", flexDirection: "column", gap: "8px" }}>
-          <InfoPanel title="The constraint" theme={theme}>
-            Every journaling app I tried assumed I'd write. I don't write. I draw on my phone when I'm bored on the MTR. I wanted a record of good days but the blank text field felt like homework. Drawing one thing felt like nothing. That gap is the product.
-          </InfoPanel>
-          <InfoPanel title="Shipped solo" theme={theme}>
-            Design, Swift code, QA, App Store screenshots, copy, pricing. Everything. Released in early 2026, currently live on the App Store. This portfolio is full of products I designed for teams. This one I shipped alone.
-          </InfoPanel>
+        <div style={{ display: isMobile ? "flex" : "grid", gridTemplateColumns: "1fr 1fr", flexDirection: "column", gap: "8px", minHeight: isMobile ? undefined : "320px" }}>
+          <ImageWell theme={theme} onClick={ql("/1goodthing/hero.mp4", "1 Good Thing — App walkthrough", "video")} style={{ minHeight: isMobile ? "320px" : undefined }}>
+            <AutoPlayVideo
+              src="/1goodthing/hero.mp4"
+              style={{ maxWidth: "100%", maxHeight: "100%", width: "auto", height: "auto", objectFit: "contain", display: "block", margin: "0 auto" }}
+            />
+          </ImageWell>
+          <div className="flex flex-col gap-2">
+            <InfoPanel title="The constraint" theme={theme}>
+              Every journaling app I tried assumed I'd write. I don't write. I draw on my phone when I'm bored on the MTR. I wanted a record of good days but the blank text field felt like homework. Drawing one thing felt like nothing. That gap is the product.
+            </InfoPanel>
+            <InfoPanel title="Shipped solo" theme={theme}>
+              Design, Swift code, QA, App Store screenshots, copy, pricing. Everything. Released in early 2026, currently live on the App Store. This portfolio is full of products I designed for teams. This one I shipped alone.
+            </InfoPanel>
+          </div>
         </div>
 
         <SectionRule label="The app" theme={theme} />
