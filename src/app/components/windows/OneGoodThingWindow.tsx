@@ -36,6 +36,9 @@ export function OneGoodThingWindow() {
         tags={["iOS App", "Side Project", "Consumer Product", "Swift"]}
         theme={theme}
         demoLink="https://apps.apple.com/us/app/1-good-thing-gratitude-jar/id6784074256"
+        demoLabel="Install Now"
+        followLink="https://www.instagram.com/hoyin.draw/"
+        followLabel="Follow my build journey"
       />
 
       <div className="flex flex-col gap-4" style={{ padding: "16px 16px 24px" }}>

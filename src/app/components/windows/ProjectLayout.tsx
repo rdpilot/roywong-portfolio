@@ -241,6 +241,9 @@ export function ProjectHeader({
   tags,
   theme,
   demoLink,
+  demoLabel,
+  followLink,
+  followLabel,
 }: {
   title: string;
   company: string;
@@ -249,6 +252,9 @@ export function ProjectHeader({
   tags: string[];
   theme: ThemeTokens;
   demoLink?: string;
+  demoLabel?: string;
+  followLink?: string;
+  followLabel?: string;
 }) {
   return (
     <div style={{ padding: "20px 20px 0" }}>
@@ -306,30 +312,48 @@ export function ProjectHeader({
         ))}
       </div>
 
-      {/* Demo Link */}
-      {demoLink && (
-        <p
-          style={{
-            fontSize: "13px",
-            color: theme.textPrimary,
-            lineHeight: "1.65",
-            margin: "0 0 16px",
-            fontFamily: "'IBM Plex Sans', sans-serif",
-          }}
-        >
-          Try Demo{" "}
-          <a
-            href={demoLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              color: isLight(theme) ? "#007AFF" : "#0A84FF",
-              textDecoration: "underline",
-            }}
-          >
-            here
-          </a>
-        </p>
+      {/* Demo / Follow links */}
+      {(demoLink || followLink) && (
+        <div style={{ display: "flex", gap: "16px", flexWrap: "wrap", marginBottom: "16px" }}>
+          {demoLink && (
+            <a
+              href={demoLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                fontFamily: "'IBM Plex Mono', monospace",
+                fontSize: "11px",
+                color: isLight(theme) ? "#007AFF" : "#0A84FF",
+                textDecoration: "none",
+                textTransform: "uppercase",
+                letterSpacing: "0.06em",
+                borderBottom: `1px solid ${isLight(theme) ? "#007AFF" : "#0A84FF"}`,
+                paddingBottom: "1px",
+              }}
+            >
+              {demoLabel || "Try Demo"}
+            </a>
+          )}
+          {followLink && (
+            <a
+              href={followLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                fontFamily: "'IBM Plex Mono', monospace",
+                fontSize: "11px",
+                color: theme.textMuted,
+                textDecoration: "none",
+                textTransform: "uppercase",
+                letterSpacing: "0.06em",
+                borderBottom: `1px solid ${theme.textMuted}`,
+                paddingBottom: "1px",
+              }}
+            >
+              {followLabel || "Follow"}
+            </a>
+          )}
+        </div>
       )}
 
       {/* Rule */}
