@@ -37,7 +37,7 @@ export function OneGoodThingWindow() {
         theme={theme}
         demoLink="https://apps.apple.com/us/app/1-good-thing-gratitude-jar/id6784074256"
         demoLabel="Install Now"
-        followLink="https://www.instagram.com/hoyin.draw/"
+        followLink="https://www.instagram.com/hoyin.build/"
         followLabel="Follow my build journey"
       />
 
