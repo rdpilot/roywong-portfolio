@@ -32,10 +32,10 @@ export function OneGoodThingWindow() {
         title="1 Good Thing"
         company="Personal Project"
         role="Designer, developer, QA & marketing"
-        description="I wanted to start journaling. I can't write. So I built an app where I draw instead. One small drawing a day drops into a jar. Proof your life has more good in it than it feels like sometimes."
+        description="I wanted to start journaling. I can't write. So I built an app where I draw instead. One drawing a day drops into a jar. Now you can share a jar with friends: everyone adds their own good things, and you all watch it fill together."
         tags={["iOS App", "Side Project", "Consumer Product", "Swift"]}
         theme={theme}
-        demoLink="https://apps.apple.com/us/app/1-good-thing-gratitude-jar/id6784074256"
+        demoLink="https://apps.apple.com/us/app/1-good-thing-memory-jar/id6784074256"
         demoLabel="Install Now"
         followLink="https://www.instagram.com/hoyin.build/"
         followLabel="Follow my build journey"
@@ -66,42 +66,59 @@ export function OneGoodThingWindow() {
 
         <div style={{ display: isMobile ? "flex" : "grid", gridTemplateColumns: "1fr 1fr", flexDirection: "column", gap: "8px" }}>
           <div className="flex flex-col gap-2">
-            <ImageWell theme={theme} style={{ height: "280px" }} onClick={ql("/1goodthing/preview-draw.png", "Drawing interface")}>
-              <img src="/1goodthing/preview-draw.png" alt="Drawing interface: canvas with a shiba drawing, color palette, brush tools, add to jar button" loading="lazy" style={{ maxWidth: "100%", maxHeight: "100%", width: "auto", height: "auto", objectFit: "contain", display: "block", margin: "0 auto" }} />
+            <ImageWell theme={theme} style={{ height: "280px" }} onClick={ql("/1goodthing/preview-shared-jar.png", "Shared jar")}>
+              <img src="/1goodthing/preview-shared-jar.png" alt="Shared jar: friends adding their drawings together with live notifications" loading="lazy" style={{ maxWidth: "100%", maxHeight: "100%", width: "auto", height: "auto", objectFit: "contain", display: "block", margin: "0 auto" }} />
             </ImageWell>
             <InfoPanel theme={theme}>
-              <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10, color: theme.textMuted }}>DRAW</span>
-              <br />A canvas, a few brushes, a color picker. Draw one thing. Name it. Add to jar.
+              <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10, color: theme.textMuted }}>SHARED JAR</span>
+              <br />Share a jar with up to 6 friends or family. Everyone adds their own good things. No accounts or sign-ups needed.
             </InfoPanel>
           </div>
           <div className="flex flex-col gap-2">
-            <ImageWell theme={theme} style={{ height: "280px" }} onClick={ql("/1goodthing/preview-calendar.png", "Calendar and jar view")}>
-              <img src="/1goodthing/preview-calendar.png" alt="Calendar view showing month of drawings with weekly recap, mood graph, and weather patterns" loading="lazy" style={{ maxWidth: "100%", maxHeight: "100%", width: "auto", height: "auto", objectFit: "contain", display: "block", margin: "0 auto" }} />
+            <ImageWell theme={theme} style={{ height: "280px" }} onClick={ql("/1goodthing/preview-widget.png", "Shared widget")}>
+              <img src="/1goodthing/preview-widget.png" alt="Shared widget: everyone's drawings arranged into one collage on the home screen" loading="lazy" style={{ maxWidth: "100%", maxHeight: "100%", width: "auto", height: "auto", objectFit: "contain", display: "block", margin: "0 auto" }} />
             </ImageWell>
             <InfoPanel theme={theme}>
-              <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10, color: theme.textMuted }}>JAR</span>
-              <br />Drawings stack up in a calendar. Mood, weather, streaks. The jar fills with proof.
+              <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10, color: theme.textMuted }}>SHARED WIDGET</span>
+              <br />Build a widget together. Everyone's drawings in one collage, updated the moment anyone adds something.
             </InfoPanel>
           </div>
         </div>
 
         <div style={{ display: isMobile ? "flex" : "grid", gridTemplateColumns: "1fr 1fr", flexDirection: "column", gap: "8px" }}>
           <div className="flex flex-col gap-2">
-            <ImageWell theme={theme} style={{ height: "280px" }} onClick={ql("/1goodthing/preview-bad.png", "Bad thing jar")}>
-              <img src="/1goodthing/preview-bad.png" alt="Bad thing jar in dark mode: floating storm cloud drawings on a black background" loading="lazy" style={{ maxWidth: "100%", maxHeight: "100%", width: "auto", height: "auto", objectFit: "contain", display: "block", margin: "0 auto" }} />
+            <ImageWell theme={theme} style={{ height: "280px" }} onClick={ql("/1goodthing/preview-draw.png", "Drawing interface")}>
+              <img src="/1goodthing/preview-draw.png" alt="Drawing interface with canvas, brush tools and color picker" loading="lazy" style={{ maxWidth: "100%", maxHeight: "100%", width: "auto", height: "auto", objectFit: "contain", display: "block", margin: "0 auto" }} />
             </ImageWell>
             <InfoPanel theme={theme}>
-              <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10, color: theme.textMuted }}>BAD THING JAR (PRO)</span>
-              <br />Draw today's bad thing. Let it go. A place for it to land that isn't you.
+              <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10, color: theme.textMuted }}>DRAW</span>
+              <br />A canvas, a few brushes, a color picker. Draw one thing. Name it. Drop it in.
             </InfoPanel>
           </div>
           <div className="flex flex-col gap-2">
-            <ImageWell theme={theme} style={{ height: "280px" }} onClick={ql("/1goodthing/preview-widget.png", "Home screen widget")}>
-              <img src="/1goodthing/preview-widget.png" alt="Home screen with 1 Good Thing widget showing a collection of drawings" loading="lazy" style={{ maxWidth: "100%", maxHeight: "100%", width: "auto", height: "auto", objectFit: "contain", display: "block", margin: "0 auto" }} />
+            <ImageWell theme={theme} style={{ height: "280px" }} onClick={ql("/1goodthing/preview-sticker.png", "Sticker maker")}>
+              <img src="/1goodthing/preview-sticker.png" alt="Sticker maker: turn any photo into a sticker for your drawings" loading="lazy" style={{ maxWidth: "100%", maxHeight: "100%", width: "auto", height: "auto", objectFit: "contain", display: "block", margin: "0 auto" }} />
             </ImageWell>
             <InfoPanel theme={theme}>
-              <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10, color: theme.textMuted }}>WIDGET</span>
-              <br />Your good days live on your home screen. You'll forget today. The widget won't.
+              <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10, color: theme.textMuted }}>STICKER MAKER</span>
+              <br />Turn any photo into a sticker. Mix real photos and drawings in the same memory.
+            </InfoPanel>
+          </div>
+        </div>
+
+        <div style={{ display: isMobile ? "flex" : "grid", gridTemplateColumns: "1fr 1fr", flexDirection: "column", gap: "8px" }}>
+          <div className="flex flex-col gap-2">
+            <ImageWell theme={theme} style={{ height: "280px" }} onClick={ql("/1goodthing/preview-calendar.png", "Calendar and memory view")}>
+              <img src="/1goodthing/preview-calendar.png" alt="Calendar view with monthly drawings, weekly recap, mood tracking, and AI summary" loading="lazy" style={{ maxWidth: "100%", maxHeight: "100%", width: "auto", height: "auto", objectFit: "contain", display: "block", margin: "0 auto" }} />
+            </ImageWell>
+            <InfoPanel theme={theme}>
+              <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10, color: theme.textMuted }}>MEMORY JAR</span>
+              <br />Every drawing lands in a calendar. Mood, weather, location. Weekly recap. AI summary of what you actually captured.
+            </InfoPanel>
+          </div>
+          <div className="flex flex-col gap-2" style={{ justifyContent: "flex-start" }}>
+            <InfoPanel title="What's in pro" theme={theme}>
+              Unlimited good things, the bad thing jar for letting go, custom widgets, and shared jars with up to 6 people. Free tier gives you 3 good things, forever.
             </InfoPanel>
           </div>
         </div>
@@ -110,27 +127,27 @@ export function OneGoodThingWindow() {
 
         <InfoPanel title="Drawing instead of writing" theme={theme}>
           <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-            <div><span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10, color: theme.textMuted }}>THE PROBLEM</span><br />Every gratitude app I found put a text field in front of me. That's journaling with extra steps. Most people don't journal because writing feels like work.</div>
+            <div><span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10, color: theme.textMuted }}>THE PROBLEM</span><br />Every journaling app puts a text field in front of you. Most people don't journal because writing feels like work.</div>
             <div style={{ borderTop: `1px solid ${theme.windowBorder}`, paddingTop: 8, color: theme.linkColor, fontSize: 12, lineHeight: 1.6 }}>
               Drawing is faster, more personal, and lower stakes. A bad drawing still captures the memory. The bar is low enough that you actually do it.
             </div>
           </div>
         </InfoPanel>
 
-        <InfoPanel title="No streaks" theme={theme}>
+        <InfoPanel title="Shared jar with no accounts" theme={theme}>
           <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-            <div><span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10, color: theme.textMuted }}>THE PROBLEM</span><br />Habit apps use streaks to keep you coming back. Break the streak and you feel bad. Gratitude apps that make you feel bad when you miss a day defeat the whole point.</div>
+            <div><span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10, color: theme.textMuted }}>THE DECISION</span><br />Most social apps gate sharing behind sign-up. The friction kills adoption before the feature even lands.</div>
             <div style={{ borderTop: `1px solid ${theme.windowBorder}`, paddingTop: 8, color: theme.linkColor, fontSize: 12, lineHeight: 1.6 }}>
-              No streaks to protect. Draw when you have something to draw. Skip when you don't. The jar fills at its own pace.
+              Shared jars need no account: share a link, join instantly. Family and close friends shouldn't have to download an app and create a profile just to share a jar with you.
             </div>
           </div>
         </InfoPanel>
 
-        <InfoPanel title="The bad thing jar" theme={theme}>
+        <InfoPanel title="No streaks" theme={theme}>
           <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-            <div><span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10, color: theme.textMuted }}>THE INSIGHT</span><br />If drawing good things helps you remember them, drawing bad things helps you release them. But the bad jar needed to feel different: darker, heavier, separate from the good.</div>
+            <div><span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10, color: theme.textMuted }}>THE PROBLEM</span><br />Habit apps use streaks to keep you coming back. Break the streak and you feel bad. A memory app that punishes you for missing a day defeats the point.</div>
             <div style={{ borderTop: `1px solid ${theme.windowBorder}`, paddingTop: 8, color: theme.linkColor, fontSize: 12, lineHeight: 1.6 }}>
-              It's a pro feature not because it costs more to build, but because it's for people who actually need the release, not a gimmick to unlock.
+              No streaks to protect. Draw when you have something. Skip when you don't. The jar fills at its own pace.
             </div>
           </div>
         </InfoPanel>
