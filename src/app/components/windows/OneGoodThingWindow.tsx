@@ -138,9 +138,9 @@ export function OneGoodThingWindow() {
 
         <InfoPanel title="Shared jar with no accounts" theme={theme}>
           <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-            <div><span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10, color: theme.textMuted }}>THE DECISION</span><br />Most social apps gate sharing behind sign-up. The friction kills adoption before the feature even lands.</div>
+            <div><span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10, color: theme.textMuted }}>THE DECISION</span><br />Most social apps gate sharing behind sign-up. The friction kills adoption before the feature even lands. Shared jars needed no account: share a link, join instantly.</div>
             <div style={{ borderTop: `1px solid ${theme.windowBorder}`, paddingTop: 8, color: theme.linkColor, fontSize: 12, lineHeight: 1.6 }}>
-              Shared jars need no account: share a link, join instantly. Family and close friends shouldn't have to download an app and create a profile just to share a jar with you.
+              It shipped. Then the bad reviews came in. Sync bugs, missing entries, confused users who couldn't tell whose drawings were whose. A month in, I paused the feature. The idea was right. The stability wasn't there yet.
             </div>
           </div>
         </InfoPanel>
