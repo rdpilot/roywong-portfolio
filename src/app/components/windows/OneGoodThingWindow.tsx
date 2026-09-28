@@ -64,59 +64,63 @@ export function OneGoodThingWindow() {
 
         <div style={{ display: isMobile ? "flex" : "grid", gridTemplateColumns: "1fr 1fr", flexDirection: "column", gap: "8px" }}>
           <div className="flex flex-col gap-2">
-            <ImageWell theme={theme} style={{ height: "280px" }} onClick={ql("/1goodthing/preview-shared-jar.png", "Shared jar")}>
-              <img src="/1goodthing/preview-shared-jar.png" alt="Shared jar: friends adding their drawings together with live notifications" loading="lazy" style={{ maxWidth: "100%", maxHeight: "100%", width: "auto", height: "auto", objectFit: "contain", display: "block", margin: "0 auto" }} />
+            <ImageWell theme={theme} style={{ height: "280px" }} onClick={ql("/1goodthing/preview-trace.png", "Tracing guide")}>
+              <img src="/1goodthing/preview-trace.png" alt="Drawing canvas with a photo loaded as a faint tracing guide underneath" loading="lazy" style={{ maxWidth: "100%", maxHeight: "100%", width: "auto", height: "auto", objectFit: "contain", display: "block", margin: "0 auto" }} />
             </ImageWell>
             <InfoPanel theme={theme}>
-              <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10, color: theme.textMuted }}>SHARED JAR</span>
-              <br />Share a jar with up to 6 friends or family. Everyone adds their own good things. No accounts or sign-ups needed.
-            </InfoPanel>
-          </div>
-          <div className="flex flex-col gap-2">
-            <ImageWell theme={theme} style={{ height: "280px" }} onClick={ql("/1goodthing/preview-widget.png", "Shared widget")}>
-              <img src="/1goodthing/preview-widget.png" alt="Shared widget: everyone's drawings arranged into one collage on the home screen" loading="lazy" style={{ maxWidth: "100%", maxHeight: "100%", width: "auto", height: "auto", objectFit: "contain", display: "block", margin: "0 auto" }} />
-            </ImageWell>
-            <InfoPanel theme={theme}>
-              <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10, color: theme.textMuted }}>SHARED WIDGET</span>
-              <br />Build a widget together. Everyone's drawings in one collage, updated the moment anyone adds something.
-            </InfoPanel>
-          </div>
-        </div>
-
-        <div style={{ display: isMobile ? "flex" : "grid", gridTemplateColumns: "1fr 1fr", flexDirection: "column", gap: "8px" }}>
-          <div className="flex flex-col gap-2">
-            <ImageWell theme={theme} style={{ height: "280px" }} onClick={ql("/1goodthing/preview-draw.png", "Drawing interface")}>
-              <img src="/1goodthing/preview-draw.png" alt="Drawing interface with canvas, brush tools and color picker" loading="lazy" style={{ maxWidth: "100%", maxHeight: "100%", width: "auto", height: "auto", objectFit: "contain", display: "block", margin: "0 auto" }} />
-            </ImageWell>
-            <InfoPanel theme={theme}>
-              <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10, color: theme.textMuted }}>DRAW</span>
-              <br />A canvas, a few brushes, a color picker. Draw one thing. Name it. Drop it in.
+              <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10, color: theme.textMuted }}>TRACING GUIDE</span>
+              <br />Never learned to draw? Load any photo as a faint guide, trace the shape, then make it your own.
             </InfoPanel>
           </div>
           <div className="flex flex-col gap-2">
             <ImageWell theme={theme} style={{ height: "280px" }} onClick={ql("/1goodthing/preview-sticker.png", "Sticker maker")}>
-              <img src="/1goodthing/preview-sticker.png" alt="Sticker maker: turn any photo into a sticker for your drawings" loading="lazy" style={{ maxWidth: "100%", maxHeight: "100%", width: "auto", height: "auto", objectFit: "contain", display: "block", margin: "0 auto" }} />
+              <img src="/1goodthing/preview-sticker.png" alt="Style your sticker screen with colour border options, copy as sticker to send in chat" loading="lazy" style={{ maxWidth: "100%", maxHeight: "100%", width: "auto", height: "auto", objectFit: "contain", display: "block", margin: "0 auto" }} />
             </ImageWell>
             <InfoPanel theme={theme}>
               <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10, color: theme.textMuted }}>STICKER MAKER</span>
-              <br />Turn any photo into a sticker. Mix real photos and drawings in the same memory.
+              <br />Draw it, add a colour border, copy as a sticker. Drop it into any chat. Your doodles, ready to steal the conversation.
             </InfoPanel>
           </div>
         </div>
 
         <div style={{ display: isMobile ? "flex" : "grid", gridTemplateColumns: "1fr 1fr", flexDirection: "column", gap: "8px" }}>
           <div className="flex flex-col gap-2">
-            <ImageWell theme={theme} style={{ height: "280px" }} onClick={ql("/1goodthing/preview-calendar.png", "Calendar and memory view")}>
-              <img src="/1goodthing/preview-calendar.png" alt="Calendar view with monthly drawings, weekly recap, mood tracking, and AI summary" loading="lazy" style={{ maxWidth: "100%", maxHeight: "100%", width: "auto", height: "auto", objectFit: "contain", display: "block", margin: "0 auto" }} />
+            <ImageWell theme={theme} style={{ height: "280px" }} onClick={ql("/1goodthing/preview-note.png", "Note and drawing entry")}>
+              <img src="/1goodthing/preview-note.png" alt="Entry detail showing a cat drawing with a title and short written note below" loading="lazy" style={{ maxWidth: "100%", maxHeight: "100%", width: "auto", height: "auto", objectFit: "contain", display: "block", margin: "0 auto" }} />
             </ImageWell>
             <InfoPanel theme={theme}>
-              <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10, color: theme.textMuted }}>MEMORY JAR</span>
-              <br />Every drawing lands in a calendar. Mood, weather, location. Weekly recap. AI summary of what you actually captured.
+              <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10, color: theme.textMuted }}>NOTE</span>
+              <br />Add a title and a few words. 200 characters, plenty. The drawing carries the feeling. The note carries the detail.
             </InfoPanel>
           </div>
-          <div className="flex flex-col gap-2" style={{ justifyContent: "flex-start" }}>
-            <InfoPanel title="What's in pro" theme={theme}>
-              Unlimited good things, the bad thing jar for letting go, custom widgets, and shared jars with up to 6 people. Free tier gives you 3 good things, forever.
+          <div className="flex flex-col gap-2">
+            <ImageWell theme={theme} style={{ height: "280px" }} onClick={ql("/1goodthing/preview-calendar.png", "Calendar and scrapbook")}>
+              <img src="/1goodthing/preview-calendar.png" alt="Calendar view showing a month of drawings per day, with scrapbook mode cards" loading="lazy" style={{ maxWidth: "100%", maxHeight: "100%", width: "auto", height: "auto", objectFit: "contain", display: "block", margin: "0 auto" }} />
+            </ImageWell>
+            <InfoPanel theme={theme}>
+              <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10, color: theme.textMuted }}>CALENDAR + SCRAPBOOK</span>
+              <br />Every drawing lands in a calendar. Scrapbook mode lets you arrange a day as a collage card to keep or share.
+            </InfoPanel>
+          </div>
+        </div>
+
+        <div style={{ display: isMobile ? "flex" : "grid", gridTemplateColumns: "1fr 1fr", flexDirection: "column", gap: "8px" }}>
+          <div className="flex flex-col gap-2">
+            <ImageWell theme={theme} style={{ height: "280px" }} onClick={ql("/1goodthing/preview-widget.png", "Home screen widget")}>
+              <img src="/1goodthing/preview-widget.png" alt="iPhone home screen with 1 good thing widget showing recent drawings of cats and flowers" loading="lazy" style={{ maxWidth: "100%", maxHeight: "100%", width: "auto", height: "auto", objectFit: "contain", display: "block", margin: "0 auto" }} />
+            </ImageWell>
+            <InfoPanel theme={theme}>
+              <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10, color: theme.textMuted }}>WIDGET</span>
+              <br />Your drawings on your home screen. A little joy every time you check your phone.
+            </InfoPanel>
+          </div>
+          <div className="flex flex-col gap-2">
+            <ImageWell theme={theme} style={{ height: "280px" }} onClick={ql("/1goodthing/preview-wallpaper.png", "Lock screen wallpaper")}>
+              <img src="/1goodthing/preview-wallpaper.png" alt="Wallpaper generator showing a grid of drawings arranged as a phone lock screen" loading="lazy" style={{ maxWidth: "100%", maxHeight: "100%", width: "auto", height: "auto", objectFit: "contain", display: "block", margin: "0 auto" }} />
+            </ImageWell>
+            <InfoPanel theme={theme}>
+              <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10, color: theme.textMuted }}>WALLPAPER</span>
+              <br />Generate a wallpaper from your jar. Good things, bad things, or any collection. Your good days on your lock screen.
             </InfoPanel>
           </div>
         </div>
