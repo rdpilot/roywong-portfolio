@@ -37,6 +37,8 @@ export function OneGoodThingWindow() {
         theme={theme}
         demoLink="https://apps.apple.com/us/app/1-good-thing-memory-jar/id6784074256"
         demoLabel="Download on the App Store"
+        followLink="https://www.threads.com/@hoyin.roy"
+        followLabel="Follow my build journey"
       />
 
       <div className="flex flex-col gap-4" style={{ padding: "16px 16px 24px" }}>
