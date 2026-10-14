@@ -11,6 +11,7 @@ import {
   ImageWell,
   SectionRule,
   InfoPanel,
+  DecisionBlock,
 } from "./ProjectLayout";
 
 export function PerpetualTradingWindow() {
@@ -40,14 +41,14 @@ export function PerpetualTradingWindow() {
         theme={theme}
       />
 
-      <div className="flex flex-col gap-4" style={{ padding: "16px 16px 24px" }}>
+      <div className="flex flex-col gap-6" style={{ padding: "32px 0 0" }}>
         <div
           style={{
             display: isMobile ? "flex" : "grid",
             gridTemplateColumns: "1fr 1fr",
             flexDirection: "column",
             minHeight: isMobile ? undefined : "320px",
-            gap: "8px",
+            gap: "24px 40px",
           }}
         >
           <ImageWell
@@ -184,7 +185,7 @@ export function PerpetualTradingWindow() {
               />
             </div>
           </ImageWell>
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-4">
             <InfoPanel title="Outcome" theme={theme}>
               Became one of the most-used features on the Crypto.com app. Traders could open leveraged positions in seconds. Complex enough for professionals, approachable enough for first-timers.
             </InfoPanel>
@@ -196,15 +197,15 @@ export function PerpetualTradingWindow() {
 
         <SectionRule label="Design Decision" theme={theme} />
 
-        <InfoPanel title="Where should the entry point live?" theme={theme}>
-          <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-            <div><span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10, color: theme.textMuted }}>OPTION A</span><br />The trading drawer, next to the other trading features. Consistent and predictable: traders already look there. This was my position.</div>
-            <div><span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10, color: theme.textMuted }}>OPTION B</span><br />The bottom nav. Maximum exposure, one tap from anywhere. The PM's position.</div>
-            <div style={{ borderTop: `1px solid ${theme.windowBorder}`, paddingTop: 8, color: theme.linkColor, fontSize: 12, lineHeight: 1.6 }}>
-              Both arguments came from good instincts, so instead of going back and forth we made it testable. The A/B test backed the bottom nav, and I was glad the data decided rather than seniority. When two people are arguing from reasonable positions, the fastest way through is to test it and be willing to be wrong.
-            </div>
-          </div>
-        </InfoPanel>
+        <DecisionBlock
+          theme={theme}
+          title="Where should the entry point live?"
+          options={[
+            { label: "A", text: "The trading drawer, next to the other trading features. Consistent and predictable: traders already look there. This was my position." },
+            { label: "B", text: "The bottom nav. Maximum exposure, one tap from anywhere. The PM's position." },
+          ]}
+          outcome="Both arguments came from good instincts, so instead of going back and forth we made it testable. The A/B test backed the bottom nav, and I was glad the data decided rather than seniority. When two people are arguing from reasonable positions, the fastest way through is to test it and be willing to be wrong."
+        />
 
         <SectionRule label="Challenges" theme={theme} />
 
@@ -213,29 +214,33 @@ export function PerpetualTradingWindow() {
             display: isMobile ? "flex" : "grid",
             gridTemplateColumns: "1fr 1fr",
             flexDirection: "column",
-            gap: "8px",
+            gap: "24px 40px",
           }}
         >
-          <InfoPanel title="Information Hierarchy" theme={theme}>
-            Perpetual trading requires surfacing a large amount of real-time data — mark price, funding rate, liquidation price, margin ratio — without overwhelming the user. Finding the right balance between "enough info to trade confidently" and "too much noise" took multiple rounds of testing and iteration.
-            <div style={{ marginTop: "12px", borderRadius: "8px", overflow: "hidden" }}>
+          <div className="flex flex-col gap-4">
+            <div style={{ borderRadius: "12px", overflow: "hidden" }}>
               <ImageWithFallback
                 src="https://i.imgur.com/HohOoum.png"
                 alt="Information Hierarchy design"
-                style={{ width: "100%", height: "auto", display: "block", borderRadius: "8px" }}
+                style={{ width: "100%", height: "auto", display: "block", borderRadius: "12px" }}
               />
             </div>
-          </InfoPanel>
-          <InfoPanel title="Leverage UX" theme={theme}>
-            Leverage is the most powerful (and dangerous) control in perp trading. We needed to make it easy to adjust while communicating the amplified risk clearly. A slider felt intuitive but made it too easy to max out, so we paired it with explicit liquidation price feedback.
-            <div style={{ marginTop: "12px", borderRadius: "8px", overflow: "hidden" }}>
+            <InfoPanel title="Information Hierarchy" theme={theme}>
+              Perpetual trading requires surfacing a large amount of real-time data (mark price, funding rate, liquidation price, margin ratio) without overwhelming the user. Finding the right balance between "enough info to trade confidently" and "too much noise" took multiple rounds of testing and iteration.
+            </InfoPanel>
+          </div>
+          <div className="flex flex-col gap-4">
+            <div style={{ borderRadius: "12px", overflow: "hidden" }}>
               <ImageWithFallback
                 src="https://i.imgur.com/pD8iYzO.png"
                 alt="Leverage UX design"
-                style={{ width: "100%", height: "auto", display: "block", borderRadius: "8px" }}
+                style={{ width: "100%", height: "auto", display: "block", borderRadius: "12px" }}
               />
             </div>
-          </InfoPanel>
+            <InfoPanel title="Leverage UX" theme={theme}>
+              Leverage is the most powerful (and dangerous) control in perp trading. We needed to make it easy to adjust while communicating the amplified risk clearly. A slider felt intuitive but made it too easy to max out, so we paired it with explicit liquidation price feedback.
+            </InfoPanel>
+          </div>
         </div>
 
         <div
@@ -243,29 +248,33 @@ export function PerpetualTradingWindow() {
             display: isMobile ? "flex" : "grid",
             gridTemplateColumns: "1fr 1fr",
             flexDirection: "column",
-            gap: "8px",
+            gap: "24px 40px",
           }}
         >
-          <InfoPanel title="TP/SL Complexity" theme={theme}>
-            Take-Profit and Stop-Loss are essential for risk management, but most platforms bury them in separate modals or post-trade settings. Integrating them inline without cluttering the order form was a significant layout challenge.
-            <div style={{ marginTop: "12px", borderRadius: "8px", overflow: "hidden" }}>
+          <div className="flex flex-col gap-4">
+            <div style={{ borderRadius: "12px", overflow: "hidden" }}>
               <ImageWithFallback
                 src="https://i.imgur.com/m3dmz7T.png"
                 alt="TP/SL design"
-                style={{ width: "100%", height: "auto", display: "block", borderRadius: "8px" }}
+                style={{ width: "100%", height: "auto", display: "block", borderRadius: "12px" }}
               />
             </div>
-          </InfoPanel>
-          <InfoPanel title="Cross-Platform Parity" theme={theme}>
-            Professional traders expect desktop-grade functionality on mobile. Translating complex order types, position management, and real-time P&L tracking into a thumb-friendly interface required rethinking traditional trading patterns from scratch.
-            <div style={{ marginTop: "12px", borderRadius: "8px", overflow: "hidden" }}>
+            <InfoPanel title="TP/SL Complexity" theme={theme}>
+              Take-Profit and Stop-Loss are essential for risk management, but most platforms bury them in separate modals or post-trade settings. Integrating them inline without cluttering the order form was a significant layout challenge.
+            </InfoPanel>
+          </div>
+          <div className="flex flex-col gap-4">
+            <div style={{ borderRadius: "12px", overflow: "hidden" }}>
               <ImageWithFallback
                 src="https://i.imgur.com/h0ahqvX.png"
                 alt="Cross-Platform Parity design"
-                style={{ width: "100%", height: "auto", display: "block", borderRadius: "8px" }}
+                style={{ width: "100%", height: "auto", display: "block", borderRadius: "12px" }}
               />
             </div>
-          </InfoPanel>
+            <InfoPanel title="Cross-Platform Parity" theme={theme}>
+              Professional traders expect desktop-grade functionality on mobile. Translating complex order types, position management, and real-time P&L tracking into a thumb-friendly interface required rethinking traditional trading patterns from scratch.
+            </InfoPanel>
+          </div>
         </div>
 
         <NextProject id="degenArcade" label="Degen Arcade" />

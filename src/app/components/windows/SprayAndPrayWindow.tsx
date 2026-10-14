@@ -9,6 +9,7 @@ import {
   ImageWell,
   SectionRule,
   InfoPanel,
+  DecisionBlock,
 } from "./ProjectLayout";
 
 
@@ -38,7 +39,7 @@ export function SprayAndPrayWindow() {
         theme={theme}
       />
 
-      <div className="flex flex-col gap-4" style={{ padding: "16px 16px 24px" }}>
+      <div className="flex flex-col gap-6" style={{ padding: "32px 0 0" }}>
         <ImageWell theme={theme} aspectRatio="16/10" onClick={ql("https://i.imgur.com/rO78uX9.mp4", "Spray & Pray Hero", "video")}>
           <AutoPlayVideo
             src="https://i.imgur.com/rO78uX9.mp4"
@@ -48,7 +49,7 @@ export function SprayAndPrayWindow() {
 
         <SectionRule label="Results" theme={theme} />
 
-        <div style={{ display: isMobile ? "flex" : "grid", gridTemplateColumns: "1fr 1fr", flexDirection: "column", gap: "8px" }}>
+        <div style={{ display: isMobile ? "flex" : "grid", gridTemplateColumns: "1fr 1fr", flexDirection: "column", gap: "24px 40px" }}>
           {[
             { stat: "5×", label: "Avg trades per session" },
             { stat: "3%", label: "Free-to-paid conversion" },
@@ -66,29 +67,39 @@ export function SprayAndPrayWindow() {
 
         <SectionRule label="Chip Economy" theme={theme} />
 
-        <InfoPanel title="How It Works" theme={theme}>
-          Players receive a free daily chip allowance every 12 hours. Chips are the entry fee into tournaments. Pick a direction, trade, and climb the leaderboard. The higher your PnL, the bigger the prize. Get liquidated? Re-enter as long as you have chips. Run out? Wait for the free daily allowance or buy more.
-        </InfoPanel>
-
         <ImageWell theme={theme} onClick={() => openQuickLook({ src: "/the-loop.png", alt: "Chip Economy Loop", type: "image", bg: "#000000" })} style={{ height: isMobile ? "auto" : "320px" }}>
           <img src="/the-loop.png" alt="Chip economy loop flowchart: daily allowance → enter tournament → trade → win/lose → climb leaderboard or run out of chips" loading="lazy" style={{ maxHeight: "300px", width: "auto", objectFit: "contain", margin: "0 auto", display: "block" }} />
         </ImageWell>
 
+        <InfoPanel title="How It Works" theme={theme}>
+          Players receive a free daily chip allowance every 12 hours. Chips are the entry fee into tournaments. Pick a direction, trade, and climb the leaderboard. The higher your PnL, the bigger the prize. Get liquidated? Re-enter as long as you have chips. Run out? Wait for the free daily allowance or buy more.
+        </InfoPanel>
+
 
         <SectionRule label="Design Decisions" theme={theme} />
 
-        {/* Decision 1: Tournament length */}
-        <div style={{ display: isMobile ? "flex" : "grid", gridTemplateColumns: "1fr 1fr", flexDirection: "column", gap: "8px" }}>
-          <InfoPanel title="How long should a tournament be?" theme={theme}>
-            <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-              <div><span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10, color: theme.textMuted }}>OPTION A</span><br />Minutes to under 24 hours. Short and intense.</div>
-              <div><span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10, color: theme.textMuted }}>OPTION B</span><br />Weekly rounds. Softer pacing, but engagement drops between entry and result.</div>
-              <div style={{ borderTop: `1px solid ${theme.windowBorder}`, paddingTop: 8, color: theme.linkColor, fontSize: 12, lineHeight: 1.6 }}>
-                We chose short. 1000x leverage works as adrenaline, not as a weeklong wait.
-              </div>
-            </div>
-          </InfoPanel>
-          <div className="flex flex-col gap-2">
+        <DecisionBlock
+          theme={theme}
+          title="How long should a tournament be?"
+          options={[
+            { label: "A", text: "Minutes to under 24 hours. Short and intense." },
+            { label: "B", text: "Weekly rounds. Softer pacing, but engagement drops between entry and result." },
+          ]}
+          outcome="We chose short. 1000x leverage works as adrenaline, not as a weeklong wait."
+        />
+
+        <DecisionBlock
+          theme={theme}
+          title="Should we give chips back after a loss?"
+          options={[
+            { label: "A", text: "Yes. Softens the loss, keeps users playing, looks good on re-entry rate." },
+            { label: "B", text: "No. Daily allowance only, paywall after that." },
+          ]}
+          outcome="We chose B. Rewarding losses trains the wrong behavior and undermines the tournament's stakes. The daily reset gives a softer landing without breaking the economy."
+        />
+
+        <div style={{ display: isMobile ? "flex" : "grid", gridTemplateColumns: "1fr 1fr", flexDirection: "column", gap: "24px 40px", alignItems: "start" }}>
+          <div className="flex flex-col gap-4">
             <ImageWell theme={theme} onClick={ql("/Pray Trade Overlay_long.png", "Betting UI")}>
               <img src="/Pray Trade Overlay_long.png" alt="Bet and leverage sliders in one gesture" loading="lazy" style={{ maxWidth: "100%", maxHeight: "100%", width: "auto", height: "auto", objectFit: "contain", display: "block", margin: "0 auto" }} />
             </ImageWell>
@@ -96,34 +107,20 @@ export function SprayAndPrayWindow() {
               A slider sets bet and leverage in one gesture. No keyboard, no thinking in numbers.
             </InfoPanel>
           </div>
-        </div>
-
-        {/* Decision 2: Chips after loss */}
-        <div style={{ display: isMobile ? "flex" : "grid", gridTemplateColumns: "1fr 1fr", flexDirection: "column", gap: "8px" }}>
-          <InfoPanel title="Should we give chips back after a loss?" theme={theme}>
-            <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-              <div><span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10, color: theme.textMuted }}>OPTION A</span><br />Yes. Softens the loss, keeps users playing, looks good on re-entry rate.</div>
-              <div><span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10, color: theme.textMuted }}>OPTION B</span><br />No. Daily allowance only, paywall after that.</div>
-              <div style={{ borderTop: `1px solid ${theme.windowBorder}`, paddingTop: 8, color: theme.linkColor, fontSize: 12, lineHeight: 1.6 }}>
-                We chose B. Rewarding losses trains the wrong behavior and undermines the tournament's stakes. The daily reset gives a softer landing without breaking the economy.
-              </div>
-            </div>
-          </InfoPanel>
-          <ImageWell theme={theme} onClick={ql("/buy chip.png", "Buy Chips UI")}>
-            <img src="/buy chip.png" alt="Buy chips screen showing daily allowance and purchase options" loading="lazy" style={{ maxWidth: "100%", maxHeight: "100%", width: "auto", height: "auto", objectFit: "contain", display: "block", margin: "0 auto" }} />
-          </ImageWell>
+          <div className="flex flex-col gap-4">
+            <ImageWell theme={theme} onClick={ql("/buy chip.png", "Buy Chips UI")}>
+              <img src="/buy chip.png" alt="Buy chips screen showing daily allowance and purchase options" loading="lazy" style={{ maxWidth: "100%", maxHeight: "100%", width: "auto", height: "auto", objectFit: "contain", display: "block", margin: "0 auto" }} />
+            </ImageWell>
+          </div>
         </div>
 
         <SectionRule label="Trading Interface" theme={theme} />
 
-        <div style={{ display: isMobile ? "flex" : "grid", gridTemplateColumns: "1fr 1fr", flexDirection: "column", gap: "8px" }}>
-          <ImageWell theme={theme} style={{ flex: 1, minWidth: 0 }} onClick={ql("/enter-tournament.mov", "Enter Tournament", "video")}>
-            <AutoPlayVideo
-              src="/enter-tournament.mov"
-              style={{ width: "100%", height: "100%", objectFit: "contain", display: "block" }}
-            />
-          </ImageWell>
-          <div className="flex flex-col gap-2">
+        <div style={{ display: isMobile ? "flex" : "grid", gridTemplateColumns: "1fr 1fr", flexDirection: "column", gap: "32px 40px", alignItems: "start" }}>
+          <div className="flex flex-col gap-4">
+            <ImageWell theme={theme} onClick={ql("/enter-tournament.mov", "Enter Tournament", "video")}>
+              <AutoPlayVideo src="/enter-tournament.mov" style={{ display: "block" }} />
+            </ImageWell>
             <InfoPanel title="Home Screen" theme={theme}>
               The home screen keeps it simple: collect your chips, pick a tournament, and enter. Two actions, no distractions. Users are never overwhelmed before they even start trading.
             </InfoPanel>
@@ -131,36 +128,34 @@ export function SprayAndPrayWindow() {
               At 1000x leverage, PnL moves in seconds. We originally put active positions on a separate screen, but that meant switching screens to close a trade. Too slow when a position can flip in a heartbeat. We moved active positions directly onto the trading screen, above the chart. More information, less space, but users can lock in profit without leaving the view.
             </InfoPanel>
           </div>
+          <div className="flex flex-col gap-4">
+            <ImageWell theme={theme} onClick={ql("/liquidated.mov", "Liquidated", "video")}>
+              <AutoPlayVideo src="/liquidated.mov" style={{ display: "block" }} />
+            </ImageWell>
+            <InfoPanel title="Gamified Feedback" theme={theme}>
+              Every outcome is animated and felt. Win, lose, or get wiped out. The interface reacts. Motion makes each trade memorable, turning what could be a dry data screen into something closer to a game.
+            </InfoPanel>
+          </div>
         </div>
 
-        <div style={{ display: isMobile ? "flex" : "grid", gridTemplateColumns: "1fr 1fr", flexDirection: "column", gap: "8px" }}>
-          <ImageWell theme={theme} style={{ flex: 1, minWidth: 0 }} onClick={ql("/social-feed.mov", "Social Feed", "video")}>
-            <AutoPlayVideo
-              src="/social-feed.mov"
-              style={{ width: "100%", height: "100%", objectFit: "contain", display: "block" }}
-            />
+        <div className="flex flex-col gap-4">
+          <ImageWell theme={theme} onClick={ql("/social-feed.mov", "Social Feed", "video")}>
+            <AutoPlayVideo src="/social-feed.mov" style={{ display: "block" }} />
           </ImageWell>
-          <InfoPanel title="Social Feed" theme={theme}>
-            New traders don't know what a good position looks like. Showing live trades from top-ranked players gives beginners a reference point without a tutorial. No feature explanation needed. Watch, copy, learn by doing.
-          </InfoPanel>
-        </div>
-
-        <div style={{ display: isMobile ? "flex" : "grid", gridTemplateColumns: "1fr 1fr", flexDirection: "column", gap: "8px" }}>
-          <ImageWell theme={theme} onClick={ql("/liquidated.mov", "Liquidated", "video")}>
-            <AutoPlayVideo src="/liquidated.mov" style={{ width: "100%", height: "100%", objectFit: "contain", display: "block" }} />
-          </ImageWell>
-          <InfoPanel title="Gamified Feedback" theme={theme}>
-            Every outcome is animated and felt. Win, lose, or get wiped out. The interface reacts. Motion makes each trade memorable, turning what could be a dry data screen into something closer to a game.
-          </InfoPanel>
+          <div style={{ maxWidth: "640px" }}>
+            <InfoPanel title="Social Feed" theme={theme}>
+              New traders don't know what a good position looks like. Showing live trades from top-ranked players gives beginners a reference point without a tutorial. No feature explanation needed. Watch, copy, learn by doing.
+            </InfoPanel>
+          </div>
         </div>
 
         <SectionRule label="Leaderboard & Ranking" theme={theme} />
 
-        <div style={{ display: isMobile ? "flex" : "grid", gridTemplateColumns: "1fr 1fr", flexDirection: "column", gap: "8px" }}>
+        <div style={{ display: isMobile ? "flex" : "grid", gridTemplateColumns: "1fr 1fr", flexDirection: "column", gap: "24px 40px" }}>
           <ImageWell theme={theme} onClick={ql("/leaderboard.mov", "Leaderboard", "video")}>
             <AutoPlayVideo src="/leaderboard.mov" style={{ width: "100%", height: "100%", objectFit: "contain", display: "block" }} />
           </ImageWell>
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-4">
             <InfoPanel theme={theme} centered>
               Higher PnL &rarr; High rank &rarr; Bigger prize
             </InfoPanel>

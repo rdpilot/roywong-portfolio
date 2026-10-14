@@ -6,16 +6,12 @@
 export type WindowId =
   | "about"
   | "workGallery"
-  | "asciiTool"
-  | "texttura"
-  | "orbwarp"
-  | "wavetype"
   | "sprayAndPray"
   | "degenArcade"
   | "perpetualTrading"
-  | "protoComments"
   | "deFiWallet"
-  | "oneGoodThing";
+  | "oneGoodThing"
+  | "creativeTools";
 
 /**
  * Maps URL paths to window IDs for routing
@@ -27,19 +23,18 @@ export const routeToWindow: Record<string, WindowId> = {
   "/about": "about",
   "/gallery": "workGallery",
   
-  // Designed for AI
-  "/projects/proto-comments": "protoComments",
   // UI/UX Projects
   "/projects/1-good-thing": "oneGoodThing",
   "/projects/defi-wallet": "deFiWallet",
   "/projects/spray-and-pray": "sprayAndPray",
   "/projects/perpetual-trading": "perpetualTrading",
   "/projects/degen-arcade": "degenArcade",
-  // Interactive Experiments
-  "/tools/ascii": "asciiTool",
-  "/tools/texttura": "texttura",
-  "/tools/orbwarp": "orbwarp",
-  "/tools/wavetype": "wavetype",
+  // Creative tools
+  "/tools": "creativeTools",
+  "/tools/ascii": "creativeTools",
+  "/tools/texttura": "creativeTools",
+  "/tools/orbwarp": "creativeTools",
+  "/tools/wavetype": "creativeTools",
 };
 
 /**
@@ -48,16 +43,12 @@ export const routeToWindow: Record<string, WindowId> = {
 export const windowToRoute: Record<WindowId, string> = {
   about: "/about",
   workGallery: "/gallery",
-  protoComments: "/projects/proto-comments",
   oneGoodThing: "/projects/1-good-thing",
   deFiWallet: "/projects/defi-wallet",
   sprayAndPray: "/projects/spray-and-pray",
   perpetualTrading: "/projects/perpetual-trading",
   degenArcade: "/projects/degen-arcade",
-  asciiTool: "/tools/ascii",
-  texttura: "/tools/texttura",
-  orbwarp: "/tools/orbwarp",
-  wavetype: "/tools/wavetype",
+  creativeTools: "/tools",
 };
 
 /**
@@ -67,16 +58,12 @@ export const getPageTitle = (windowId: WindowId | null): string => {
   const titles: Record<WindowId, string> = {
     about: "About Me - Roy Wong | Product Designer",
     workGallery: "Gallery - Roy Wong | Product Designer",
-    protoComments: "proto-comments - AI Design Tool | Roy Wong",
     oneGoodThing: "1 Good Thing - Gratitude App | Roy Wong",
     deFiWallet: "DeFi Wallet Onboarding - UX Research | Roy Wong",
     sprayAndPray: "Spray & Pray - UI/UX Case Study | Roy Wong",
     perpetualTrading: "Perpetual Trading - UI/UX Case Study | Roy Wong",
     degenArcade: "Degen Arcade - UI/UX Case Study | Roy Wong",
-    asciiTool: "ASCII Effect 3D Tool | Roy Wong",
-    texttura: "Texttura - Typography Tool | Roy Wong",
-    orbwarp: "Orbwarp - Interactive Tool | Roy Wong",
-    wavetype: "Wavetype - Typography Tool | Roy Wong",
+    creativeTools: "Creative Tools - Interactive Experiments | Roy Wong",
   };
   
   return windowId ? titles[windowId] : "Roy Wong - Product Designer | UI/UX Portfolio";
@@ -89,16 +76,12 @@ export const getPageDescription = (windowId: WindowId | null): string => {
   const descriptions: Record<WindowId, string> = {
     about: "Roy Wong is a senior product designer with 9 years of experience at Crypto.com and Animoca Brands, specializing in fintech, Web3, and consumer mobile. Based in Hong Kong.",
     workGallery: "Browse Roy Wong's portfolio gallery of UI/UX projects, crypto wallet designs, trading platforms, and creative web applications.",
-    protoComments: "proto-comments — Pinned comments on any prototype URL. Reviewers click without an account; AI agents act on the feedback. Open source MIT project by Roy Wong.",
-    oneGoodThing: "1 Good Thing — A gratitude jar iOS app by Roy Wong. Draw one good thing a day instead of writing. Designed, built, and shipped solo.",
-    deFiWallet: "DeFi Wallet Onboarding — UX research and redesign by Roy Wong at Crypto.com. Doubled wallet creation rate from 29% to 59% by removing recovery phrase friction.",
-    sprayAndPray: "Spray & Pray — UI/UX case study by Roy Wong. Tournament-based gaming platform design featuring leaderboards, stats, and competitive gameplay interfaces.",
-    perpetualTrading: "Perpetual Trading — UI/UX case study by Roy Wong. Crypto perpetual trading platform design with advanced charting, order flows, and risk management interfaces.",
-    degenArcade: "Degen Arcade — UI/UX case study by Roy Wong. Web3 gaming arcade interface design featuring game lobbies, NFT integration, and reward systems.",
-    asciiTool: "ASCII Effect 3D Tool — Interactive web application by Roy Wong. Transform 3D models into real-time ASCII art renderings in the browser.",
-    texttura: "Texttura — Interactive typography tool by Roy Wong. Create textured, layered type compositions with real-time visual controls.",
-    orbwarp: "Orbwarp — Interactive orbital warping effect tool by Roy Wong. Create mesmerizing animated orb distortions with shader-based effects.",
-    wavetype: "Wavetype — Wave-based typography tool by Roy Wong. Animate text along sine-wave paths with adjustable frequency, amplitude, and speed.",
+    oneGoodThing: "1 Good Thing: A gratitude jar iOS app by Roy Wong. Draw one good thing a day instead of writing. Designed, built, and shipped solo.",
+    deFiWallet: "DeFi Wallet Onboarding: UX research and redesign by Roy Wong at Crypto.com. Doubled wallet creation rate from 29% to 59% by removing recovery phrase friction.",
+    sprayAndPray: "Spray & Pray: UI/UX case study by Roy Wong. Tournament-based gaming platform design featuring leaderboards, stats, and competitive gameplay interfaces.",
+    perpetualTrading: "Perpetual Trading: UI/UX case study by Roy Wong. Crypto perpetual trading platform design with advanced charting, order flows, and risk management interfaces.",
+    degenArcade: "Degen Arcade: UI/UX case study by Roy Wong. Web3 gaming arcade interface design featuring game lobbies, NFT integration, and reward systems.",
+    creativeTools: "Creative Tools: Interactive browser tools by Roy Wong. ASCII Effect 3D, Texttura, Orbwarp and Wavetype for type, 3D and motion.",
   };
   
   return windowId 

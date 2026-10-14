@@ -30,19 +30,13 @@ export function ImageWell({
     <div
       onClick={onClick}
       style={{
-        background: theme.imageBg,
-        borderRadius: "2px",
-        border: `1px solid ${isLight(theme) ? "#999" : "#111"}`,
-        boxShadow:
-          isLight(theme)
-            ? "inset 1px 1px 3px rgba(0,0,0,0.18)"
-            : "inset 1px 1px 4px rgba(0,0,0,0.5)",
         overflow: "hidden",
+        borderRadius: "12px",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
         aspectRatio: aspectRatio || undefined,
-        padding: padding || "16px",
+        padding: padding || 0,
         cursor: onClick ? "pointer" : undefined,
         ...style,
       }}
@@ -112,14 +106,7 @@ export function InfoPanel({
   return (
     <div
       style={{
-        background: isLight(theme) ? "#EDEDED" : "#22262c",
-        borderRadius: "2px",
-        border: `1px solid ${isLight(theme) ? "#C4C4C4" : "#333"}`,
-        padding: "12px 16px",
-        boxShadow:
-          isLight(theme)
-            ? "inset 0 1px 0 rgba(255,255,255,0.55)"
-            : "inset 0 1px 0 rgba(255,255,255,0.03)",
+        padding: 0,
         ...(centered && {
           display: "flex",
           flexDirection: "column" as const,
@@ -145,12 +132,67 @@ export function InfoPanel({
       <div className={centered ? "text-center" : "text-left"}
         style={{
           fontFamily: "'IBM Plex Sans', sans-serif",
-          fontSize: "13px",
+          fontSize: "14px",
           color: theme.infocardText,
-          lineHeight: "1.55",
+          lineHeight: "1.6",
         }}
       >
         {children}
+      </div>
+    </div>
+  );
+}
+
+/* ── Decision Block (title left, prose right) ─────────────── */
+export function DecisionBlock({
+  title,
+  problem,
+  options,
+  outcome,
+  theme,
+}: {
+  title: string;
+  problem?: React.ReactNode;
+  options?: { label: string; text: React.ReactNode }[];
+  outcome: React.ReactNode;
+  theme: ThemeTokens;
+}) {
+  return (
+    <div style={{ display: "flex", flexWrap: "wrap", gap: "8px 40px", padding: "8px 0" }}>
+      <h3
+        style={{
+          flex: "0 0 200px",
+          margin: 0,
+          fontSize: "15px",
+          fontWeight: 600,
+          lineHeight: 1.4,
+          color: theme.textStrong,
+          fontFamily: "'IBM Plex Sans', sans-serif",
+        }}
+      >
+        {title}
+      </h3>
+      <div
+        style={{
+          flex: "1 1 320px",
+          minWidth: 0,
+          fontSize: "15px",
+          lineHeight: 1.65,
+          fontFamily: "'IBM Plex Sans', sans-serif",
+        }}
+      >
+        {problem && <p style={{ margin: 0, color: theme.textPrimary }}>{problem}</p>}
+        {options && (
+          <div style={{ display: "flex", flexDirection: "column", gap: "6px", color: theme.textPrimary }}>
+            {options.map((o) => (
+              <div key={o.label} style={{ display: "flex", gap: "12px" }}>
+                <span style={{ flexShrink: 0, width: "14px", fontWeight: 600, color: theme.textMuted }}>{o.label}</span>
+                <span>{o.text}</span>
+              </div>
+            ))}
+          </div>
+        )}
+        <div style={{ margin: "12px 0 0", color: theme.textSecondary }}>{outcome}</div>
       </div>
     </div>
   );
@@ -257,22 +299,24 @@ export function ProjectHeader({
   followLabel?: string;
 }) {
   return (
-    <div style={{ padding: "20px 20px 0" }}>
+    <div style={{ padding: 0 }}>
       {/* Title row */}
       <div
         style={{
           display: "flex",
           alignItems: "baseline",
-          gap: "8px",
-          marginBottom: "8px",
+          flexWrap: "wrap",
+          gap: "4px 12px",
+          marginBottom: "12px",
         }}
       >
         <h2
           style={{
-            fontSize: "18px",
+            fontSize: "28px",
+            fontWeight: 600,
             color: theme.textStrong,
             fontFamily: "'IBM Plex Sans', sans-serif",
-            letterSpacing: "-0.3px",
+            letterSpacing: "-0.02em",
             margin: 0,
           }}
         >
@@ -293,10 +337,11 @@ export function ProjectHeader({
       {/* Description */}
       <p
         style={{
-          fontSize: "13px",
+          fontSize: "15px",
           color: theme.textPrimary,
           lineHeight: "1.65",
-          margin: "0 0 12px",
+          maxWidth: "640px",
+          margin: "0 0 16px",
           fontFamily: "'IBM Plex Sans', sans-serif",
         }}
       >

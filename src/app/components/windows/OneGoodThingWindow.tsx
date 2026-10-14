@@ -9,6 +9,7 @@ import {
   ImageWell,
   SectionRule,
   InfoPanel,
+  DecisionBlock,
 } from "./ProjectLayout";
 
 export function OneGoodThingWindow() {
@@ -41,18 +42,33 @@ export function OneGoodThingWindow() {
         followLabel="Follow my build journey"
       />
 
-      <div className="flex flex-col gap-4" style={{ padding: "16px 16px 24px" }}>
+      <div className="flex flex-col gap-6" style={{ padding: "32px 0 0" }}>
+
+        <SectionRule label="Results" theme={theme} />
+
+        <div style={{ display: isMobile ? "flex" : "grid", gridTemplateColumns: "repeat(3, 1fr)", flexDirection: "column", gap: isMobile ? "24px" : "24px 40px" }}>
+          {[
+            { stat: ">10k", label: "Downloads in the first 3 months" },
+            { stat: "#3", label: "Health & Fitness, Vietnam App Store" },
+            { stat: "#9", label: "Health & Fitness, Hong Kong App Store" },
+          ].map(({ stat, label }) => (
+            <div key={label}>
+              <div style={{ fontSize: 36, fontWeight: 700, color: theme.windowTitleText, fontFamily: "'IBM Plex Mono', monospace", lineHeight: 1, marginBottom: 8 }}>{stat}</div>
+              <div style={{ fontSize: 14, color: theme.textSecondary, lineHeight: 1.5 }}>{label}</div>
+            </div>
+          ))}
+        </div>
 
         <SectionRule label="Why I built this" theme={theme} />
 
-        <div style={{ display: isMobile ? "flex" : "grid", gridTemplateColumns: "1fr 1fr", flexDirection: "column", gap: "8px", minHeight: isMobile ? undefined : "320px" }}>
-          <ImageWell theme={theme} onClick={ql("/1goodthing/hero.mp4", "1 Good Thing — App walkthrough", "video")} style={{ minHeight: isMobile ? "320px" : undefined }}>
+        <div style={{ display: isMobile ? "flex" : "grid", gridTemplateColumns: "1fr 1fr", flexDirection: "column", gap: "24px 40px", minHeight: isMobile ? undefined : "320px" }}>
+          <ImageWell theme={theme} onClick={ql("/1goodthing/hero.mp4", "1 Good Thing: App walkthrough", "video")} style={{ minHeight: isMobile ? "320px" : undefined }}>
             <AutoPlayVideo
               src="/1goodthing/hero.mp4"
-              style={{ maxWidth: "100%", maxHeight: "100%", width: "auto", height: "auto", objectFit: "contain", display: "block", margin: "0 auto" }}
+              style={{ maxWidth: "100%", maxHeight: isMobile ? "480px" : "520px", width: "auto", height: "auto", objectFit: "contain", display: "block", margin: "0 auto" }}
             />
           </ImageWell>
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-4">
             <InfoPanel title="The constraint" theme={theme}>
               Every journaling app I tried assumed I'd write. I don't write. I draw on my phone when I'm bored on the MTR. I wanted a record of good days but the blank text field felt like homework. Drawing one thing felt like nothing. That gap is the product.
             </InfoPanel>
@@ -64,9 +80,9 @@ export function OneGoodThingWindow() {
 
         <SectionRule label="The app" theme={theme} />
 
-        <div style={{ display: isMobile ? "flex" : "grid", gridTemplateColumns: "1fr 1fr", flexDirection: "column", gap: "8px" }}>
-          <div className="flex flex-col gap-2">
-            <ImageWell theme={theme} style={{ height: "280px" }} onClick={ql("/1goodthing/preview-trace.png", "Tracing guide")}>
+        <div style={{ display: isMobile ? "flex" : "grid", gridTemplateColumns: "1fr 1fr", flexDirection: "column", gap: "24px 40px" }}>
+          <div className="flex flex-col gap-4">
+            <ImageWell theme={theme} style={{ height: isMobile ? "280px" : "440px" }} onClick={ql("/1goodthing/preview-trace.png", "Tracing guide")}>
               <img src="/1goodthing/preview-trace.png" alt="Drawing canvas with a photo loaded as a faint tracing guide underneath" loading="lazy" style={{ maxWidth: "100%", maxHeight: "100%", width: "auto", height: "auto", objectFit: "contain", display: "block", margin: "0 auto" }} />
             </ImageWell>
             <InfoPanel theme={theme}>
@@ -74,8 +90,8 @@ export function OneGoodThingWindow() {
               <br />Never learned to draw? Load any photo as a faint guide, trace the shape, then make it your own.
             </InfoPanel>
           </div>
-          <div className="flex flex-col gap-2">
-            <ImageWell theme={theme} style={{ height: "280px" }} onClick={ql("/1goodthing/preview-sticker.png", "Sticker maker")}>
+          <div className="flex flex-col gap-4">
+            <ImageWell theme={theme} style={{ height: isMobile ? "280px" : "440px" }} onClick={ql("/1goodthing/preview-sticker.png", "Sticker maker")}>
               <img src="/1goodthing/preview-sticker.png" alt="Style your sticker screen with colour border options, copy as sticker to send in chat" loading="lazy" style={{ maxWidth: "100%", maxHeight: "100%", width: "auto", height: "auto", objectFit: "contain", display: "block", margin: "0 auto" }} />
             </ImageWell>
             <InfoPanel theme={theme}>
@@ -85,9 +101,9 @@ export function OneGoodThingWindow() {
           </div>
         </div>
 
-        <div style={{ display: isMobile ? "flex" : "grid", gridTemplateColumns: "1fr 1fr", flexDirection: "column", gap: "8px" }}>
-          <div className="flex flex-col gap-2">
-            <ImageWell theme={theme} style={{ height: "280px" }} onClick={ql("/1goodthing/preview-note.png", "Note and drawing entry")}>
+        <div style={{ display: isMobile ? "flex" : "grid", gridTemplateColumns: "1fr 1fr", flexDirection: "column", gap: "24px 40px" }}>
+          <div className="flex flex-col gap-4">
+            <ImageWell theme={theme} style={{ height: isMobile ? "280px" : "440px" }} onClick={ql("/1goodthing/preview-note.png", "Note and drawing entry")}>
               <img src="/1goodthing/preview-note.png" alt="Entry detail showing a cat drawing with a title and short written note below" loading="lazy" style={{ maxWidth: "100%", maxHeight: "100%", width: "auto", height: "auto", objectFit: "contain", display: "block", margin: "0 auto" }} />
             </ImageWell>
             <InfoPanel theme={theme}>
@@ -95,8 +111,8 @@ export function OneGoodThingWindow() {
               <br />Add a title and a few words. 200 characters, plenty. The drawing carries the feeling. The note carries the detail.
             </InfoPanel>
           </div>
-          <div className="flex flex-col gap-2">
-            <ImageWell theme={theme} style={{ height: "280px" }} onClick={ql("/1goodthing/preview-calendar.png", "Calendar and scrapbook")}>
+          <div className="flex flex-col gap-4">
+            <ImageWell theme={theme} style={{ height: isMobile ? "280px" : "440px" }} onClick={ql("/1goodthing/preview-calendar.png", "Calendar and scrapbook")}>
               <img src="/1goodthing/preview-calendar.png" alt="Calendar view showing a month of drawings per day, with scrapbook mode cards" loading="lazy" style={{ maxWidth: "100%", maxHeight: "100%", width: "auto", height: "auto", objectFit: "contain", display: "block", margin: "0 auto" }} />
             </ImageWell>
             <InfoPanel theme={theme}>
@@ -106,9 +122,9 @@ export function OneGoodThingWindow() {
           </div>
         </div>
 
-        <div style={{ display: isMobile ? "flex" : "grid", gridTemplateColumns: "1fr 1fr", flexDirection: "column", gap: "8px" }}>
-          <div className="flex flex-col gap-2">
-            <ImageWell theme={theme} style={{ height: "280px" }} onClick={ql("/1goodthing/preview-widget.png", "Home screen widget")}>
+        <div style={{ display: isMobile ? "flex" : "grid", gridTemplateColumns: "1fr 1fr", flexDirection: "column", gap: "24px 40px" }}>
+          <div className="flex flex-col gap-4">
+            <ImageWell theme={theme} style={{ height: isMobile ? "280px" : "440px" }} onClick={ql("/1goodthing/preview-widget.png", "Home screen widget")}>
               <img src="/1goodthing/preview-widget.png" alt="iPhone home screen with 1 good thing widget showing recent drawings of cats and flowers" loading="lazy" style={{ maxWidth: "100%", maxHeight: "100%", width: "auto", height: "auto", objectFit: "contain", display: "block", margin: "0 auto" }} />
             </ImageWell>
             <InfoPanel theme={theme}>
@@ -116,8 +132,8 @@ export function OneGoodThingWindow() {
               <br />Your drawings on your home screen. A little joy every time you check your phone.
             </InfoPanel>
           </div>
-          <div className="flex flex-col gap-2">
-            <ImageWell theme={theme} style={{ height: "280px" }} onClick={ql("/1goodthing/preview-wallpaper.png", "Lock screen wallpaper")}>
+          <div className="flex flex-col gap-4">
+            <ImageWell theme={theme} style={{ height: isMobile ? "280px" : "440px" }} onClick={ql("/1goodthing/preview-wallpaper.png", "Lock screen wallpaper")}>
               <img src="/1goodthing/preview-wallpaper.png" alt="Wallpaper generator showing a grid of drawings arranged as a phone lock screen" loading="lazy" style={{ maxWidth: "100%", maxHeight: "100%", width: "auto", height: "auto", objectFit: "contain", display: "block", margin: "0 auto" }} />
             </ImageWell>
             <InfoPanel theme={theme}>
@@ -129,32 +145,26 @@ export function OneGoodThingWindow() {
 
         <SectionRule label="Design Decisions" theme={theme} />
 
-        <InfoPanel title="Drawing instead of writing" theme={theme}>
-          <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-            <div><span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10, color: theme.textMuted }}>THE PROBLEM</span><br />Every journaling app puts a text field in front of you. Most people don't journal because writing feels like work.</div>
-            <div style={{ borderTop: `1px solid ${theme.windowBorder}`, paddingTop: 8, color: theme.linkColor, fontSize: 12, lineHeight: 1.6 }}>
-              Drawing is faster, more personal, and lower stakes. A bad drawing still captures the memory. The bar is low enough that you actually do it.
-            </div>
-          </div>
-        </InfoPanel>
+        <DecisionBlock
+          theme={theme}
+          title="Drawing instead of writing"
+          problem="Every journaling app puts a text field in front of you. Most people don't journal because writing feels like work."
+          outcome="Drawing is faster, more personal, and lower stakes. A bad drawing still captures the memory. The bar is low enough that you actually do it."
+        />
 
-        <InfoPanel title="Shared jar with no accounts" theme={theme}>
-          <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-            <div><span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10, color: theme.textMuted }}>THE DECISION</span><br />Most social apps gate sharing behind sign-up. The friction kills adoption before the feature even lands. Shared jars needed no account: share a link, join instantly.</div>
-            <div style={{ borderTop: `1px solid ${theme.windowBorder}`, paddingTop: 8, color: theme.linkColor, fontSize: 12, lineHeight: 1.6 }}>
-              It shipped. Then the bad reviews came in. Sync bugs, missing entries, confused users who couldn't tell whose drawings were whose. A month in, I paused the feature. The idea was right. The stability wasn't there yet.
-            </div>
-          </div>
-        </InfoPanel>
+        <DecisionBlock
+          theme={theme}
+          title="Shared jar with no accounts"
+          problem="Most social apps gate sharing behind sign-up. The friction kills adoption before the feature even lands. Shared jars needed no account: share a link, join instantly."
+          outcome="It shipped. Then the bad reviews came in. Sync bugs, missing entries, confused users who couldn't tell whose drawings were whose. A month in, I paused the feature. The idea was right. The stability wasn't there yet."
+        />
 
-        <InfoPanel title="No streaks" theme={theme}>
-          <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-            <div><span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10, color: theme.textMuted }}>THE PROBLEM</span><br />Habit apps use streaks to keep you coming back. Break the streak and you feel bad. A memory app that punishes you for missing a day defeats the point.</div>
-            <div style={{ borderTop: `1px solid ${theme.windowBorder}`, paddingTop: 8, color: theme.linkColor, fontSize: 12, lineHeight: 1.6 }}>
-              No streaks to protect. Draw when you have something. Skip when you don't. The jar fills at its own pace.
-            </div>
-          </div>
-        </InfoPanel>
+        <DecisionBlock
+          theme={theme}
+          title="No streaks"
+          problem="Habit apps use streaks to keep you coming back. Break the streak and you feel bad. A memory app that punishes you for missing a day defeats the point."
+          outcome="No streaks to protect. Draw when you have something. Skip when you don't. The jar fills at its own pace."
+        />
 
         <NextProject id="deFiWallet" label="DeFi Wallet Onboarding" />
       </div>
