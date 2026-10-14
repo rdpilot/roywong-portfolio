@@ -48,7 +48,7 @@ export function DegenArcadeWindow() {
         title="Degen Arcade"
         company="Crypto.com"
         role="Sole product designer"
-        description="Memecoins are exciting and dangerous in equal measure. Beginners want in, but scam tokens, rug pulls, and contract verification kill the fun before it starts. Degen Arcade removes the security layer from the user's hands entirely. Pre-vetted tokens, one-swipe trading, no contract addresses to check."
+        description="Memecoins are exciting and dangerous in equal measure. Beginners want in, but scam tokens, rug pulls, and contract verification kill the fun before it starts. Degen Arcade takes the security checks out of the user's hands. Tokens are screened automatically, trading is one swipe, and there are no contract addresses to check."
         tags={["Mobile Application", "WEB3 Application", "UI Motion"]}
         theme={theme}
       />

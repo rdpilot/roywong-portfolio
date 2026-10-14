@@ -66,7 +66,7 @@ export function SprayAndPrayWindow() {
         </ImageWell>
 
         <InfoPanel title="How It Works" theme={theme}>
-          Players receive a free daily chip allowance every 12 hours. Chips are the entry fee into tournaments. Pick a direction, trade, and climb the leaderboard. The higher your PnL, the bigger the prize. Get liquidated? Re-enter as long as you have chips. Run out? Wait for the free daily allowance or buy more.
+          Players receive a free daily chip allowance. Chips are the entry fee into tournaments. Pick a direction, trade, and climb the leaderboard. The higher your PnL, the bigger the prize. Get liquidated? Re-enter as long as you have chips. Run out? Wait for the free daily allowance or buy more.
         </InfoPanel>
 
 

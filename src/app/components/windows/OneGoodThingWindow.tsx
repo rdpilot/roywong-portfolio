@@ -32,9 +32,9 @@ export function OneGoodThingWindow() {
     >
       <ProjectHeader
         title="1 Good Thing"
-        company="Personal Project"
+        company="Side project"
         role="Designer, developer, QA & marketing"
-        description="I wanted to start journaling. I can't write. So I built an app where I draw instead. One drawing a day drops into a jar. Now you can share a jar with friends: everyone adds their own good things, and you all watch it fill together."
+        description="I wanted to start journaling. I can't write. So I built an app where I draw instead. One drawing a day drops into a jar."
         tags={["iOS App", "Side Project", "Consumer Product", "Swift"]}
         theme={theme}
         demoLink="https://apps.apple.com/us/app/1-good-thing-memory-jar/id6784074256"
