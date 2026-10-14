@@ -3,7 +3,7 @@ import { MousePointerClick, ExternalLink, AlertCircle } from "lucide-react";
 import { useIsMobile } from "../../hooks/useIsMobile";
 import { useTheme } from "../../hooks/useTheme";
 import type { ThemeTokens } from "../../hooks/useTheme";
-const isLight = (t: ThemeTokens) => t.mode !== "dark" && t.mode !== "hailmary";
+const isLight = (t: ThemeTokens) => t.mode === "light";
 import { ImageWithFallback } from "../figma/ImageWithFallback";
 import { NextProject } from "../NextProject";
 import {

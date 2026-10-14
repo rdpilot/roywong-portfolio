@@ -2,7 +2,7 @@ import React, { createContext, useContext, useState, useCallback, useRef, useEff
 import { X } from "lucide-react";
 import { useTheme } from "../hooks/useTheme";
 import type { ThemeTokens } from "../hooks/useTheme";
-const isLight = (t: ThemeTokens) => t.mode !== "dark" && t.mode !== "hailmary";
+const isLight = (t: ThemeTokens) => t.mode === "light";
 
 interface QuickLookItem {
   src: string;

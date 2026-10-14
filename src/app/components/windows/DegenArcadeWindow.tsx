@@ -2,7 +2,7 @@ import React from "react";
 import { useIsMobile } from "../../hooks/useIsMobile";
 import { useTheme } from "../../hooks/useTheme";
 import type { ThemeTokens } from "../../hooks/useTheme";
-const isLight = (t: ThemeTokens) => t.mode !== "dark" && t.mode !== "hailmary";
+const isLight = (t: ThemeTokens) => t.mode === "light";
 import { useQuickLook } from "../QuickLookOverlay";
 import { AutoPlayVideo } from "../AutoPlayVideo";
 import {
@@ -112,13 +112,13 @@ export function DegenArcadeWindow() {
             <ImageWell theme={theme} style={{ height: isMobile ? "240px" : "360px" }} onClick={ql("/optionA.png", "Option A: Polished trading UI")}>
             <img src="/optionA.png" alt="Option A: clean, serious memecoin trading interface" loading="lazy" style={{ maxWidth: "100%", maxHeight: "100%", width: "auto", height: "auto", objectFit: "contain", display: "block", margin: "0 auto" }} />
           </ImageWell>
-            <div style={{ fontSize: "12px", color: theme.textMuted }}>Option A</div>
+            <div style={{ fontSize: "13px", color: theme.textMuted }}>Option A</div>
           </div>
           <div className="flex flex-col gap-2">
             <ImageWell theme={theme} style={{ height: isMobile ? "240px" : "360px" }} onClick={ql("/optionB.png", "Option B: Degen Arcade")}>
             <img src="/optionB.png" alt="Option B: retro arcade aesthetic with character select and dark theme" loading="lazy" style={{ maxWidth: "100%", maxHeight: "100%", width: "auto", height: "auto", objectFit: "contain", display: "block", margin: "0 auto" }} />
           </ImageWell>
-            <div style={{ fontSize: "12px", color: theme.textMuted }}>Option B</div>
+            <div style={{ fontSize: "13px", color: theme.textMuted }}>Option B</div>
           </div>
         </div>
 

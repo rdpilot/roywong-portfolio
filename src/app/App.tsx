@@ -113,7 +113,7 @@ function NavList({ activeId, onSelect }: { activeId: WindowId; onSelect: (id: Wi
       {navSections.map((section, i) => (
         <div key={i} style={{ display: "flex", flexDirection: "column", gap: "2px" }}>
           {section.label && (
-            <div style={{ fontSize: "11px", fontWeight: 500, color: theme.textMuted, padding: "0 10px 6px" }}>
+            <div style={{ fontSize: "12px", fontWeight: 500, color: theme.textMuted, padding: "0 10px 6px" }}>
               {section.label}
             </div>
           )}
@@ -219,7 +219,7 @@ function AppContent() {
     return () => window.removeEventListener("keydown", onKey);
   }, [select]);
 
-  const isDark = theme.mode === "dark" || theme.mode === "hailmary";
+  const isDark = theme.mode === "dark";
   const ThemeIcon = isDark ? Sun : Moon;
 
   const themeButton = (

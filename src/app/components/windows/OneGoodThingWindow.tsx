@@ -86,7 +86,7 @@ export function OneGoodThingWindow() {
               <img src="/1goodthing/preview-trace.png" alt="Drawing canvas with a photo loaded as a faint tracing guide underneath" loading="lazy" style={{ maxWidth: "100%", maxHeight: "100%", width: "auto", height: "auto", objectFit: "contain", display: "block", margin: "0 auto" }} />
             </ImageWell>
             <InfoPanel theme={theme}>
-              <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10, color: theme.textMuted }}>TRACING GUIDE</span>
+              <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 11, color: theme.textMuted }}>TRACING GUIDE</span>
               <br />Never learned to draw? Load any photo as a faint guide, trace the shape, then make it your own.
             </InfoPanel>
           </div>
@@ -95,7 +95,7 @@ export function OneGoodThingWindow() {
               <img src="/1goodthing/preview-sticker.png" alt="Style your sticker screen with colour border options, copy as sticker to send in chat" loading="lazy" style={{ maxWidth: "100%", maxHeight: "100%", width: "auto", height: "auto", objectFit: "contain", display: "block", margin: "0 auto" }} />
             </ImageWell>
             <InfoPanel theme={theme}>
-              <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10, color: theme.textMuted }}>STICKER MAKER</span>
+              <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 11, color: theme.textMuted }}>STICKER MAKER</span>
               <br />Draw it, add a colour border, copy as a sticker. Drop it into any chat. Your doodles, ready to steal the conversation.
             </InfoPanel>
           </div>
@@ -107,7 +107,7 @@ export function OneGoodThingWindow() {
               <img src="/1goodthing/preview-note.png" alt="Entry detail showing a cat drawing with a title and short written note below" loading="lazy" style={{ maxWidth: "100%", maxHeight: "100%", width: "auto", height: "auto", objectFit: "contain", display: "block", margin: "0 auto" }} />
             </ImageWell>
             <InfoPanel theme={theme}>
-              <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10, color: theme.textMuted }}>NOTE</span>
+              <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 11, color: theme.textMuted }}>NOTE</span>
               <br />Add a title and a few words. 200 characters, plenty. The drawing carries the feeling. The note carries the detail.
             </InfoPanel>
           </div>
@@ -116,7 +116,7 @@ export function OneGoodThingWindow() {
               <img src="/1goodthing/preview-calendar.png" alt="Calendar view showing a month of drawings per day, with scrapbook mode cards" loading="lazy" style={{ maxWidth: "100%", maxHeight: "100%", width: "auto", height: "auto", objectFit: "contain", display: "block", margin: "0 auto" }} />
             </ImageWell>
             <InfoPanel theme={theme}>
-              <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10, color: theme.textMuted }}>CALENDAR + SCRAPBOOK</span>
+              <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 11, color: theme.textMuted }}>CALENDAR + SCRAPBOOK</span>
               <br />Every drawing lands in a calendar. Scrapbook mode lets you arrange a day as a collage card to keep or share.
             </InfoPanel>
           </div>
@@ -128,7 +128,7 @@ export function OneGoodThingWindow() {
               <img src="/1goodthing/preview-widget.png" alt="iPhone home screen with 1 good thing widget showing recent drawings of cats and flowers" loading="lazy" style={{ maxWidth: "100%", maxHeight: "100%", width: "auto", height: "auto", objectFit: "contain", display: "block", margin: "0 auto" }} />
             </ImageWell>
             <InfoPanel theme={theme}>
-              <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10, color: theme.textMuted }}>WIDGET</span>
+              <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 11, color: theme.textMuted }}>WIDGET</span>
               <br />Your drawings on your home screen. A little joy every time you check your phone.
             </InfoPanel>
           </div>
@@ -137,7 +137,7 @@ export function OneGoodThingWindow() {
               <img src="/1goodthing/preview-wallpaper.png" alt="Wallpaper generator showing a grid of drawings arranged as a phone lock screen" loading="lazy" style={{ maxWidth: "100%", maxHeight: "100%", width: "auto", height: "auto", objectFit: "contain", display: "block", margin: "0 auto" }} />
             </ImageWell>
             <InfoPanel theme={theme}>
-              <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10, color: theme.textMuted }}>WALLPAPER</span>
+              <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 11, color: theme.textMuted }}>WALLPAPER</span>
               <br />Generate a wallpaper from your jar. Good things, bad things, or any collection. Your good days on your lock screen.
             </InfoPanel>
           </div>

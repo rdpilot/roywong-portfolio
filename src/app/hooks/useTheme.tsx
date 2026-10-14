@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState, useCallback, useEffect } from "react";
 
 export interface ThemeTokens {
-  mode: "light" | "dark" | "hailmary" | "sunny";
+  mode: "light" | "dark";
   desktop: string;
   menuBar: string;
   menuBarBorder: string;
@@ -76,8 +76,8 @@ const lightTheme: ThemeTokens = {
   closeBoxBg: "linear-gradient(to bottom, #EEEEEE, #CCCCCC)",
   closeBoxIcon: "#444444",
   textPrimary: "#333333",
-  textSecondary: "#666666",
-  textMuted: "#999999",
+  textSecondary: "#555555",
+  textMuted: "#6E6E6E",
   textStrong: "#111111",
   linkColor: "#0000CC",
   linkHover: "#000000",
@@ -114,25 +114,25 @@ const lightTheme: ThemeTokens = {
 // ─── Dark ─────────────────────────────────────────────────────────────────────
 const darkTheme: ThemeTokens = {
   mode: "dark",
-  desktop: "linear-gradient(160deg, #141820 0%, #0e1218 40%, #181c24 100%)",
-  menuBar: "linear-gradient(to bottom, #2e3238 0%, #22262c 100%)",
+  desktop: "linear-gradient(160deg, #1e1e1e 0%, #181818 40%, #202020 100%)",
+  menuBar: "linear-gradient(to bottom, #303030 0%, #2a2a2a 100%)",
   menuBarBorder: "#111111",
   menuBarShadow: "0 1px 0 rgba(255,255,255,0.05) inset, 0 1px 3px rgba(0,0,0,0.4)",
   menuBarText: "#CCCCCC",
   menuBarClockText: "#888888",
-  windowChrome: "linear-gradient(to bottom, #3a3e44 0%, #2e3238 100%)",
-  windowBorder: "#1a1a1a",
-  windowBevelShadow: "1px 1px 0 #111111, -1px -1px 0 #4a4e54 inset, 1px 1px 0 #3a3e44 inset",
+  windowChrome: "linear-gradient(to bottom, #3c3c3c 0%, #303030 100%)",
+  windowBorder: "#3a3a3a",
+  windowBevelShadow: "1px 1px 0 #111111, -1px -1px 0 #4a4a4a inset, 1px 1px 0 #3c3c3c inset",
   windowTitleText: "#CCCCCC",
-  windowContentBg: "#1e2228",
-  pinstripeA: "#2a2e34",
-  pinstripeB: "#363a40",
+  windowContentBg: "#262626",
+  pinstripeA: "#2e2e2e",
+  pinstripeB: "#383838",
   closeBoxBorder: "#555555",
-  closeBoxBg: "linear-gradient(to bottom, #4a4e54, #3a3e44)",
+  closeBoxBg: "linear-gradient(to bottom, #4a4a4a, #3c3c3c)",
   closeBoxIcon: "#999999",
-  textPrimary: "#D0D0D0",
-  textSecondary: "#999999",
-  textMuted: "#666666",
+  textPrimary: "#D4D4D4",
+  textSecondary: "#B8B8B8",
+  textMuted: "#9A9A9A",
   textStrong: "#E8E8E8",
   linkColor: "#6BA3FF",
   linkHover: "#FFFFFF",
@@ -145,116 +145,29 @@ const darkTheme: ThemeTokens = {
   iconActiveColor: "#34D399",
   iconHoverBg: "rgba(255,255,255,0.06)",
   iconTextShadow: "0 1px 0 rgba(0,0,0,0.5)",
-  toolbarBg: "linear-gradient(180deg, #2e3238 0%, #262a30 100%)",
+  toolbarBg: "linear-gradient(180deg, #303030 0%, #2c2c2c 100%)",
   toolbarBorder: "#1a1a1a",
   toolbarText: "#999",
-  toolbarActiveBg: "#3e4248",
+  toolbarActiveBg: "#404040",
   toolbarActiveBorder: "#555",
-  contentBgWhite: "#1a1e24",
-  listHeaderBg: "#22262c",
+  contentBgWhite: "#222222",
+  listHeaderBg: "#2a2a2a",
   listHeaderBorder: "#333",
-  listHoverBg: "#262a30",
-  statusBarBg: "#22262c",
+  listHoverBg: "#2c2c2c",
+  statusBarBg: "#2a2a2a",
   statusBarBorder: "#333",
-  thumbBg: "#2a2e34",
-  infocardBg: "#262a30",
+  thumbBg: "#2e2e2e",
+  infocardBg: "#2c2c2c",
   infocardTitle: "#888",
   infocardText: "#D0D0D0",
-  tagBg: "#2a2e34",
-  tagBorder: "#3a3e44",
-  tagText: "#999",
-  imageBg: "#0e1014",
-};
-
-// ─── Hail Mary ────────────────────────────────────────────────────────────────
-// Fully opaque dark windows over the Unicorn Studio WebGL background.
-const hailmaryTheme: ThemeTokens = {
-  mode: "hailmary",
-  desktop: "#080202",
-  menuBar: "linear-gradient(to bottom, #1a0a0a 0%, #120606 100%)",
-  menuBarBorder: "#2a0808",
-  menuBarShadow: "0 1px 0 rgba(255,80,40,0.06) inset, 0 1px 3px rgba(0,0,0,0.6)",
-  menuBarText: "#DDCCCC",
-  menuBarClockText: "#886666",
-  windowChrome: "linear-gradient(to bottom, #1e0c0c 0%, #160808 100%)",
-  windowBorder: "#2e1010",
-  windowBevelShadow: "1px 1px 0 #0a0404, -1px -1px 0 #2e1414 inset, 1px 1px 0 #1e0c0c inset",
-  windowTitleText: "#CCBBBB",
-  windowContentBg: "#100606",
-  pinstripeA: "#180a0a",
-  pinstripeB: "#200e0e",
-  closeBoxBorder: "#3a1414",
-  closeBoxBg: "linear-gradient(to bottom, #2e1010, #1e0808)",
-  closeBoxIcon: "#886666",
-  textPrimary: "#CCBBBB",
-  textSecondary: "#886666",
-  textMuted: "#553333",
-  textStrong: "#EEE0E0",
-  linkColor: "#FF7755",
-  linkHover: "#FFAA88",
-  dotColor: [255, 255, 255] as const,
-  dotBaseAlpha: 0.0,
-  dotMaxAlpha: 0.0,
-  iconColor: "#AA8888",
-  iconActiveGlow: "rgba(255,80,40,0.5)",
-  iconActiveBorder: "#CC3311",
-  iconActiveColor: "#FF6644",
-  iconHoverBg: "rgba(255,60,20,0.08)",
-  iconTextShadow: "0 1px 0 rgba(0,0,0,0.6)",
-  toolbarBg: "linear-gradient(180deg, #1a0a0a 0%, #140606 100%)",
-  toolbarBorder: "#2a0e0e",
-  toolbarText: "#886666",
-  toolbarActiveBg: "#220c0c",
-  toolbarActiveBorder: "#3a1414",
-  contentBgWhite: "#0c0404",
-  listHeaderBg: "#140808",
-  listHeaderBorder: "#220e0e",
-  listHoverBg: "#180a0a",
-  statusBarBg: "#100606",
-  statusBarBorder: "#1e0c0c",
-  thumbBg: "#1e0c0c",
-  infocardBg: "#160808",
-  infocardTitle: "#775555",
-  infocardText: "#CCBBBB",
-  tagBg: "#1a0a0a",
-  tagBorder: "#2e1212",
-  tagText: "#886666",
-  imageBg: "#131113",
-};
-
-// ─── Sunny ────────────────────────────────────────────────────────────────────
-// Pale concrete / poured cement — light cool gray, like a sunny courtyard floor.
-const sunnyTheme: ThemeTokens = {
-  ...lightTheme,
-  mode: "sunny",
-  desktop: "#C8C8C4",
-  menuBar: "linear-gradient(to bottom, #D8D8D4 0%, #CACAC6 100%)",
-  menuBarBorder: "#ABABAB",
-  menuBarShadow: "0 1px 0 rgba(255,255,255,0.5) inset, 0 1px 2px rgba(0,0,0,0.14)",
-  menuBarText: "#222220",
-  menuBarClockText: "#606060",
-  windowChrome: "linear-gradient(to bottom, #E4E4E0 0%, #D8D8D4 100%)",
-  windowBorder: "#ABABAB",
-  windowTitleText: "#222220",
-  windowContentBg: "#F6F6F4",
-  pinstripeA: "#D4D4D0",
-  pinstripeB: "#E0E0DC",
-  closeBoxBorder: "#888888",
-  closeBoxBg: "linear-gradient(to bottom, #DCDCDA, #CACAC6)",
-  textPrimary: "#2A2A28",
-  textSecondary: "#606060",
-  textMuted: "#999998",
-  textStrong: "#141412",
-  linkColor: "#3A3A8A",
-  linkHover: "#10106A",
-  iconColor: "#444442",
-  iconTextShadow: "0 1px 0 rgba(255,255,255,0.7)",
-  dotBaseAlpha: 0,
-  dotMaxAlpha: 0,
+  tagBg: "#333333",
+  tagBorder: "#454545",
+  tagText: "#B0B0B0",
+  imageBg: "#1c1c1c",
 };
 
 // ─── Context ──────────────────────────────────────────────────────────────────
-type ThemeMode = "light" | "dark" | "hailmary" | "sunny";
+type ThemeMode = "light" | "dark";
 
 interface ThemeContextValue {
   theme: ThemeTokens;
@@ -266,13 +179,13 @@ const ThemeContext = createContext<ThemeContextValue>({
   toggleTheme: () => {},
 });
 
-const THEME_CYCLE: ThemeMode[] = ["light", "dark", "hailmary", "sunny"];
+const THEME_CYCLE: ThemeMode[] = ["light", "dark"];
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [mode, setMode] = useState<ThemeMode>(() => {
     try {
       const saved = localStorage.getItem("roywong-theme");
-      if (saved === "light" || saved === "dark" || saved === "hailmary" || saved === "sunny") return saved;
+      if (saved === "light" || saved === "dark") return saved;
     } catch {}
     return "light";
   });
@@ -294,7 +207,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     }, 400);
   }, []);
 
-  const theme = mode === "light" ? lightTheme : mode === "dark" ? darkTheme : mode === "sunny" ? sunnyTheme : hailmaryTheme;
+  const theme = mode === "light" ? lightTheme : darkTheme;
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>

@@ -1,8 +1,7 @@
 import React from "react";
 import type { ThemeTokens } from "../../hooks/useTheme";
 
-// Sunny and Light share the same light-mode aesthetics
-const isLight = (t: ThemeTokens) => t.mode !== "dark" && t.mode !== "hailmary";
+const isLight = (t: ThemeTokens) => t.mode === "light";
 
 /**
  * OS-themed primitives for UI/UX project case study windows.
@@ -77,7 +76,7 @@ export function SectionRule({
       <span
         style={{
           fontFamily: "'IBM Plex Mono', monospace",
-          fontSize: "9px",
+          fontSize: "11px",
           color: theme.textMuted,
           textTransform: "uppercase",
           letterSpacing: "0.08em",
@@ -119,7 +118,7 @@ export function InfoPanel({
         <div
           style={{
             fontFamily: "'IBM Plex Mono', monospace",
-            fontSize: "10px",
+            fontSize: "11px",
             color: theme.textMuted,
             textTransform: "uppercase",
             letterSpacing: "0.06em",
@@ -216,7 +215,7 @@ export function PropRow({
         padding: "8px 0",
         borderWidth: "0 0 1px 0",
         borderStyle: "solid",
-        borderColor: isLight(theme) ? "#D8D8D8" : "#2a2e34",
+        borderColor: isLight(theme) ? "#D8D8D8" : "#333333",
       }}
     >
       <span
@@ -258,7 +257,7 @@ export function TagBadge({
   return (
     <span
       style={{
-        fontSize: "10px",
+        fontSize: "11px",
         fontFamily: "'IBM Plex Mono', monospace",
         color: theme.tagText,
         background: theme.tagBg,
@@ -325,7 +324,7 @@ export function ProjectHeader({
         <span
           style={{
             fontFamily: "'IBM Plex Mono', monospace",
-            fontSize: "11px",
+            fontSize: "12px",
             color: theme.textMuted,
           }}
         >
@@ -367,12 +366,12 @@ export function ProjectHeader({
               rel="noopener noreferrer"
               style={{
                 fontFamily: "'IBM Plex Mono', monospace",
-                fontSize: "11px",
-                color: isLight(theme) ? "#007AFF" : "#0A84FF",
+                fontSize: "12px",
+                color: isLight(theme) ? "#0062CC" : "#5AA9FF",
                 textDecoration: "none",
                 textTransform: "uppercase",
                 letterSpacing: "0.06em",
-                borderBottom: `1px solid ${isLight(theme) ? "#007AFF" : "#0A84FF"}`,
+                borderBottom: `1px solid ${isLight(theme) ? "#0062CC" : "#5AA9FF"}`,
                 paddingBottom: "1px",
               }}
             >
@@ -386,7 +385,7 @@ export function ProjectHeader({
               rel="noopener noreferrer"
               style={{
                 fontFamily: "'IBM Plex Mono', monospace",
-                fontSize: "11px",
+                fontSize: "12px",
                 color: theme.textMuted,
                 textDecoration: "none",
                 textTransform: "uppercase",

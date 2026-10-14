@@ -35,7 +35,7 @@ export function NextProject({ id, label }: NextProjectProps) {
       }}
     >
       <div style={{ display: "flex", flexDirection: "column", gap: "2px" }}>
-        <span style={{ fontSize: "10px", textTransform: "uppercase", letterSpacing: "0.08em", color: theme.textMuted }}>
+        <span style={{ fontSize: "11px", textTransform: "uppercase", letterSpacing: "0.08em", color: theme.textMuted }}>
           Next case study
         </span>
         <span style={{ fontSize: "13px", color: theme.textPrimary }}>

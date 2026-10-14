@@ -56,7 +56,7 @@ export function SprayAndPrayWindow() {
           ].map(({ stat, label }) => (
             <InfoPanel key={label} theme={theme} centered>
               <span style={{ display: "block", fontSize: 36, fontWeight: 700, color: theme.windowTitleText, fontFamily: "'IBM Plex Mono', monospace", lineHeight: 1, marginBottom: 6 }}>{stat}</span>
-              <span style={{ fontSize: 11, color: theme.textMuted }}>{label}</span>
+              <span style={{ fontSize: 13, color: theme.textMuted }}>{label}</span>
             </InfoPanel>
           ))}
         </div>

@@ -12,7 +12,7 @@ import {
   DecisionBlock,
 } from "./ProjectLayout";
 
-const isLight = (t: ThemeTokens) => t.mode !== "dark" && t.mode !== "hailmary";
+const isLight = (t: ThemeTokens) => t.mode === "light";
 
 function QuoteGroup({
   theme,
@@ -53,10 +53,10 @@ function StatCard({ theme, stat, label, title }: { theme: ThemeTokens; stat: str
   return (
     <InfoPanel theme={theme} centered>
       {title && (
-        <span style={{ display: "block", fontFamily: "'IBM Plex Mono', monospace", fontSize: 10, color: theme.textMuted, textTransform: "uppercase", letterSpacing: "0.06em", marginBottom: 8 }}>{title}</span>
+        <span style={{ display: "block", fontFamily: "'IBM Plex Mono', monospace", fontSize: 11, color: theme.textMuted, textTransform: "uppercase", letterSpacing: "0.06em", marginBottom: 8 }}>{title}</span>
       )}
       <span style={{ display: "block", fontSize: 32, fontWeight: 700, color: theme.windowTitleText, fontFamily: "'IBM Plex Mono', monospace", lineHeight: 1, marginBottom: 6, whiteSpace: "nowrap" }}>{stat}</span>
-      <span style={{ fontSize: 11, color: theme.textMuted }}>{label}</span>
+      <span style={{ fontSize: 13, color: theme.textMuted }}>{label}</span>
     </InfoPanel>
   );
 }
@@ -72,7 +72,7 @@ function StepRow({
         <img src={src} alt={alt} loading="lazy" style={{ width: "100%", height: "auto", display: "block" }} />
       </ImageWell>
       <div>
-        <div style={{ fontSize: "12px", color: theme.textMuted, marginBottom: "4px" }}>{step}</div>
+        <div style={{ fontSize: "13px", color: theme.textMuted, marginBottom: "4px" }}>{step}</div>
         <h3 style={{ margin: "0 0 8px", fontSize: "15px", fontWeight: 600, color: theme.textStrong, fontFamily: "'IBM Plex Sans', sans-serif" }}>{title}</h3>
         <p style={{ margin: 0, fontSize: "15px", lineHeight: 1.65, color: theme.textSecondary }}>{body}</p>
       </div>
@@ -199,7 +199,7 @@ export function DeFiWalletWindow() {
             "Revealing the phrase took 12 taps",
           ].map((p, i) => (
             <div key={i} style={{ display: "flex", gap: "10px", alignItems: "flex-start" }}>
-              <span style={{ color: isLight(theme) ? "#FF3B30" : "#FF6961", fontFamily: "'IBM Plex Mono', monospace", fontSize: "11px", flexShrink: 0, paddingTop: "2px" }}>✕</span>
+              <span style={{ color: isLight(theme) ? "#D70015" : "#FF6961", fontFamily: "'IBM Plex Mono', monospace", fontSize: "11px", flexShrink: 0, paddingTop: "2px" }}>✕</span>
               <span style={{ fontSize: "14px", color: theme.textSecondary, lineHeight: "1.6" }}>{p}</span>
             </div>
           ))}
@@ -239,7 +239,7 @@ export function DeFiWalletWindow() {
             "Removed forced security tips",
           ].map((p, i) => (
             <div key={i} style={{ display: "flex", gap: "10px", alignItems: "flex-start" }}>
-              <span style={{ color: isLight(theme) ? "#34C759" : "#30D158", fontFamily: "'IBM Plex Mono', monospace", fontSize: "11px", flexShrink: 0, paddingTop: "2px" }}>✓</span>
+              <span style={{ color: isLight(theme) ? "#1A7F37" : "#30D158", fontFamily: "'IBM Plex Mono', monospace", fontSize: "11px", flexShrink: 0, paddingTop: "2px" }}>✓</span>
               <span style={{ fontSize: "14px", color: theme.textSecondary, lineHeight: "1.6" }}>{p}</span>
             </div>
           ))}
