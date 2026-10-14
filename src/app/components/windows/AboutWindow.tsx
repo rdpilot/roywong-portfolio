@@ -10,7 +10,7 @@ export function AboutWindow() {
         Nine years designing products people use to learn and to trade. Three in edtech, six in crypto. Wallet onboarding, trading interfaces, gamified finance. Work where a confusing screen costs users real money.
       </p>
       <p className="mb-5" style={{ fontSize: "16px", lineHeight: "1.7", color: theme.textPrimary }}>
-        I build tools to work more efficiently. AI is in my workflow at every layer too. Research, writing, prototyping, scaffolding. Between the two, the gap between idea and something testable stays small.
+        I build tools to work more efficiently. AI is part of my workflow too: research, writing, prototyping, scaffolding. Between the two, the gap between idea and something testable stays small.
       </p>
       <p className="mb-5" style={{ fontSize: "16px", lineHeight: "1.7", color: theme.textPrimary }}>
         I also ship my own products.{" "}

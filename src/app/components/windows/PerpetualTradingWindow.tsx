@@ -190,7 +190,7 @@ export function PerpetualTradingWindow() {
               Became one of the most-used features on the Crypto.com app. Traders could open leveraged positions in seconds. Complex enough for professionals, approachable enough for first-timers.
             </InfoPanel>
             <InfoPanel title="Interactive Prototype" theme={theme}>
-              The left panel is a live Figma prototype. Tap through the full trading flow: select a market, set leverage, configure TP/SL, and execute a position.
+              The left panel is a live Figma prototype. Tap through the full trading flow: select a market, set leverage, configure take-profit and stop-loss (TP/SL), and execute a position.
             </InfoPanel>
           </div>
         </div>
@@ -272,7 +272,7 @@ export function PerpetualTradingWindow() {
               />
             </div>
             <InfoPanel title="Cross-Platform Parity" theme={theme}>
-              Professional traders expect desktop-grade functionality on mobile. Translating complex order types, position management, and real-time P&L tracking into a thumb-friendly interface required rethinking traditional trading patterns from scratch.
+              Professional traders expect desktop-grade functionality on mobile. Translating complex order types, position management, and real-time PnL tracking into a thumb-friendly interface required rethinking traditional trading patterns from scratch.
             </InfoPanel>
           </div>
         </div>

@@ -127,7 +127,7 @@ export function DeFiWalletWindow() {
           }}
         >
           <InfoPanel title="Setup" theme={theme}>
-            10 participants: current users and crypto-curious non-users. Surveys plus 1-on-1 interviews to understand where and why people dropped off during wallet creation.
+            10 participants: current users and crypto-curious non-users. Surveys plus 1-on-1 interviews.
           </InfoPanel>
           <InfoPanel title="My role" theme={theme}>
             Built the prototype, ran card-sorting sessions, translated insights into design decisions. Research to shipped redesign in one cycle.
@@ -266,10 +266,8 @@ export function DeFiWalletWindow() {
 
         <SectionRule label="Outcome" theme={theme} />
 
-        <StatCard theme={theme} stat="2.41% → 9.91%" label="First-purchase rate (Jul → Aug)" />
-
         <InfoPanel theme={theme}>
-          Surfacing what to do next moved first-purchase rate from 2.4% to nearly 10%. The fix wasn't big. Users weren't unmotivated. They were just lost.
+          Surfacing what to do next lifted first-purchase rate from 2.41% to 9.91% between July and August. The fix wasn't big.
         </InfoPanel>
 
         <NextProject id="sprayAndPray" label="Spray & Pray" />

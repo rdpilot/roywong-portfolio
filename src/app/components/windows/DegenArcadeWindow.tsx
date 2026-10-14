@@ -122,7 +122,7 @@ export function DegenArcadeWindow() {
           </div>
         </div>
 
-        <SectionRule label="Process & Testing" theme={theme} />
+        <SectionRule label="Process" theme={theme} />
 
         <div style={{ display: isMobile ? "flex" : "grid", gridTemplateColumns: "1fr 1fr", flexDirection: "column", gap: "24px 40px" }}>
           <ImageWell theme={theme} onClick={ql("/streetfighter.png", "Street Fighter player select reference")}>

@@ -51,7 +51,7 @@ export function SprayAndPrayWindow() {
         <SectionRule label="Results" theme={theme} />
 
         <div style={{ display: isMobile ? "flex" : "grid", gridTemplateColumns: "1fr 1fr", flexDirection: "column", gap: "24px 40px" }}>
-          <StatCard theme={theme} stat="5×" label="Avg trades per session" />
+          <StatCard theme={theme} stat="5×" label="Average trades per session" />
           <StatCard theme={theme} stat="3%" label="Free-to-paid conversion" />
         </div>
 
@@ -151,7 +151,7 @@ export function SprayAndPrayWindow() {
           </ImageWell>
           <div className="flex flex-col gap-4">
             <InfoPanel theme={theme} centered>
-              Higher PnL &rarr; High rank &rarr; Bigger prize
+              Higher PnL &rarr; Higher rank &rarr; Bigger prize
             </InfoPanel>
             <InfoPanel title="Why It Works" theme={theme}>
               Rank is the primary motivator. Seeing your name move up the leaderboard in real time pushes users to trade more, take bigger positions, and return for the next tournament. The higher your PnL rank, the larger your share of the prize pool. Every trade is a competitive act.
