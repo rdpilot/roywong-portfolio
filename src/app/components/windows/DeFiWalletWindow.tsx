@@ -10,6 +10,7 @@ import {
   SectionRule,
   InfoPanel,
   DecisionBlock,
+  StatCard,
 } from "./ProjectLayout";
 
 const isLight = (t: ThemeTokens) => t.mode === "light";
@@ -46,18 +47,6 @@ function QuoteGroup({
         </div>
       ))}
     </div>
-  );
-}
-
-function StatCard({ theme, stat, label, title }: { theme: ThemeTokens; stat: string; label: string; title?: string }) {
-  return (
-    <InfoPanel theme={theme} centered>
-      {title && (
-        <span style={{ display: "block", fontFamily: "'IBM Plex Mono', monospace", fontSize: 11, color: theme.textMuted, textTransform: "uppercase", letterSpacing: "0.06em", marginBottom: 8 }}>{title}</span>
-      )}
-      <span style={{ display: "block", fontSize: 32, fontWeight: 700, color: theme.windowTitleText, fontFamily: "'IBM Plex Mono', monospace", lineHeight: 1, marginBottom: 6, whiteSpace: "nowrap" }}>{stat}</span>
-      <span style={{ fontSize: 13, color: theme.textMuted }}>{label}</span>
-    </InfoPanel>
   );
 }
 

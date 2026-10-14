@@ -142,6 +142,33 @@ export function InfoPanel({
   );
 }
 
+/* ── Stat (left-aligned big number + label) ───────────────── */
+export function StatCard({
+  stat,
+  label,
+  title,
+  theme,
+}: {
+  stat: string;
+  label: string;
+  title?: string;
+  theme: ThemeTokens;
+}) {
+  return (
+    <div>
+      {title && (
+        <div style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 11, color: theme.textMuted, textTransform: "uppercase", letterSpacing: "0.06em", marginBottom: 8 }}>
+          {title}
+        </div>
+      )}
+      <div style={{ fontSize: 36, fontWeight: 700, color: theme.windowTitleText, fontFamily: "'IBM Plex Mono', monospace", lineHeight: 1, marginBottom: 8, whiteSpace: "nowrap" }}>
+        {stat}
+      </div>
+      <div style={{ fontSize: 14, color: theme.textSecondary, lineHeight: 1.5 }}>{label}</div>
+    </div>
+  );
+}
+
 /* ── Decision Block (title left, prose right) ─────────────── */
 export function DecisionBlock({
   title,

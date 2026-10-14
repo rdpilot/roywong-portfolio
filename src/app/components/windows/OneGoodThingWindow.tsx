@@ -10,6 +10,7 @@ import {
   SectionRule,
   InfoPanel,
   DecisionBlock,
+  StatCard,
 } from "./ProjectLayout";
 
 export function OneGoodThingWindow() {
@@ -47,16 +48,9 @@ export function OneGoodThingWindow() {
         <SectionRule label="Results" theme={theme} />
 
         <div style={{ display: isMobile ? "flex" : "grid", gridTemplateColumns: "repeat(3, 1fr)", flexDirection: "column", gap: isMobile ? "24px" : "24px 40px" }}>
-          {[
-            { stat: ">10k", label: "Downloads in the first 3 months" },
-            { stat: "#3", label: "Health & Fitness, Vietnam App Store" },
-            { stat: "#9", label: "Health & Fitness, Hong Kong App Store" },
-          ].map(({ stat, label }) => (
-            <div key={label}>
-              <div style={{ fontSize: 36, fontWeight: 700, color: theme.windowTitleText, fontFamily: "'IBM Plex Mono', monospace", lineHeight: 1, marginBottom: 8 }}>{stat}</div>
-              <div style={{ fontSize: 14, color: theme.textSecondary, lineHeight: 1.5 }}>{label}</div>
-            </div>
-          ))}
+          <StatCard theme={theme} stat=">10k" label="Downloads in the first 3 months" />
+          <StatCard theme={theme} stat="#3" label="Health & Fitness, Vietnam App Store" />
+          <StatCard theme={theme} stat="#9" label="Health & Fitness, Hong Kong App Store" />
         </div>
 
         <SectionRule label="Why I built this" theme={theme} />
@@ -92,11 +86,11 @@ export function OneGoodThingWindow() {
           </div>
           <div className="flex flex-col gap-4">
             <ImageWell theme={theme} style={{ height: isMobile ? "280px" : "440px" }} onClick={ql("/1goodthing/preview-sticker.png", "Sticker maker")}>
-              <img src="/1goodthing/preview-sticker.png" alt="Style your sticker screen with colour border options, copy as sticker to send in chat" loading="lazy" style={{ maxWidth: "100%", maxHeight: "100%", width: "auto", height: "auto", objectFit: "contain", display: "block", margin: "0 auto" }} />
+              <img src="/1goodthing/preview-sticker.png" alt="Style your sticker screen with color border options, copy as sticker to send in chat" loading="lazy" style={{ maxWidth: "100%", maxHeight: "100%", width: "auto", height: "auto", objectFit: "contain", display: "block", margin: "0 auto" }} />
             </ImageWell>
             <InfoPanel theme={theme}>
               <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 11, color: theme.textMuted }}>STICKER MAKER</span>
-              <br />Draw it, add a colour border, copy as a sticker. Drop it into any chat. Your doodles, ready to steal the conversation.
+              <br />Draw it, add a color border, copy as a sticker. Drop it into any chat. Your doodles, ready to steal the conversation.
             </InfoPanel>
           </div>
         </div>

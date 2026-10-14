@@ -10,6 +10,7 @@ import {
   SectionRule,
   InfoPanel,
   DecisionBlock,
+  StatCard,
 } from "./ProjectLayout";
 
 
@@ -32,7 +33,7 @@ export function SprayAndPrayWindow() {
     >
       <ProjectHeader
         title="Spray & Pray"
-        company="Animoca"
+        company="Animoca Brands"
         role="Sole product designer"
         description="Learning to trade is expensive. Spray &amp; Pray is a starter town (新手村) for new traders: practice perps with real prizes, no real losses. Paper trading alone isn't compelling, so we tied wins to real rewards ($ETH, $PENGU, $USDC). The goal: bring beginners into trading through play, before they touch their own money."
         tags={["Mobile & Desktop App", "Web3", "Design System", "UI Motion"]}
@@ -50,15 +51,8 @@ export function SprayAndPrayWindow() {
         <SectionRule label="Results" theme={theme} />
 
         <div style={{ display: isMobile ? "flex" : "grid", gridTemplateColumns: "1fr 1fr", flexDirection: "column", gap: "24px 40px" }}>
-          {[
-            { stat: "5×", label: "Avg trades per session" },
-            { stat: "3%", label: "Free-to-paid conversion" },
-          ].map(({ stat, label }) => (
-            <InfoPanel key={label} theme={theme} centered>
-              <span style={{ display: "block", fontSize: 36, fontWeight: 700, color: theme.windowTitleText, fontFamily: "'IBM Plex Mono', monospace", lineHeight: 1, marginBottom: 6 }}>{stat}</span>
-              <span style={{ fontSize: 13, color: theme.textMuted }}>{label}</span>
-            </InfoPanel>
-          ))}
+          <StatCard theme={theme} stat="5×" label="Avg trades per session" />
+          <StatCard theme={theme} stat="3%" label="Free-to-paid conversion" />
         </div>
 
         <InfoPanel theme={theme}>

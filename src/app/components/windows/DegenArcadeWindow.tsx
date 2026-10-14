@@ -56,6 +56,12 @@ export function DegenArcadeWindow() {
       <div className="flex flex-col gap-6" style={{ padding: "32px 0 0" }}>
         <HeroSection onClick={ql("https://i.imgur.com/CCsujLL.mp4", "Degen Arcade: Hero", "video")} />
 
+        <SectionRule label="Results" theme={theme} />
+
+        <InfoPanel theme={theme}>
+          Zero paid marketing. Players found the product, traded, and came back. The arcade mechanic drove organic volume from day one.
+        </InfoPanel>
+
         <SectionRule label="The Opportunity" theme={theme} />
 
         <div style={{ display: isMobile ? "flex" : "grid", gridTemplateColumns: "1fr 1fr", flexDirection: "column", gap: "24px 40px" }}>
@@ -63,15 +69,9 @@ export function DegenArcadeWindow() {
             <img src="/unibot.png" alt="UniBot Sniper Telegram bot interface for memecoin trading" loading="lazy" style={{ maxWidth: "100%", maxHeight: "100%", width: "auto", height: "auto", objectFit: "contain", display: "block", margin: "0 auto" }} />
           </ImageWell>
           <InfoPanel title="Why we built this" theme={theme}>
-            In June 2023, people were trading memecoins heavily on UniBot, a Telegram bot charging 1% per transaction. It was making millions in revenue. The UX was a chat window. We saw the opportunity: bring that same memecoin energy into a proper mobile app, with a better experience and a monetisation model to match.
+            In June 2023, people were trading memecoins heavily on UniBot, a Telegram bot charging 1% per transaction. It was making millions in revenue. The UX was a chat window. We saw the opportunity: bring that same memecoin energy into a proper mobile app, with a better experience and a monetization model to match.
           </InfoPanel>
         </div>
-
-        <SectionRule label="Results" theme={theme} />
-
-        <InfoPanel theme={theme}>
-          Zero paid marketing. Players found the product, traded, and came back. The arcade mechanic drove organic volume from day one.
-        </InfoPanel>
 
         <SectionRule label="Core Flow" theme={theme} />
 
@@ -87,7 +87,7 @@ export function DegenArcadeWindow() {
               Browse the curated Arcade Floor: a live feed of tokens that have already passed automated security checks. No contract addresses to verify, no scam tokens to dodge.
             </InfoPanel>
             <InfoPanel title="2 · Swipe to Trade" theme={theme}>
-              A swipe executes the trade. Fast enough for impulse, deliberate enough to prevent accidents. Minimising steps also minimises the chance of making a mistake.
+              A swipe executes the trade. Fast enough for impulse, deliberate enough to prevent accidents. Minimizing steps also minimizes the chance of making a mistake.
             </InfoPanel>
             <InfoPanel title="3 · Review & Confirm" theme={theme}>
               Market cap, liquidity, and volume surface at the point of decision. Users get the data they need exactly when they need it, without hunting for it.
