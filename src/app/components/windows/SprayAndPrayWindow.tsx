@@ -10,7 +10,6 @@ import {
   SectionRule,
   InfoPanel,
   DecisionBlock,
-  StatCard,
 } from "./ProjectLayout";
 
 
@@ -48,17 +47,6 @@ export function SprayAndPrayWindow() {
           />
         </ImageWell>
 
-        <SectionRule label="Results" theme={theme} />
-
-        <div style={{ display: isMobile ? "flex" : "grid", gridTemplateColumns: "1fr 1fr", flexDirection: "column", gap: "24px 40px" }}>
-          <StatCard theme={theme} stat="5×" label="Average trades per session" />
-          <StatCard theme={theme} stat="3%" label="Free-to-paid conversion" />
-        </div>
-
-        <InfoPanel theme={theme}>
-          Players got liquidated fast and came back. The loudest signal was wanting shorter tournaments for quicker prizes. The reward loop was working. It just needed tightening.
-        </InfoPanel>
-
         <SectionRule label="Chip Economy" theme={theme} />
 
         <ImageWell theme={theme} onClick={() => openQuickLook({ src: "/the-loop.png", alt: "Chip Economy Loop", type: "image", bg: "#000000" })} style={{ height: isMobile ? "auto" : "320px" }}>
@@ -66,7 +54,7 @@ export function SprayAndPrayWindow() {
         </ImageWell>
 
         <InfoPanel title="How It Works" theme={theme}>
-          Players receive a free daily chip allowance. Chips are the entry fee into tournaments. Pick a direction, trade, and climb the leaderboard. The higher your PnL, the bigger the prize. Get liquidated? Re-enter as long as you have chips. Run out? Wait for the free daily allowance or buy more.
+          Players receive a free daily chip allowance. Chips are the entry fee into tournaments. Pick a direction, trade, and climb the leaderboard. The higher your PnL, the bigger the prize. Get liquidated? Re-enter as long as you have chips. Run out? Wait for the free daily allowance.
         </InfoPanel>
 
 
@@ -87,25 +75,18 @@ export function SprayAndPrayWindow() {
           title="Should we give chips back after a loss?"
           options={[
             { label: "A", text: "Yes. Softens the loss, keeps users playing, looks good on re-entry rate." },
-            { label: "B", text: "No. Daily allowance only, paywall after that." },
+            { label: "B", text: "No. Daily allowance only." },
           ]}
           outcome="We chose B. Rewarding losses trains the wrong behavior and undermines the tournament's stakes. The daily reset gives a softer landing without breaking the economy."
         />
 
         <div style={{ display: isMobile ? "flex" : "grid", gridTemplateColumns: "1fr 1fr", flexDirection: "column", gap: "24px 40px", alignItems: "start" }}>
-          <div className="flex flex-col gap-4">
-            <ImageWell theme={theme} onClick={ql("/Pray Trade Overlay_long.png", "Betting UI")}>
-              <img src="/Pray Trade Overlay_long.png" alt="Bet and leverage sliders in one gesture" loading="lazy" style={{ maxWidth: "100%", maxHeight: "100%", width: "auto", height: "auto", objectFit: "contain", display: "block", margin: "0 auto" }} />
-            </ImageWell>
-            <InfoPanel title="Input UI had to match" theme={theme}>
-              A slider sets bet and leverage in one gesture. No keyboard, no thinking in numbers.
-            </InfoPanel>
-          </div>
-          <div className="flex flex-col gap-4">
-            <ImageWell theme={theme} onClick={ql("/buy chip.png", "Buy Chips UI")}>
-              <img src="/buy chip.png" alt="Buy chips screen showing daily allowance and purchase options" loading="lazy" style={{ maxWidth: "100%", maxHeight: "100%", width: "auto", height: "auto", objectFit: "contain", display: "block", margin: "0 auto" }} />
-            </ImageWell>
-          </div>
+          <ImageWell theme={theme} onClick={ql("/Pray Trade Overlay_long.png", "Betting UI")}>
+            <img src="/Pray Trade Overlay_long.png" alt="Bet and leverage sliders in one gesture" loading="lazy" style={{ maxWidth: "100%", maxHeight: "100%", width: "auto", height: "auto", objectFit: "contain", display: "block", margin: "0 auto" }} />
+          </ImageWell>
+          <InfoPanel title="Input UI had to match" theme={theme}>
+            A slider sets bet and leverage in one gesture. No keyboard, no thinking in numbers.
+          </InfoPanel>
         </div>
 
         <SectionRule label="Trading Interface" theme={theme} />
